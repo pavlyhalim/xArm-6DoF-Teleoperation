@@ -34,7 +34,7 @@ class SimpleKalmanFilter:
 class ArmTracker:
     def __init__(self):
         self.mp_pose = mp.solutions.pose
-        self.pose = self.mp_pose.Pose(static_image_mode=False, model_complexity=2, min_detection_confidence=0.4, min_tracking_confidence=0.5)
+        self.pose = self.mp_pose.Pose(static_image_mode=False, model_complexity=2, min_detection_confidence=0.7, min_tracking_confidence=0.7)
         self.filters = {
             'shoulder': SimpleKalmanFilter(np.zeros(3), 1, 0.1, 0.01),
             'elbow': SimpleKalmanFilter(np.zeros(3), 1, 0.1, 0.01),
