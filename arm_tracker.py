@@ -127,11 +127,6 @@ def main():
                 cv2.putText(color_image, point_name, (int(point[0])+10, int(point[1])+10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
 
-            # Here you can call your Cython functions for further processing
-            # For example:
-            #arm_angles = calculate_arm_angles(tracked_keypoints['shoulder'], tracked_keypoints['elbow'], tracked_keypoints['wrist'])
-            # processed_cloud = process_point_cloud(depth_frame, tracked_keypoints)
-
         # Display the image with pose landmarks
         cv2.imshow('Arm Tracking', color_image)
 
