@@ -1,60 +1,59 @@
 # filters.pyx
-import cython
-import numpy as np
+
 cimport numpy as np
-from libc.math cimport M_PI, sin, cos, atan2
-from collections import deque
+import numpy as np
+from libc.math cimport sin, cos, atan2, M_PI
+
+np.import_array()
 
 cdef class MovingAverageFilter:
-    cdef:
-        int window_size
-        int vector_size
-        object angles_deque  # This will be a Python deque object
+    cdef int window_size
+    cdef int vector_size
+    cdef list angles_deque
+    cdef list velocities_deque
 
-    def __cinit__(self, int window_size, int vector_size):
+    def __init__(self, int window_size, int vector_size):
         self.window_size = window_size
         self.vector_size = vector_size
-        self.angles_deque = deque(maxlen=window_size)
+        self.angles_deque = []
+        self.velocities_deque = []
 
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    cpdef void add_new_values(self, np.ndarray[double, ndim=1] angles):
+    def add_new_values(self, np.ndarray[double, ndim=1] angles, np.ndarray[double, ndim=1] velocities):
         self.angles_deque.append(angles)
+        self.velocities_deque.append(velocities)
+        if len(self.angles_deque) > self.window_size:
+            self.angles_deque.pop(0)
+            self.velocities_deque.pop(0)
 
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    cpdef np.ndarray[double, ndim=1] get_filtered_values(self):
-        cdef int i, j
-        cdef np.ndarray[double, ndim=1] sum_cos = np.zeros(self.vector_size)
-        cdef np.ndarray[double, ndim=1] sum_sin = np.zeros(self.vector_size)
-        cdef np.ndarray[double, ndim=1] angles
-
+    def get_filtered_values(self):
+        if not self.angles_deque:
+            return np.zeros(self.vector_size, dtype=np.double)
+        
+        cdef np.ndarray[double, ndim=1] sum_cos = np.zeros(self.vector_size, dtype=np.double)
+        cdef np.ndarray[double, ndim=1] sum_sin = np.zeros(self.vector_size, dtype=np.double)
+        
         for angles in self.angles_deque:
-            for j in range(self.vector_size):
-                sum_cos[j] += cos(angles[j] * M_PI / 180.0)
-                sum_sin[j] += sin(angles[j] * M_PI / 180.0)
-
-        cdef np.ndarray[double, ndim=1] result = np.zeros(self.vector_size)
-        for j in range(self.vector_size):
-            result[j] = atan2(sum_sin[j], sum_cos[j]) * 180.0 / M_PI
-
-        return result
+            sum_cos += np.cos(np.radians(angles))
+            sum_sin += np.sin(np.radians(angles))
+        
+        return np.degrees(np.arctan2(sum_sin, sum_cos))
 
 cdef class HysteresisFilter:
-    cdef:
-        double max_val
-        double min_val
-        bint state
+    cdef double max_val
+    cdef double min_val
+    cdef bint state
 
-    def __cinit__(self, double max_val, double min_val):
+    def __init__(self, double max_val, double min_val):
         self.max_val = max_val
         self.min_val = min_val
         self.state = False
 
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    cpdef bint filter(self, double val):
-        if val > self.max_val and not self.state:
+    def filter(self, double val):
+        if val < self.max_val and not self.state:
+            self.state = False
+        elif val > self.max_val and not self.state:
+            self.state = True
+        elif val > self.min_val and self.state:
             self.state = True
         elif val < self.min_val and self.state:
             self.state = False

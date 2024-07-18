@@ -2,117 +2,145 @@ import numpy as np
 import pyrealsense2 as rs
 import cv2
 from arm_tracker import ArmTracker
-from xarm_kinematics import calculate_arm_angles, convert_angles_to_xarm, limit_angular_movement, limit_velocity, calculate_velocity
-from point_cloud_processor import process_point_cloud, cuboid_filter_custom
+from xarm_kinematics import calculate_arm_angles, convert_angles_to_xarm, limit_angular_movement
 from xarm.wrapper import XArmAPI
 import time
+import logging
+import traceback
+from filters import MovingAverageFilter, HysteresisFilter
 
-def main():
-    # Initialize xArm
+logging.basicConfig(level=logging.INFO)
+
+def initialize_xarm():
     arm = XArmAPI('192.168.1.220')  # Replace with your xArm's IP address
+    arm.connect()
     arm.motion_enable(enable=True)
-    arm.set_mode(0)
-    arm.set_state(state=0)
+    arm.set_mode(1)  # Set to position control mode
+    arm.set_state(state=0)  # Set to ready state
+    return arm
 
-    # Initialize ArmTracker
-    tracker = ArmTracker()
-
+def initialize_realsense():
     pipeline = rs.pipeline()
     config = rs.config()
     config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
     config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
     pipeline.start(config)
-
     align = rs.align(rs.stream.color)
+    return pipeline, align
 
-    # Initialize variables for smoothing and velocity calculation
+def visualize_results(color_image, tracked_keypoints):
+    if tracked_keypoints is not None:
+        for point_name, point in tracked_keypoints.items():
+            cv2.circle(color_image, (int(point[0]), int(point[1])), 5, (0, 255, 0), -1)
+            cv2.putText(color_image, f"{point_name}: ({point[0]:.2f}, {point[1]:.2f}, {point[2]:.2f})", 
+                        (int(point[0])+10, int(point[1])+10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+    else:
+        cv2.putText(color_image, "No keypoints detected", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+
+    cv2.imshow('Arm Tracking', color_image)
+
+def main():
+    arm = initialize_xarm()
+    tracker = ArmTracker()
+    pipeline, align = initialize_realsense()
+
+    moving_avg_filter = MovingAverageFilter(window_size=15, vector_size=6)
+    hysteresis_filters = [HysteresisFilter(max_val=0.1, min_val=-0.1) for _ in range(6)]
+
     prev_angles = np.zeros(6)
+    prev_velocities = np.zeros(6)
+    max_angular_change = 5.0  # degrees per iteration
+    max_velocity = 15.0  # degrees per second
+    max_acceleration = 30.0  # degrees per second^2
+
     prev_time = time.time()
 
-    while True:
-        # Get frames from RealSense camera
-        frames = pipeline.wait_for_frames()
-        aligned_frames = align.process(frames)
-        depth_frame = aligned_frames.get_depth_frame()
-        color_frame = aligned_frames.get_color_frame()
-        
-        if not depth_frame or not color_frame:
-            continue
+    try:
+        while True:
+            loop_start_time = time.time()
 
-        # Convert images to numpy arrays
-        depth_image = np.asanyarray(depth_frame.get_data())
-        color_image = np.asanyarray(color_frame.get_data())
+            frames = pipeline.wait_for_frames()
+            aligned_frames = align.process(frames)
+            depth_frame = aligned_frames.get_depth_frame()
+            color_frame = aligned_frames.get_color_frame()
+            
+            if not depth_frame or not color_frame:
+                continue
 
-        # Track arm and get keypoints
-        tracked_keypoints = tracker.track_arm(color_image, depth_frame)
+            depth_image = np.asanyarray(depth_frame.get_data())
+            color_image = np.asanyarray(color_frame.get_data())
 
-        if tracked_keypoints is not None:
-            # Calculate arm angles using Cython function
-            shoulder = tracked_keypoints['shoulder']
-            elbow = tracked_keypoints['elbow']
-            hand = tracked_keypoints['wrist']
-            arm_angles = calculate_arm_angles(shoulder, elbow, hand)
+            tracked_keypoints = tracker.track_arm(color_image, depth_frame)
 
-            # Process point cloud using Cython function
-            processed_cloud = process_point_cloud(depth_frame, tracked_keypoints)
+            if tracked_keypoints is not None:
+                current_time = time.time()
+                dt = current_time - prev_time
 
-            # Convert angles to xArm joint angles
-            xarm_angles = convert_angles_to_xarm(arm_angles)
+                arm_angles = calculate_arm_angles(tracked_keypoints['shoulder'], tracked_keypoints['elbow'], tracked_keypoints['wrist'])
+                xarm_angles = convert_angles_to_xarm(arm_angles)
 
-            # Limit angular movement
-            xarm_angles = np.array([limit_angular_movement(angle, prev, 5) for angle, prev in zip(xarm_angles, prev_angles)])
+                # Calculate velocities
+                velocities = (xarm_angles - prev_angles) / dt
 
-            # Calculate and limit velocity
-            current_time = time.time()
-            time_step = current_time - prev_time
-            velocities = calculate_velocity(xarm_angles, prev_angles, time_step)
-            limited_velocities = limit_velocity(velocities, max_velocity=180.0)  # 180 deg/s max velocity
+                # Apply moving average filter
+                moving_avg_filter.add_new_values(xarm_angles, velocities)
+                filtered_angles = moving_avg_filter.get_filtered_values()
+                filtered_velocities = np.array(velocities)  # We're not filtering velocities in this version
 
-            # Send angles to xArm
-            arm.set_servo_angle_j(angles=xarm_angles.tolist(), speed=limited_velocities.tolist(), is_radian=False)
+                # Apply angular movement limitation
+                limited_angles = np.array([limit_angular_movement(angle, prev, max_angular_change) 
+                                           for angle, prev in zip(filtered_angles, prev_angles)])
 
-            # Update previous angles and time for next iteration
-            prev_angles = xarm_angles
-            prev_time = current_time
+                # Apply velocity limitation
+                limited_velocities = np.clip(filtered_velocities, -max_velocity, max_velocity)
 
-            # Visualize results (you can implement this part as needed)
-            visualize_results(color_image, tracked_keypoints, processed_cloud)
+                # Apply acceleration limitation
+                accelerations = (limited_velocities - prev_velocities) / dt
+                limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
+                limited_velocities = prev_velocities + limited_accelerations * dt
 
-        if cv2.waitKey(5) & 0xFF == 27:
-            break
+                # Recalculate angles based on limited velocities
+                limited_angles = prev_angles + limited_velocities * dt
 
-    pipeline.stop()
-    arm.disconnect()
-    cv2.destroyAllWindows()
+                # Apply hysteresis filter
+                for i in range(6):
+                    if hysteresis_filters[i].filter(limited_angles[i] - prev_angles[i]):
+                        limited_angles[i] = prev_angles[i]
 
-def visualize_results(color_image, tracked_keypoints, processed_cloud, ax1, ax2):
-    # Draw keypoints on color image
-    for point_name, point in tracked_keypoints.items():
-        cv2.circle(color_image, (int(point[0]), int(point[1])), 5, (0, 255, 0), -1)
-        cv2.putText(color_image, point_name, (int(point[0])+10, int(point[1])+10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+                # Calculate speed based on the maximum velocity
+                speed = np.max(np.abs(limited_velocities)) * 5  # Adjust this multiplier as needed
+                speed = min(max(speed, 10), 100)  # Limit speed between 10 and 100
 
-    # Display the image with pose landmarks
-    ax1.clear()
-    ax1.imshow(cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB))
-    ax1.set_title('Arm Tracking')
-    ax1.axis('off')
+                # Only move if the change is significant
+                if np.max(np.abs(limited_angles - prev_angles)) > 0.5:  # 0.5 degree threshold
+                    arm.set_servo_angle_j(angles=limited_angles.tolist(), speed=speed, is_radian=False, wait=False)
+                    logging.info(f"Angles: {limited_angles}, Speed: {speed}")
+                else:
+                    logging.info("Movement within threshold, not sending command")
 
-    # Visualize processed point cloud
-    if processed_cloud is not None:
-        ax2.clear()
-        points = np.asarray(processed_cloud.points)
-        ax2.scatter(points[:, 0], points[:, 1], points[:, 2], s=1, c=points[:, 2], cmap='viridis')
-        ax2.set_title('Processed Point Cloud')
-        ax2.set_xlabel('X')
-        ax2.set_ylabel('Y')
-        ax2.set_zlabel('Z')
-        ax2.set_xlim([-0.5, 0.5])
-        ax2.set_ylim([-0.5, 0.5])
-        ax2.set_zlim([0, 1])
+                prev_angles = limited_angles
+                prev_velocities = limited_velocities
+                prev_time = current_time
 
-    plt.draw()
-    plt.pause(0.001)
+            visualize_results(color_image, tracked_keypoints)
+
+            if cv2.waitKey(5) & 0xFF == 27:
+                break
+
+            # Ensure consistent loop time
+            time.sleep(max(0, 1/30 - (time.time() - loop_start_time)))
+
+    except KeyboardInterrupt:
+        logging.info("Program interrupted by user")
+    except Exception as e:
+        logging.error(f"Unexpected error: {str(e)}")
+        logging.error(traceback.format_exc())
+    finally:
+        pipeline.stop()
+        arm.disconnect()
+        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     main()

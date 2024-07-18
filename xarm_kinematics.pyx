@@ -4,7 +4,6 @@ import numpy as np
 cimport numpy as np
 from libc.math cimport M_PI, sin, cos, atan2, acos, sqrt, fmod
 
-
 cdef class CalculateArmAngles:
     cdef public np.ndarray shoulderPoint, elbowPoint, handPoint, upperarm, forearm
 
@@ -94,6 +93,12 @@ def calculate_arm_angles(np.ndarray[double, ndim=1] shoulder, np.ndarray[double,
     cdef double gamma = calculator.getGamma()
     cdef double delta = calculator.getDelta()
     
+    # Apply offsets and normalize to [-180, 180] range
+    alpha = fmod((alpha - 180.0 + 180.0), 360.0) - 180.0
+    beta = beta  # Negate beta
+    gamma = fmod((gamma - 180.0 + 180.0), 360.0) - 180.0
+    delta = fmod((-delta - 90.0 + 180.0), 360.0) - 180.0
+    
     return np.array([alpha, beta, gamma, delta])
 
 @cython.boundscheck(False)
@@ -104,7 +109,7 @@ def convert_angles_to_xarm(np.ndarray[double, ndim=1] angles):
     # Convert tracked angles to xArm 6 joint angles
     xarm_angles[0] = angles[0]  # Base rotation (alpha)
     xarm_angles[1] = -angles[1]  # Shoulder (beta, inverted)
-    xarm_angles[2] = angles[2] - 180.0  # Elbow (gamma, offset by 180 degrees)
+    xarm_angles[2] = -angles[2] + 180.0  # Elbow (gamma, negated and offset by 180 degrees)
     xarm_angles[3] = -angles[3] - 90.0  # Wrist 1 (delta, inverted and offset by 90 degrees)
     xarm_angles[4] = angles[4] if len(angles) > 4 else 0  # Wrist 2 (epsilon or 0 if not provided)
     xarm_angles[5] = angles[5] if len(angles) > 5 else 0  # Wrist 3 (zeta or 0 if not provided)
@@ -121,13 +126,13 @@ def limit_angular_movement(double angle, double angle_old, double max_angular_ch
     cdef double delta_angle = angle - angle_old
     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:
         if 0.0 < delta_angle <= 180.0:
-            return fmod((angle_old + max_angular_change + 180.0), 360.0) - 180.0
+            return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
         elif -180.0 < delta_angle <= 0.0:
-            return fmod((angle_old - max_angular_change + 180.0), 360.0) - 180.0
+            return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
         elif 180.0 < delta_angle <= 360.0:
-            return fmod((angle_old - max_angular_change + 180.0), 360.0) - 180.0
+            return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
         elif -360.0 < delta_angle <= -180.0:
-            return fmod((angle_old + max_angular_change + 180.0), 360.0) - 180.0
+            return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
     return angle
 
 @cython.boundscheck(False)
@@ -156,3 +161,79 @@ def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
 @cython.wraparound(False)
 def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
     return (current_angles - prev_angles) / time_step
+
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
+    cdef double theta1 = joint_angles[0] * M_PI / 180.0
+    cdef double theta2 = joint_angles[1] * M_PI / 180.0
+    cdef double theta3 = joint_angles[2] * M_PI / 180.0
+    cdef double theta4 = joint_angles[3] * M_PI / 180.0
+    cdef double theta5 = joint_angles[4] * M_PI / 180.0
+    cdef double theta6 = joint_angles[5] * M_PI / 180.0
+
+    # DH parameters for xArm 6 (in mm and radians)
+    cdef double d1 = 267.0
+    cdef double a2 = 289.48866
+    cdef double d4 = 342.5
+    cdef double d6 = 97.0
+
+    cdef double c1 = cos(theta1)
+    cdef double s1 = sin(theta1)
+    cdef double c2 = cos(theta2)
+    cdef double s2 = sin(theta2)
+    cdef double c3 = cos(theta3)
+    cdef double s3 = sin(theta3)
+    cdef double c4 = cos(theta4)
+    cdef double s4 = sin(theta4)
+    cdef double c5 = cos(theta5)
+    cdef double s5 = sin(theta5)
+    cdef double c6 = cos(theta6)
+    cdef double s6 = sin(theta6)
+
+    cdef double s23 = sin(theta2 + theta3)
+    cdef double c23 = cos(theta2 + theta3)
+
+    cdef double nx = c1*(c5*s23*s4 + c23*c4*c5) - s1*(c6*s5 + c5*s6) + c1*(c23*s4 - c4*s23)*s6
+    cdef double ny = s1*(c5*s23*s4 + c23*c4*c5) + c1*(c6*s5 + c5*s6) + s1*(c23*s4 - c4*s23)*s6
+    cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6
+    cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)
+    cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)
+    cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)
+    cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)
+    cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)
+    cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)
+    cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
+    cdef double py = s1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
+    cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)
+
+    cdef np.ndarray[double, ndim=2] T = np.array([
+        [nx, ox, ax, px],
+        [ny, oy, ay, py],
+        [nz, oz, az, pz],
+        [0, 0, 0, 1]
+    ])
+
+    return T
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
+    cdef np.ndarray[double, ndim=1] prev_pos = prev_pose[:3, 3]
+    cdef np.ndarray[double, ndim=1] current_pos = current_pose[:3, 3]
+    cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
+
+    cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]
+    cdef np.ndarray[double, ndim=2] current_rot = current_pose[:3, :3]
+    cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)
+    
+    cdef double angle = acos((np.trace(rot_diff) - 1) / 2)
+    cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],
+                                                     rot_diff[0, 2] - rot_diff[2, 0],
+                                                     rot_diff[1, 0] - rot_diff[0, 1]])
+    axis /= (2 * sin(angle) + 1e-10)  # Add small value to avoid division by zero
+    cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis
+
+    return np.concatenate([linear_velocity, angular_velocity])
