@@ -1,8 +1,0 @@
-<!-- -*- mode: XML -*- -->
-
-<launch>
-
-	<include file="$(find opt_calibration)/launch/calibration_initializer.launch"/>
-	<include file="$(find opt_calibration)/launch/listener.launch"/>
-
-</launch>
