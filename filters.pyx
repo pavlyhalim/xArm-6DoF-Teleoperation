@@ -7,49 +7,43 @@ from libc.math cimport sin, cos, atan2, M_PI
 np.import_array()
 
 
+cdef class MovingAverageFilter:
+    cdef int window_size
+    cdef int vector_size
+    cdef np.ndarray buffer
+    cdef int current_index
+    cdef bint is_filled
+
+    def __init__(self, int window_size, int vector_size):
+        self.window_size = window_size
+        self.vector_size = vector_size
+        self.buffer = np.zeros((window_size, vector_size), dtype=np.double)
+        self.current_index = 0
+        self.is_filled = False
+
+    cpdef np.ndarray update(self, np.ndarray[double, ndim=1] new_value):
+        self.buffer[self.current_index] = new_value
+        self.current_index = (self.current_index + 1) % self.window_size
+        
+        if self.current_index == 0:
+            self.is_filled = True
+        
+        if self.is_filled:
+            return np.mean(self.buffer, axis=0)
+        else:
+            return np.mean(self.buffer[:self.current_index], axis=0)
+
 cdef class LowPassFilter:
     cdef double alpha
     cdef np.ndarray state
 
     def __init__(self, double alpha, int size):
         self.alpha = alpha
-        self.state = np.zeros(size)
+        self.state = np.zeros(size, dtype=np.double)
 
     cpdef np.ndarray update(self, np.ndarray[double, ndim=1] new_value):
         self.state = self.alpha * new_value + (1 - self.alpha) * self.state
         return self.state
-        
-cdef class MovingAverageFilter:
-    cdef int window_size
-    cdef int vector_size
-    cdef list angles_deque
-    cdef list velocities_deque
-
-    def __init__(self, int window_size, int vector_size):
-        self.window_size = window_size
-        self.vector_size = vector_size
-        self.angles_deque = []
-        self.velocities_deque = []
-
-    def add_new_values(self, np.ndarray[double, ndim=1] angles, np.ndarray[double, ndim=1] velocities):
-        self.angles_deque.append(angles)
-        self.velocities_deque.append(velocities)
-        if len(self.angles_deque) > self.window_size:
-            self.angles_deque.pop(0)
-            self.velocities_deque.pop(0)
-
-    def get_filtered_values(self):
-        if not self.angles_deque:
-            return np.zeros(self.vector_size, dtype=np.double)
-        
-        cdef np.ndarray[double, ndim=1] sum_cos = np.zeros(self.vector_size, dtype=np.double)
-        cdef np.ndarray[double, ndim=1] sum_sin = np.zeros(self.vector_size, dtype=np.double)
-        
-        for angles in self.angles_deque:
-            sum_cos += np.cos(np.radians(angles))
-            sum_sin += np.sin(np.radians(angles))
-        
-        return np.degrees(np.arctan2(sum_sin, sum_cos))
 
 cdef class HysteresisFilter:
     cdef double max_val
@@ -61,13 +55,9 @@ cdef class HysteresisFilter:
         self.min_val = min_val
         self.state = False
 
-    def filter(self, double val):
-        if val < self.max_val and not self.state:
-            self.state = False
-        elif val > self.max_val and not self.state:
+    cpdef bint update(self, double val):
+        if val > self.max_val:
             self.state = True
-        elif val > self.min_val and self.state:
-            self.state = True
-        elif val < self.min_val and self.state:
+        elif val < self.min_val:
             self.state = False
         return self.state

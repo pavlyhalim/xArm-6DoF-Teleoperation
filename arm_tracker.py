@@ -2,12 +2,13 @@ import numpy as np
 import mediapipe as mp
 import cv2
 import pyximport
-pyximport.install()
+#pyximport.install()
 from arm_tracker_cy import track_arm_cy
+
 
 class LowPassFilter:
     def __init__(self, alpha):
-        self.alpha = alpha
+        self.alpha = alpha  
         self.value = None
 
     def update(self, value):

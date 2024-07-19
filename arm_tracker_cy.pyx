@@ -3,6 +3,7 @@
 import cython
 import numpy as np
 cimport numpy as np
+np.import_array()
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

@@ -143,17 +143,6 @@ def limit_angle(double angle, double min_val, double max_val):
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def limit_angular_movement(double angle, double prev_angle, double max_angular_change):
-    cdef double delta = angle - prev_angle
-    if abs(delta) > max_angular_change:
-        if delta > 0:
-            return prev_angle + max_angular_change
-        else:
-            return prev_angle - max_angular_change
-    return angle
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
 def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
     return np.clip(velocities, -max_velocity, max_velocity)
 
@@ -249,3 +238,4 @@ def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray
     cdef np.ndarray[double, ndim=1] accelerations = (current_velocities - prev_velocities) / dt
     cdef np.ndarray[double, ndim=1] limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
     return prev_velocities + limited_accelerations * dt
+    

@@ -7,12 +7,13 @@ extensions = [
               include_dirs=[numpy.get_include()]),
     Extension("filters", ["filters.pyx"],
               include_dirs=[numpy.get_include()]),
+    Extension("arm_tracker_cy", ["arm_tracker_cy.pyx"],
+              include_dirs=[numpy.get_include()]),
 ]
 
 setup(
     name="XArm6ControlSystem",
     ext_modules=cythonize(extensions, language_level=3),
-    py_modules=["point_cloud_processor"],
     install_requires=[
         "numpy",
         "opencv-python",
