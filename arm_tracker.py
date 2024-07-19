@@ -1,6 +1,9 @@
 import numpy as np
 import mediapipe as mp
 import cv2
+import pyximport
+pyximport.install()
+from arm_tracker_cy import track_arm_cy
 
 class LowPassFilter:
     def __init__(self, alpha):
@@ -49,7 +52,7 @@ class ArmTracker:
     def track_arm(self, color_image, depth_frame):
         results = self.pose.process(cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB))
         if results.pose_landmarks:
-            return self._extract_keypoints(results.pose_landmarks, depth_frame)
+            return track_arm_cy(results.pose_landmarks, depth_frame, self.mp_pose, self.filters)
         return None
 
     def _extract_keypoints(self, pose_landmarks, depth_frame):

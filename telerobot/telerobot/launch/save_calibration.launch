@@ -1,0 +1,7 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+
+	<node name="rostopic" pkg="rostopic" type="rostopic" args='pub /opt_calibration/action std_msgs/String "save" -1' output="screen"/>	
+
+</launch>

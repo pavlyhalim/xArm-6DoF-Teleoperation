@@ -6,6 +6,19 @@ from libc.math cimport sin, cos, atan2, M_PI
 
 np.import_array()
 
+
+cdef class LowPassFilter:
+    cdef double alpha
+    cdef np.ndarray state
+
+    def __init__(self, double alpha, int size):
+        self.alpha = alpha
+        self.state = np.zeros(size)
+
+    cpdef np.ndarray update(self, np.ndarray[double, ndim=1] new_value):
+        self.state = self.alpha * new_value + (1 - self.alpha) * self.state
+        return self.state
+        
 cdef class MovingAverageFilter:
     cdef int window_size
     cdef int vector_size

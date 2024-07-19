@@ -2,12 +2,12 @@ import numpy as np
 import pyrealsense2 as rs
 import cv2
 from arm_tracker import ArmTracker
-from xarm_kinematics import calculate_arm_angles, convert_angles_to_xarm, limit_angular_movement
+from xarm_kinematics import *
 from xarm.wrapper import XArmAPI
 import time
 import logging
 import traceback
-from filters import MovingAverageFilter, HysteresisFilter
+from filters import *
 
 logging.basicConfig(level=logging.INFO)
 
@@ -49,13 +49,12 @@ def main():
     moving_avg_filter = MovingAverageFilter(window_size=15, vector_size=6)
     hysteresis_filters = [HysteresisFilter(max_val=0.1, min_val=-0.1) for _ in range(6)]
 
+    low_pass_filter = LowPassFilter(alpha=0.1, size=6)  # Adjust alpha as needed
     prev_angles = np.zeros(6)
     prev_velocities = np.zeros(6)
-    max_angular_change = 5.0  # degrees per iteration
-    max_velocity = 15.0  # degrees per second
-    max_acceleration = 30.0  # degrees per second^2
-
-    prev_time = time.time()
+    max_velocity = 30.0  # degrees per second
+    max_acceleration = 60.0  # degrees per second^2
+    dt = 1.0 / 30.0  # Assuming 30 Hz control loop
 
     try:
         while True:
@@ -75,39 +74,27 @@ def main():
             tracked_keypoints = tracker.track_arm(color_image, depth_frame)
 
             if tracked_keypoints is not None:
-                current_time = time.time()
-                dt = current_time - prev_time
-
                 arm_angles = calculate_arm_angles(tracked_keypoints['shoulder'], tracked_keypoints['elbow'], tracked_keypoints['wrist'])
                 xarm_angles = convert_angles_to_xarm(arm_angles)
 
+                # Apply low-pass filter
+                filtered_angles = low_pass_filter.update(xarm_angles)
+
                 # Calculate velocities
-                velocities = (xarm_angles - prev_angles) / dt
+                velocities = (filtered_angles - prev_angles) / dt
 
-                # Apply moving average filter
-                moving_avg_filter.add_new_values(xarm_angles, velocities)
-                filtered_angles = moving_avg_filter.get_filtered_values()
-                filtered_velocities = np.array(velocities)  # We're not filtering velocities in this version
+                # Limit velocities
+                limited_velocities = limit_velocity(velocities, max_velocity)
 
-                # Apply angular movement limitation
+                # Limit accelerations
+                limited_velocities = limit_acceleration(limited_velocities, prev_velocities, max_acceleration, dt)
+
+                # Calculate new angles based on limited velocities
+                new_angles = prev_angles + limited_velocities * dt
+
+                # Limit angular movement
                 limited_angles = np.array([limit_angular_movement(angle, prev, max_angular_change) 
-                                           for angle, prev in zip(filtered_angles, prev_angles)])
-
-                # Apply velocity limitation
-                limited_velocities = np.clip(filtered_velocities, -max_velocity, max_velocity)
-
-                # Apply acceleration limitation
-                accelerations = (limited_velocities - prev_velocities) / dt
-                limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
-                limited_velocities = prev_velocities + limited_accelerations * dt
-
-                # Recalculate angles based on limited velocities
-                limited_angles = prev_angles + limited_velocities * dt
-
-                # Apply hysteresis filter
-                for i in range(6):
-                    if hysteresis_filters[i].filter(limited_angles[i] - prev_angles[i]):
-                        limited_angles[i] = prev_angles[i]
+                                           for angle, prev in zip(new_angles, prev_angles)])
 
                 # Calculate speed based on the maximum velocity
                 speed = np.max(np.abs(limited_velocities)) * 5  # Adjust this multiplier as needed
@@ -122,7 +109,6 @@ def main():
 
                 prev_angles = limited_angles
                 prev_velocities = limited_velocities
-                prev_time = current_time
 
             visualize_results(color_image, tracked_keypoints)
 

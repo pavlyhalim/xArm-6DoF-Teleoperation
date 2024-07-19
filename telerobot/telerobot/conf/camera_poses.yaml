@@ -1,0 +1,25 @@
+# Auto generated file.
+calibration_id: 1438256690
+
+# Poses w.r.t. the "world" reference frame
+poses:
+  kinect1:
+    translation:
+      x: 0.650275
+      y: -0.0871968
+      z: 0.738491
+    rotation:
+      x: 0.721438
+      y: 0.597623
+      z: -0.160873
+      w: -0.310634
+  kinect2:
+    translation:
+      x: 0.660484
+      y: 0.23059
+      z: 0.750633
+    rotation:
+      x: 0.595857
+      y: 0.687563
+      z: -0.333796
+      w: -0.24656
