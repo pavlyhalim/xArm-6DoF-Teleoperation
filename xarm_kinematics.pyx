@@ -143,17 +143,6 @@ def limit_angle(double angle, double min_val, double max_val):
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def limit_angular_movement(double angle, double prev_angle, double max_angular_change):
-    cdef double delta = angle - prev_angle
-    if abs(delta) > max_angular_change:
-        if delta > 0:
-            return prev_angle + max_angular_change
-        else:
-            return prev_angle - max_angular_change
-    return angle
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
 def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
     return np.clip(velocities, -max_velocity, max_velocity)
 
@@ -237,3 +226,16 @@ def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[doub
     cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis
 
     return np.concatenate([linear_velocity, angular_velocity])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
+    return np.clip(velocities, -max_velocity, max_velocity)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
+    cdef np.ndarray[double, ndim=1] accelerations = (current_velocities - prev_velocities) / dt
+    cdef np.ndarray[double, ndim=1] limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
+    return prev_velocities + limited_accelerations * dt
+    

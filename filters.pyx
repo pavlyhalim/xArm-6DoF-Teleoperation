@@ -1,60 +1,73 @@
 # filters.pyx
-
 cimport numpy as np
 import numpy as np
-from libc.math cimport sin, cos, atan2, M_PI
+from libc.math cimport sqrt, pow
 
-np.import_array()
+cdef class ExtendedKalmanFilter:
+    cdef:
+        double[:] state
+        double[:,:] P
+        double[:,:] Q
+        double[:,:] R
+        int state_dim
+        int measurement_dim
 
-cdef class MovingAverageFilter:
-    cdef int window_size
-    cdef int vector_size
-    cdef list angles_deque
-    cdef list velocities_deque
+    def __init__(self, np.ndarray[double, ndim=1] initial_state, np.ndarray[double, ndim=2] initial_P, np.ndarray[double, ndim=2] Q, np.ndarray[double, ndim=2] R):
+        self.state = initial_state
+        self.P = initial_P
+        self.Q = Q
+        self.R = R
+        self.state_dim = initial_state.shape[0]
+        self.measurement_dim = R.shape[0]
 
-    def __init__(self, int window_size, int vector_size):
-        self.window_size = window_size
-        self.vector_size = vector_size
-        self.angles_deque = []
-        self.velocities_deque = []
+    cdef np.ndarray[double, ndim=1] state_transition(self, np.ndarray[double, ndim=1] state):
+        # Implement your state transition function here
+        # For simplicity, we'll use a constant velocity model
+        cdef np.ndarray[double, ndim=1] new_state = np.zeros(self.state_dim, dtype=np.float64)
+        cdef int i
+        for i in range(0, self.state_dim, 2):
+            new_state[i] = state[i] + state[i+1]
+            new_state[i+1] = state[i+1]
+        return new_state
 
-    def add_new_values(self, np.ndarray[double, ndim=1] angles, np.ndarray[double, ndim=1] velocities):
-        self.angles_deque.append(angles)
-        self.velocities_deque.append(velocities)
-        if len(self.angles_deque) > self.window_size:
-            self.angles_deque.pop(0)
-            self.velocities_deque.pop(0)
+    cdef np.ndarray[double, ndim=2] jacobian(self, np.ndarray[double, ndim=1] state):
+        # Implement the Jacobian of the state transition function
+        cdef np.ndarray[double, ndim=2] J = np.eye(self.state_dim, dtype=np.float64)
+        cdef int i
+        for i in range(0, self.state_dim, 2):
+            J[i, i+1] = 1.0
+        return J
 
-    def get_filtered_values(self):
-        if not self.angles_deque:
-            return np.zeros(self.vector_size, dtype=np.double)
+    cpdef np.ndarray[double, ndim=1] update(self, np.ndarray[double, ndim=1] measurement):
+        # Prediction
+        cdef np.ndarray[double, ndim=1] predicted_state = self.state_transition(np.asarray(self.state))
+        cdef np.ndarray[double, ndim=2] F = self.jacobian(np.asarray(self.state))
+        cdef np.ndarray[double, ndim=2] predicted_P = np.dot(np.dot(F, self.P), F.T) + self.Q
+
+        # Update
+        cdef np.ndarray[double, ndim=1] y = measurement - predicted_state[:self.measurement_dim]
+        cdef np.ndarray[double, ndim=2] H = np.zeros((self.measurement_dim, self.state_dim), dtype=np.float64)
+        H[:, :self.measurement_dim] = np.eye(self.measurement_dim)
         
-        cdef np.ndarray[double, ndim=1] sum_cos = np.zeros(self.vector_size, dtype=np.double)
-        cdef np.ndarray[double, ndim=1] sum_sin = np.zeros(self.vector_size, dtype=np.double)
-        
-        for angles in self.angles_deque:
-            sum_cos += np.cos(np.radians(angles))
-            sum_sin += np.sin(np.radians(angles))
-        
-        return np.degrees(np.arctan2(sum_sin, sum_cos))
+        cdef np.ndarray[double, ndim=2] S = np.dot(np.dot(H, predicted_P), H.T) + self.R
+        cdef np.ndarray[double, ndim=2] K = np.dot(np.dot(predicted_P, H.T), np.linalg.inv(S))
 
-cdef class HysteresisFilter:
-    cdef double max_val
-    cdef double min_val
-    cdef bint state
+        self.state = predicted_state + np.dot(K, y)
+        self.P = predicted_P - np.dot(np.dot(K, H), predicted_P)
 
-    def __init__(self, double max_val, double min_val):
-        self.max_val = max_val
-        self.min_val = min_val
-        self.state = False
+        return np.asarray(self.state)
 
-    def filter(self, double val):
-        if val < self.max_val and not self.state:
-            self.state = False
-        elif val > self.max_val and not self.state:
-            self.state = True
-        elif val > self.min_val and self.state:
-            self.state = True
-        elif val < self.min_val and self.state:
-            self.state = False
-        return self.state
+cdef class LowPassFilter:
+    cdef double alpha
+    cdef list prev_output
+
+    def __init__(self, double alpha):
+        self.alpha = alpha
+        self.prev_output = None
+
+    cpdef np.ndarray[double, ndim=1] update(self, np.ndarray[double, ndim=1] input_data):
+        if self.prev_output is None:
+            self.prev_output = input_data.tolist()
+        else:
+            self.prev_output = (self.alpha * input_data + (1 - self.alpha) * np.array(self.prev_output)).tolist()
+        return np.array(self.prev_output)
