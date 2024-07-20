@@ -1,63 +1,73 @@
 # filters.pyx
-
 cimport numpy as np
 import numpy as np
-from libc.math cimport sin, cos, atan2, M_PI
+from libc.math cimport sqrt, pow
 
-np.import_array()
+cdef class ExtendedKalmanFilter:
+    cdef:
+        double[:] state
+        double[:,:] P
+        double[:,:] Q
+        double[:,:] R
+        int state_dim
+        int measurement_dim
 
+    def __init__(self, np.ndarray[double, ndim=1] initial_state, np.ndarray[double, ndim=2] initial_P, np.ndarray[double, ndim=2] Q, np.ndarray[double, ndim=2] R):
+        self.state = initial_state
+        self.P = initial_P
+        self.Q = Q
+        self.R = R
+        self.state_dim = initial_state.shape[0]
+        self.measurement_dim = R.shape[0]
 
-cdef class MovingAverageFilter:
-    cdef int window_size
-    cdef int vector_size
-    cdef np.ndarray buffer
-    cdef int current_index
-    cdef bint is_filled
+    cdef np.ndarray[double, ndim=1] state_transition(self, np.ndarray[double, ndim=1] state):
+        # Implement your state transition function here
+        # For simplicity, we'll use a constant velocity model
+        cdef np.ndarray[double, ndim=1] new_state = np.zeros(self.state_dim, dtype=np.float64)
+        cdef int i
+        for i in range(0, self.state_dim, 2):
+            new_state[i] = state[i] + state[i+1]
+            new_state[i+1] = state[i+1]
+        return new_state
 
-    def __init__(self, int window_size, int vector_size):
-        self.window_size = window_size
-        self.vector_size = vector_size
-        self.buffer = np.zeros((window_size, vector_size), dtype=np.double)
-        self.current_index = 0
-        self.is_filled = False
+    cdef np.ndarray[double, ndim=2] jacobian(self, np.ndarray[double, ndim=1] state):
+        # Implement the Jacobian of the state transition function
+        cdef np.ndarray[double, ndim=2] J = np.eye(self.state_dim, dtype=np.float64)
+        cdef int i
+        for i in range(0, self.state_dim, 2):
+            J[i, i+1] = 1.0
+        return J
 
-    cpdef np.ndarray update(self, np.ndarray[double, ndim=1] new_value):
-        self.buffer[self.current_index] = new_value
-        self.current_index = (self.current_index + 1) % self.window_size
+    cpdef np.ndarray[double, ndim=1] update(self, np.ndarray[double, ndim=1] measurement):
+        # Prediction
+        cdef np.ndarray[double, ndim=1] predicted_state = self.state_transition(np.asarray(self.state))
+        cdef np.ndarray[double, ndim=2] F = self.jacobian(np.asarray(self.state))
+        cdef np.ndarray[double, ndim=2] predicted_P = np.dot(np.dot(F, self.P), F.T) + self.Q
+
+        # Update
+        cdef np.ndarray[double, ndim=1] y = measurement - predicted_state[:self.measurement_dim]
+        cdef np.ndarray[double, ndim=2] H = np.zeros((self.measurement_dim, self.state_dim), dtype=np.float64)
+        H[:, :self.measurement_dim] = np.eye(self.measurement_dim)
         
-        if self.current_index == 0:
-            self.is_filled = True
-        
-        if self.is_filled:
-            return np.mean(self.buffer, axis=0)
-        else:
-            return np.mean(self.buffer[:self.current_index], axis=0)
+        cdef np.ndarray[double, ndim=2] S = np.dot(np.dot(H, predicted_P), H.T) + self.R
+        cdef np.ndarray[double, ndim=2] K = np.dot(np.dot(predicted_P, H.T), np.linalg.inv(S))
+
+        self.state = predicted_state + np.dot(K, y)
+        self.P = predicted_P - np.dot(np.dot(K, H), predicted_P)
+
+        return np.asarray(self.state)
 
 cdef class LowPassFilter:
     cdef double alpha
-    cdef np.ndarray state
+    cdef list prev_output
 
-    def __init__(self, double alpha, int size):
+    def __init__(self, double alpha):
         self.alpha = alpha
-        self.state = np.zeros(size, dtype=np.double)
+        self.prev_output = None
 
-    cpdef np.ndarray update(self, np.ndarray[double, ndim=1] new_value):
-        self.state = self.alpha * new_value + (1 - self.alpha) * self.state
-        return self.state
-
-cdef class HysteresisFilter:
-    cdef double max_val
-    cdef double min_val
-    cdef bint state
-
-    def __init__(self, double max_val, double min_val):
-        self.max_val = max_val
-        self.min_val = min_val
-        self.state = False
-
-    cpdef bint update(self, double val):
-        if val > self.max_val:
-            self.state = True
-        elif val < self.min_val:
-            self.state = False
-        return self.state
+    cpdef np.ndarray[double, ndim=1] update(self, np.ndarray[double, ndim=1] input_data):
+        if self.prev_output is None:
+            self.prev_output = input_data.tolist()
+        else:
+            self.prev_output = (self.alpha * input_data + (1 - self.alpha) * np.array(self.prev_output)).tolist()
+        return np.array(self.prev_output)
