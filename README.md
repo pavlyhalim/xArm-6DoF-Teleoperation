@@ -2,7 +2,7 @@
 
 This repository hosts a sophisticated Python-based framework for real-time arm tracking and control of an xArm robotic manipulator using a RealSense depth camera. Leveraging computer vision, inverse kinematics, and advanced control techniques, the system enables the xArm to mimic human arm movements with high fidelity and smoothness.
 
-## Technical Implementation Details
+## Implementation Details
 
 ### 1. Real-Time Arm Tracking
 
