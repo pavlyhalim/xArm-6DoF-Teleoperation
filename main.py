@@ -87,17 +87,17 @@ def main():
         current_angles = np.zeros(6, dtype=np.float64)
         prev_angles = np.zeros(6, dtype=np.float64)
         current_velocity = np.zeros(6, dtype=np.float64)
-        max_velocity = 60.0  # degrees per second
-        max_acceleration = 180.0  # degrees per second^2
+        max_velocity = 100.0  # degrees per second
+        max_acceleration = 1000.0  # degrees per second^2
         min_angles = np.array([-360, -117, -225, -360, -97, -360])
         max_angles = np.array([360, 120, 11, 360, 180, 360])
         
         logging.info("Initializing PID controller...")
-        pid_controller = PIDController(kp=5.5, ki=0.1, kd=0.2, num_joints=6)
+        pid_controller = PIDController(kp=10.5, ki=0.11, kd=5.5, num_joints=6)
         logging.info("PID controller initialized")
         
-        target_dt = 1.0 / 60.0  # Target control loop frequency (60 Hz)
-        trajectory_points = 60  # Number of points in the minimum jerk trajectory
+        target_dt = 1.0 / 800.0  # Target control loop frequency (60 Hz)
+        trajectory_points = 800  # Number of points in the minimum jerk trajectory
 
         logging.info("Entering main loop")
         while True:
@@ -152,15 +152,10 @@ def main():
 
                         logging.debug("Sending command to the arm")
                         speed = np.max(np.abs(current_velocity)) * 2
-                        speed = min(max(speed, 10), 500)  # Limit speed between 10 and 500 deg/s
+                        speed = min(max(speed, 100), 500)  # Limit speed between 10 and 500 deg/s
 
                         arm.set_servo_angle_j(angles=current_angles.tolist(), speed=speed, is_radian=False, wait=False)
                         logging.info(f"Angles: {current_angles}, Speed: {speed}")
-
-                        elapsed_time = time.time() - loop_start_time
-                        if elapsed_time < target_dt:
-                            time.sleep(target_dt - elapsed_time)
-                        loop_start_time = time.time()
 
                 except Exception as e:
                     logging.error(f"Error in main loop: {str(e)}")
