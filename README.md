@@ -21,7 +21,6 @@ For precise and stable control of the xArm, a multi-joint PID controller (`realt
 To guarantee safe operation within the physical constraints of the xArm, several safety mechanisms are integrated:
 
 * **Joint Angle, Velocity, and Acceleration Limiting:** The system enforces strict limits on joint angles, velocities, and accelerations to prevent exceeding the robot's operational boundaries and potential damage.
-* **Collision Avoidance (Future Work):** While not yet implemented, this module is planned to incorporate collision avoidance algorithms to dynamically detect and prevent collisions with obstacles in the workspace.
 
 ### 5. Modular Software Architecture
 
