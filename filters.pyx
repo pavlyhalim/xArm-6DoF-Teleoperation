@@ -21,8 +21,6 @@ cdef class ExtendedKalmanFilter:
         self.measurement_dim = R.shape[0]
 
     cdef np.ndarray[double, ndim=1] state_transition(self, np.ndarray[double, ndim=1] state):
-        # Implement your state transition function here
-        # For simplicity, we'll use a constant velocity model
         cdef np.ndarray[double, ndim=1] new_state = np.zeros(self.state_dim, dtype=np.float64)
         cdef int i
         for i in range(0, self.state_dim, 2):
@@ -31,7 +29,6 @@ cdef class ExtendedKalmanFilter:
         return new_state
 
     cdef np.ndarray[double, ndim=2] jacobian(self, np.ndarray[double, ndim=1] state):
-        # Implement the Jacobian of the state transition function
         cdef np.ndarray[double, ndim=2] J = np.eye(self.state_dim, dtype=np.float64)
         cdef int i
         for i in range(0, self.state_dim, 2):

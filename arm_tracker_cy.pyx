@@ -21,9 +21,9 @@ cdef class ArmTracker:
         initial_state = np.zeros(6, dtype=np.float64)  # 3 position + 3 velocity
         initial_P = np.eye(6, dtype=np.float64) * 100
         Q = np.eye(6, dtype=np.float64)
-        Q[:3, :3] *= 2000  # Increased process noise for position
-        Q[3:, 3:] *= 200   # Increased process noise for velocity
-        R = np.eye(3, dtype=np.float64) * 0.5  # Reduced measurement noise
+        Q[:3, :3] *= 2000  
+        Q[3:, 3:] *= 200   
+        R = np.eye(3, dtype=np.float64) * 0.5  
         
         self.kalman_filters = {
             'shoulder': ExtendedKalmanFilter(initial_state, initial_P, Q, R),
@@ -72,12 +72,12 @@ cdef class ArmTracker:
             
             # Apply Extended Kalman Filter
             filtered_state = self.kalman_filters[name].update(point)
-            filtered_point = filtered_state[:3]  # Only take the position part
+            filtered_point = filtered_state[:3] 
             
             keypoints[name] = filtered_point
 
         # Apply Low-Pass Filter to all keypoints
-        if len(keypoints) == 3:  # Make sure we have all three keypoints
+        if len(keypoints) == 3:  
             all_points = np.concatenate([keypoints['shoulder'], keypoints['elbow'], keypoints['wrist']])
             smoothed_points = self.low_pass_filter.update(all_points)
             
