@@ -11,8 +11,6 @@ extensions = [
               include_dirs=[numpy.get_include()]),
     Extension("trajectory", ["trajectory.pyx"],
               include_dirs=[numpy.get_include()]),
-    Extension("realtime_control", ["realtime_control.pyx"],
-              include_dirs=[numpy.get_include()]),
 ]
 
 setup(
