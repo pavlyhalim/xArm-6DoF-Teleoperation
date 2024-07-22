@@ -2237,26 +2237,6 @@ static PyObject* __Pyx_PyFloat_AddObjC(PyObject *op1, PyObject *op2, double floa
 /* PyObjectCallNoArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
-/* ModFloat[double].proto */
-static CYTHON_INLINE double __Pyx_mod_double(double, double);
-
-/* PyIntBinop.proto */
-#if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_TrueDivideObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check);
-#else
-#define __Pyx_PyInt_TrueDivideObjC(op1, op2, intval, inplace, zerodivision_check)\
-    (inplace ? PyNumber_InPlaceTrueDivide(op1, op2) : PyNumber_TrueDivide(op1, op2))
-#endif
-
-/* PyIntBinop.proto */
-#if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check);
-#else
-#define __Pyx_PyInt_SubtractObjC(op1, op2, intval, inplace, zerodivision_check)\
-    (inplace ? PyNumber_InPlaceSubtract(op1, op2) : PyNumber_Subtract(op1, op2))
-#endif
-
-#define __Pyx_BufPtrStrided2d(type, buf, i0, s0, i1, s1) (type)((char*)buf + i0 * s0 + i1 * s1)
 /* IncludeStructmemberH.proto */
 #include <structmember.h>
 
@@ -2777,48 +2757,14 @@ static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ImportError;
 /* #### Code section: string_decls ### */
-static const char __pyx_k_T[] = "T";
 static const char __pyx_k_i[] = "i";
-static const char __pyx_k__7[] = "*";
-static const char __pyx_k_a2[] = "a2";
-static const char __pyx_k_ax[] = "ax";
-static const char __pyx_k_ay[] = "ay";
-static const char __pyx_k_az[] = "az";
-static const char __pyx_k_c1[] = "c1";
-static const char __pyx_k_c2[] = "c2";
-static const char __pyx_k_c3[] = "c3";
-static const char __pyx_k_c4[] = "c4";
-static const char __pyx_k_c5[] = "c5";
-static const char __pyx_k_c6[] = "c6";
-static const char __pyx_k_d1[] = "d1";
-static const char __pyx_k_d4[] = "d4";
-static const char __pyx_k_d6[] = "d6";
-static const char __pyx_k_dt[] = "dt";
+static const char __pyx_k__4[] = "*";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_np[] = "np";
-static const char __pyx_k_nx[] = "nx";
-static const char __pyx_k_ny[] = "ny";
-static const char __pyx_k_nz[] = "nz";
-static const char __pyx_k_ox[] = "ox";
-static const char __pyx_k_oy[] = "oy";
-static const char __pyx_k_oz[] = "oz";
-static const char __pyx_k_px[] = "px";
-static const char __pyx_k_py[] = "py";
-static const char __pyx_k_pz[] = "pz";
-static const char __pyx_k_s1[] = "s1";
-static const char __pyx_k_s2[] = "s2";
-static const char __pyx_k_s3[] = "s3";
-static const char __pyx_k_s4[] = "s4";
-static const char __pyx_k_s5[] = "s5";
-static const char __pyx_k_s6[] = "s6";
-static const char __pyx_k__37[] = "?";
-static const char __pyx_k_c23[] = "c23";
+static const char __pyx_k__19[] = "?";
 static const char __pyx_k_dot[] = "dot";
 static const char __pyx_k_inv[] = "inv";
-static const char __pyx_k_s23[] = "s23";
-static const char __pyx_k_axis[] = "axis";
 static const char __pyx_k_beta[] = "beta";
-static const char __pyx_k_clip[] = "clip";
 static const char __pyx_k_hand[] = "hand";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -2827,7 +2773,6 @@ static const char __pyx_k_self[] = "self";
 static const char __pyx_k_spec[] = "__spec__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_alpha[] = "alpha";
-static const char __pyx_k_angle[] = "angle";
 static const char __pyx_k_array[] = "array";
 static const char __pyx_k_cross[] = "cross";
 static const char __pyx_k_delta[] = "delta";
@@ -2835,7 +2780,6 @@ static const char __pyx_k_elbow[] = "elbow";
 static const char __pyx_k_gamma[] = "gamma";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_range[] = "range";
-static const char __pyx_k_trace[] = "trace";
 static const char __pyx_k_zeros[] = "zeros";
 static const char __pyx_k_angles[] = "angles";
 static const char __pyx_k_append[] = "append";
@@ -2843,75 +2787,36 @@ static const char __pyx_k_enable[] = "enable";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_linalg[] = "linalg";
 static const char __pyx_k_reduce[] = "__reduce__";
-static const char __pyx_k_theta1[] = "theta1";
-static const char __pyx_k_theta2[] = "theta2";
-static const char __pyx_k_theta3[] = "theta3";
-static const char __pyx_k_theta4[] = "theta4";
-static const char __pyx_k_theta5[] = "theta5";
-static const char __pyx_k_theta6[] = "theta6";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_getBeta[] = "getBeta";
-static const char __pyx_k_max_val[] = "max_val";
-static const char __pyx_k_min_val[] = "min_val";
 static const char __pyx_k_getAlpha[] = "getAlpha";
 static const char __pyx_k_getDelta[] = "getDelta";
 static const char __pyx_k_getGamma[] = "getGamma";
 static const char __pyx_k_getstate[] = "__getstate__";
-static const char __pyx_k_prev_pos[] = "prev_pos";
-static const char __pyx_k_prev_rot[] = "prev_rot";
-static const char __pyx_k_rot_diff[] = "rot_diff";
 static const char __pyx_k_setstate[] = "__setstate__";
 static const char __pyx_k_shoulder[] = "shoulder";
 static const char __pyx_k_TypeError[] = "TypeError";
-static const char __pyx_k_angle_old[] = "angle_old";
 static const char __pyx_k_isenabled[] = "isenabled";
-static const char __pyx_k_prev_pose[] = "prev_pose";
 static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
-static const char __pyx_k_time_step[] = "time_step";
 static const char __pyx_k_calculator[] = "calculator";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static const char __pyx_k_setArmData[] = "setArmData";
-static const char __pyx_k_velocities[] = "velocities";
 static const char __pyx_k_ImportError[] = "ImportError";
-static const char __pyx_k_concatenate[] = "concatenate";
-static const char __pyx_k_current_pos[] = "current_pos";
-static const char __pyx_k_current_rot[] = "current_rot";
-static const char __pyx_k_delta_angle[] = "delta_angle";
-static const char __pyx_k_limit_angle[] = "limit_angle";
-static const char __pyx_k_prev_angles[] = "prev_angles";
 static const char __pyx_k_xarm_angles[] = "xarm_angles";
-static const char __pyx_k_current_pose[] = "current_pose";
 static const char __pyx_k_initializing[] = "_initializing";
 static const char __pyx_k_is_coroutine[] = "_is_coroutine";
-static const char __pyx_k_joint_angles[] = "joint_angles";
-static const char __pyx_k_max_velocity[] = "max_velocity";
 static const char __pyx_k_stringsource[] = "<stringsource>";
-static const char __pyx_k_accelerations[] = "accelerations";
 static const char __pyx_k_class_getitem[] = "__class_getitem__";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
-static const char __pyx_k_current_angles[] = "current_angles";
-static const char __pyx_k_limit_velocity[] = "limit_velocity";
-static const char __pyx_k_linear_velocity[] = "linear_velocity";
-static const char __pyx_k_prev_velocities[] = "prev_velocities";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_xarm_kinematics[] = "xarm_kinematics";
-static const char __pyx_k_angular_velocity[] = "angular_velocity";
-static const char __pyx_k_max_acceleration[] = "max_acceleration";
 static const char __pyx_k_CalculateArmAngles[] = "CalculateArmAngles";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
-static const char __pyx_k_calculate_velocity[] = "calculate_velocity";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_current_velocities[] = "current_velocities";
-static const char __pyx_k_forward_kinematics[] = "forward_kinematics";
-static const char __pyx_k_limit_acceleration[] = "limit_acceleration";
-static const char __pyx_k_max_angular_change[] = "max_angular_change";
 static const char __pyx_k_xarm_kinematics_pyx[] = "xarm_kinematics.pyx";
 static const char __pyx_k_calculate_arm_angles[] = "calculate_arm_angles";
-static const char __pyx_k_limited_accelerations[] = "limited_accelerations";
-static const char __pyx_k_calculate_tcp_velocity[] = "calculate_tcp_velocity";
 static const char __pyx_k_convert_angles_to_xarm[] = "convert_angles_to_xarm";
-static const char __pyx_k_limit_angular_movement[] = "limit_angular_movement";
 static const char __pyx_k_CalculateArmAngles_getBeta[] = "CalculateArmAngles.getBeta";
 static const char __pyx_k_CalculateArmAngles_getAlpha[] = "CalculateArmAngles.getAlpha";
 static const char __pyx_k_CalculateArmAngles_getDelta[] = "CalculateArmAngles.getDelta";
@@ -2948,14 +2853,6 @@ static PyObject *__pyx_pf_15xarm_kinematics_18CalculateArmAngles_12__reduce_cyth
 static PyObject *__pyx_pf_15xarm_kinematics_18CalculateArmAngles_14__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_15xarm_kinematics_CalculateArmAngles *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15xarm_kinematics_calculate_arm_angles(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_shoulder, PyArrayObject *__pyx_v_elbow, PyArrayObject *__pyx_v_hand); /* proto */
 static PyObject *__pyx_pf_15xarm_kinematics_2convert_angles_to_xarm(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_angles); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_4limit_angular_movement(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_angle, double __pyx_v_angle_old, double __pyx_v_max_angular_change); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_6limit_angle(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_angle, double __pyx_v_min_val, double __pyx_v_max_val); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_8limit_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_velocities, double __pyx_v_max_velocity); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_10calculate_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_current_angles, PyArrayObject *__pyx_v_prev_angles, double __pyx_v_time_step); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_12forward_kinematics(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_joint_angles); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_14calculate_tcp_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_prev_pose, PyArrayObject *__pyx_v_current_pose, double __pyx_v_dt); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_16limit_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_velocities, double __pyx_v_max_velocity); /* proto */
-static PyObject *__pyx_pf_15xarm_kinematics_18limit_acceleration(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_current_velocities, PyArrayObject *__pyx_v_prev_velocities, double __pyx_v_max_acceleration, double __pyx_v_dt); /* proto */
 static PyObject *__pyx_tp_new_15xarm_kinematics_CalculateArmAngles(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -3035,58 +2932,26 @@ typedef struct {
   PyObject *__pyx_n_s_CalculateArmAngles_getGamma;
   PyObject *__pyx_n_s_CalculateArmAngles_setArmData;
   PyObject *__pyx_n_s_ImportError;
-  PyObject *__pyx_n_s_T;
   PyObject *__pyx_n_s_TypeError;
-  PyObject *__pyx_n_s__37;
-  PyObject *__pyx_n_s__7;
-  PyObject *__pyx_n_s_a2;
-  PyObject *__pyx_n_s_accelerations;
+  PyObject *__pyx_n_s__19;
+  PyObject *__pyx_n_s__4;
   PyObject *__pyx_n_s_alpha;
-  PyObject *__pyx_n_s_angle;
-  PyObject *__pyx_n_s_angle_old;
   PyObject *__pyx_n_s_angles;
-  PyObject *__pyx_n_s_angular_velocity;
   PyObject *__pyx_n_s_append;
   PyObject *__pyx_n_s_array;
   PyObject *__pyx_n_s_asyncio_coroutines;
-  PyObject *__pyx_n_s_ax;
-  PyObject *__pyx_n_s_axis;
-  PyObject *__pyx_n_s_ay;
-  PyObject *__pyx_n_s_az;
   PyObject *__pyx_n_s_beta;
-  PyObject *__pyx_n_s_c1;
-  PyObject *__pyx_n_s_c2;
-  PyObject *__pyx_n_s_c23;
-  PyObject *__pyx_n_s_c3;
-  PyObject *__pyx_n_s_c4;
-  PyObject *__pyx_n_s_c5;
-  PyObject *__pyx_n_s_c6;
   PyObject *__pyx_n_s_calculate_arm_angles;
-  PyObject *__pyx_n_s_calculate_tcp_velocity;
-  PyObject *__pyx_n_s_calculate_velocity;
   PyObject *__pyx_n_s_calculator;
   PyObject *__pyx_n_s_class_getitem;
   PyObject *__pyx_n_s_cline_in_traceback;
-  PyObject *__pyx_n_s_clip;
-  PyObject *__pyx_n_s_concatenate;
   PyObject *__pyx_n_s_convert_angles_to_xarm;
   PyObject *__pyx_n_s_cross;
-  PyObject *__pyx_n_s_current_angles;
-  PyObject *__pyx_n_s_current_pos;
-  PyObject *__pyx_n_s_current_pose;
-  PyObject *__pyx_n_s_current_rot;
-  PyObject *__pyx_n_s_current_velocities;
-  PyObject *__pyx_n_s_d1;
-  PyObject *__pyx_n_s_d4;
-  PyObject *__pyx_n_s_d6;
   PyObject *__pyx_n_s_delta;
-  PyObject *__pyx_n_s_delta_angle;
   PyObject *__pyx_kp_u_disable;
   PyObject *__pyx_n_s_dot;
-  PyObject *__pyx_n_s_dt;
   PyObject *__pyx_n_s_elbow;
   PyObject *__pyx_kp_u_enable;
-  PyObject *__pyx_n_s_forward_kinematics;
   PyObject *__pyx_n_s_gamma;
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_getAlpha;
@@ -3101,20 +2966,8 @@ typedef struct {
   PyObject *__pyx_n_s_inv;
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_kp_u_isenabled;
-  PyObject *__pyx_n_s_joint_angles;
-  PyObject *__pyx_n_s_limit_acceleration;
-  PyObject *__pyx_n_s_limit_angle;
-  PyObject *__pyx_n_s_limit_angular_movement;
-  PyObject *__pyx_n_s_limit_velocity;
-  PyObject *__pyx_n_s_limited_accelerations;
   PyObject *__pyx_n_s_linalg;
-  PyObject *__pyx_n_s_linear_velocity;
   PyObject *__pyx_n_s_main;
-  PyObject *__pyx_n_s_max_acceleration;
-  PyObject *__pyx_n_s_max_angular_change;
-  PyObject *__pyx_n_s_max_val;
-  PyObject *__pyx_n_s_max_velocity;
-  PyObject *__pyx_n_s_min_val;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
   PyObject *__pyx_n_s_norm;
@@ -3122,34 +2975,12 @@ typedef struct {
   PyObject *__pyx_n_s_numpy;
   PyObject *__pyx_kp_u_numpy__core_multiarray_failed_to;
   PyObject *__pyx_kp_u_numpy__core_umath_failed_to_impo;
-  PyObject *__pyx_n_s_nx;
-  PyObject *__pyx_n_s_ny;
-  PyObject *__pyx_n_s_nz;
-  PyObject *__pyx_n_s_ox;
-  PyObject *__pyx_n_s_oy;
-  PyObject *__pyx_n_s_oz;
-  PyObject *__pyx_n_s_prev_angles;
-  PyObject *__pyx_n_s_prev_pos;
-  PyObject *__pyx_n_s_prev_pose;
-  PyObject *__pyx_n_s_prev_rot;
-  PyObject *__pyx_n_s_prev_velocities;
-  PyObject *__pyx_n_s_px;
-  PyObject *__pyx_n_s_py;
   PyObject *__pyx_n_s_pyx_state;
   PyObject *__pyx_n_s_pyx_vtable;
-  PyObject *__pyx_n_s_pz;
   PyObject *__pyx_n_s_range;
   PyObject *__pyx_n_s_reduce;
   PyObject *__pyx_n_s_reduce_cython;
   PyObject *__pyx_n_s_reduce_ex;
-  PyObject *__pyx_n_s_rot_diff;
-  PyObject *__pyx_n_s_s1;
-  PyObject *__pyx_n_s_s2;
-  PyObject *__pyx_n_s_s23;
-  PyObject *__pyx_n_s_s3;
-  PyObject *__pyx_n_s_s4;
-  PyObject *__pyx_n_s_s5;
-  PyObject *__pyx_n_s_s6;
   PyObject *__pyx_n_s_self;
   PyObject *__pyx_n_s_setArmData;
   PyObject *__pyx_n_s_setstate;
@@ -3158,15 +2989,6 @@ typedef struct {
   PyObject *__pyx_n_s_spec;
   PyObject *__pyx_kp_s_stringsource;
   PyObject *__pyx_n_s_test;
-  PyObject *__pyx_n_s_theta1;
-  PyObject *__pyx_n_s_theta2;
-  PyObject *__pyx_n_s_theta3;
-  PyObject *__pyx_n_s_theta4;
-  PyObject *__pyx_n_s_theta5;
-  PyObject *__pyx_n_s_theta6;
-  PyObject *__pyx_n_s_time_step;
-  PyObject *__pyx_n_s_trace;
-  PyObject *__pyx_n_s_velocities;
   PyObject *__pyx_n_s_xarm_angles;
   PyObject *__pyx_n_s_xarm_kinematics;
   PyObject *__pyx_kp_s_xarm_kinematics_pyx;
@@ -3180,39 +3002,21 @@ typedef struct {
   PyObject *__pyx_int_6;
   PyObject *__pyx_tuple_;
   PyObject *__pyx_slice__3;
-  PyObject *__pyx_slice__4;
   PyObject *__pyx_tuple__2;
   PyObject *__pyx_tuple__5;
-  PyObject *__pyx_tuple__6;
-  PyObject *__pyx_tuple__8;
-  PyObject *__pyx_tuple__10;
-  PyObject *__pyx_tuple__16;
-  PyObject *__pyx_tuple__18;
-  PyObject *__pyx_tuple__20;
-  PyObject *__pyx_tuple__22;
-  PyObject *__pyx_tuple__24;
-  PyObject *__pyx_tuple__26;
-  PyObject *__pyx_tuple__28;
-  PyObject *__pyx_tuple__30;
-  PyObject *__pyx_tuple__32;
-  PyObject *__pyx_tuple__35;
+  PyObject *__pyx_tuple__7;
+  PyObject *__pyx_tuple__13;
+  PyObject *__pyx_tuple__15;
+  PyObject *__pyx_tuple__17;
+  PyObject *__pyx_codeobj__6;
+  PyObject *__pyx_codeobj__8;
   PyObject *__pyx_codeobj__9;
+  PyObject *__pyx_codeobj__10;
   PyObject *__pyx_codeobj__11;
   PyObject *__pyx_codeobj__12;
-  PyObject *__pyx_codeobj__13;
   PyObject *__pyx_codeobj__14;
-  PyObject *__pyx_codeobj__15;
-  PyObject *__pyx_codeobj__17;
-  PyObject *__pyx_codeobj__19;
-  PyObject *__pyx_codeobj__21;
-  PyObject *__pyx_codeobj__23;
-  PyObject *__pyx_codeobj__25;
-  PyObject *__pyx_codeobj__27;
-  PyObject *__pyx_codeobj__29;
-  PyObject *__pyx_codeobj__31;
-  PyObject *__pyx_codeobj__33;
-  PyObject *__pyx_codeobj__34;
-  PyObject *__pyx_codeobj__36;
+  PyObject *__pyx_codeobj__16;
+  PyObject *__pyx_codeobj__18;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -3282,58 +3086,26 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_CalculateArmAngles_getGamma);
   Py_CLEAR(clear_module_state->__pyx_n_s_CalculateArmAngles_setArmData);
   Py_CLEAR(clear_module_state->__pyx_n_s_ImportError);
-  Py_CLEAR(clear_module_state->__pyx_n_s_T);
   Py_CLEAR(clear_module_state->__pyx_n_s_TypeError);
-  Py_CLEAR(clear_module_state->__pyx_n_s__37);
-  Py_CLEAR(clear_module_state->__pyx_n_s__7);
-  Py_CLEAR(clear_module_state->__pyx_n_s_a2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_accelerations);
+  Py_CLEAR(clear_module_state->__pyx_n_s__19);
+  Py_CLEAR(clear_module_state->__pyx_n_s__4);
   Py_CLEAR(clear_module_state->__pyx_n_s_alpha);
-  Py_CLEAR(clear_module_state->__pyx_n_s_angle);
-  Py_CLEAR(clear_module_state->__pyx_n_s_angle_old);
   Py_CLEAR(clear_module_state->__pyx_n_s_angles);
-  Py_CLEAR(clear_module_state->__pyx_n_s_angular_velocity);
   Py_CLEAR(clear_module_state->__pyx_n_s_append);
   Py_CLEAR(clear_module_state->__pyx_n_s_array);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ax);
-  Py_CLEAR(clear_module_state->__pyx_n_s_axis);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ay);
-  Py_CLEAR(clear_module_state->__pyx_n_s_az);
   Py_CLEAR(clear_module_state->__pyx_n_s_beta);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c1);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c23);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c3);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c4);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c5);
-  Py_CLEAR(clear_module_state->__pyx_n_s_c6);
   Py_CLEAR(clear_module_state->__pyx_n_s_calculate_arm_angles);
-  Py_CLEAR(clear_module_state->__pyx_n_s_calculate_tcp_velocity);
-  Py_CLEAR(clear_module_state->__pyx_n_s_calculate_velocity);
   Py_CLEAR(clear_module_state->__pyx_n_s_calculator);
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
-  Py_CLEAR(clear_module_state->__pyx_n_s_clip);
-  Py_CLEAR(clear_module_state->__pyx_n_s_concatenate);
   Py_CLEAR(clear_module_state->__pyx_n_s_convert_angles_to_xarm);
   Py_CLEAR(clear_module_state->__pyx_n_s_cross);
-  Py_CLEAR(clear_module_state->__pyx_n_s_current_angles);
-  Py_CLEAR(clear_module_state->__pyx_n_s_current_pos);
-  Py_CLEAR(clear_module_state->__pyx_n_s_current_pose);
-  Py_CLEAR(clear_module_state->__pyx_n_s_current_rot);
-  Py_CLEAR(clear_module_state->__pyx_n_s_current_velocities);
-  Py_CLEAR(clear_module_state->__pyx_n_s_d1);
-  Py_CLEAR(clear_module_state->__pyx_n_s_d4);
-  Py_CLEAR(clear_module_state->__pyx_n_s_d6);
   Py_CLEAR(clear_module_state->__pyx_n_s_delta);
-  Py_CLEAR(clear_module_state->__pyx_n_s_delta_angle);
   Py_CLEAR(clear_module_state->__pyx_kp_u_disable);
   Py_CLEAR(clear_module_state->__pyx_n_s_dot);
-  Py_CLEAR(clear_module_state->__pyx_n_s_dt);
   Py_CLEAR(clear_module_state->__pyx_n_s_elbow);
   Py_CLEAR(clear_module_state->__pyx_kp_u_enable);
-  Py_CLEAR(clear_module_state->__pyx_n_s_forward_kinematics);
   Py_CLEAR(clear_module_state->__pyx_n_s_gamma);
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_getAlpha);
@@ -3348,20 +3120,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_inv);
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_kp_u_isenabled);
-  Py_CLEAR(clear_module_state->__pyx_n_s_joint_angles);
-  Py_CLEAR(clear_module_state->__pyx_n_s_limit_acceleration);
-  Py_CLEAR(clear_module_state->__pyx_n_s_limit_angle);
-  Py_CLEAR(clear_module_state->__pyx_n_s_limit_angular_movement);
-  Py_CLEAR(clear_module_state->__pyx_n_s_limit_velocity);
-  Py_CLEAR(clear_module_state->__pyx_n_s_limited_accelerations);
   Py_CLEAR(clear_module_state->__pyx_n_s_linalg);
-  Py_CLEAR(clear_module_state->__pyx_n_s_linear_velocity);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
-  Py_CLEAR(clear_module_state->__pyx_n_s_max_acceleration);
-  Py_CLEAR(clear_module_state->__pyx_n_s_max_angular_change);
-  Py_CLEAR(clear_module_state->__pyx_n_s_max_val);
-  Py_CLEAR(clear_module_state->__pyx_n_s_max_velocity);
-  Py_CLEAR(clear_module_state->__pyx_n_s_min_val);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_CLEAR(clear_module_state->__pyx_n_s_norm);
@@ -3369,34 +3129,12 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_numpy);
   Py_CLEAR(clear_module_state->__pyx_kp_u_numpy__core_multiarray_failed_to);
   Py_CLEAR(clear_module_state->__pyx_kp_u_numpy__core_umath_failed_to_impo);
-  Py_CLEAR(clear_module_state->__pyx_n_s_nx);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ny);
-  Py_CLEAR(clear_module_state->__pyx_n_s_nz);
-  Py_CLEAR(clear_module_state->__pyx_n_s_ox);
-  Py_CLEAR(clear_module_state->__pyx_n_s_oy);
-  Py_CLEAR(clear_module_state->__pyx_n_s_oz);
-  Py_CLEAR(clear_module_state->__pyx_n_s_prev_angles);
-  Py_CLEAR(clear_module_state->__pyx_n_s_prev_pos);
-  Py_CLEAR(clear_module_state->__pyx_n_s_prev_pose);
-  Py_CLEAR(clear_module_state->__pyx_n_s_prev_rot);
-  Py_CLEAR(clear_module_state->__pyx_n_s_prev_velocities);
-  Py_CLEAR(clear_module_state->__pyx_n_s_px);
-  Py_CLEAR(clear_module_state->__pyx_n_s_py);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_state);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_vtable);
-  Py_CLEAR(clear_module_state->__pyx_n_s_pz);
   Py_CLEAR(clear_module_state->__pyx_n_s_range);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_ex);
-  Py_CLEAR(clear_module_state->__pyx_n_s_rot_diff);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s1);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s23);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s3);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s4);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s5);
-  Py_CLEAR(clear_module_state->__pyx_n_s_s6);
   Py_CLEAR(clear_module_state->__pyx_n_s_self);
   Py_CLEAR(clear_module_state->__pyx_n_s_setArmData);
   Py_CLEAR(clear_module_state->__pyx_n_s_setstate);
@@ -3405,15 +3143,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_spec);
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta1);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta3);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta4);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta5);
-  Py_CLEAR(clear_module_state->__pyx_n_s_theta6);
-  Py_CLEAR(clear_module_state->__pyx_n_s_time_step);
-  Py_CLEAR(clear_module_state->__pyx_n_s_trace);
-  Py_CLEAR(clear_module_state->__pyx_n_s_velocities);
   Py_CLEAR(clear_module_state->__pyx_n_s_xarm_angles);
   Py_CLEAR(clear_module_state->__pyx_n_s_xarm_kinematics);
   Py_CLEAR(clear_module_state->__pyx_kp_s_xarm_kinematics_pyx);
@@ -3427,39 +3156,21 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_int_6);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
   Py_CLEAR(clear_module_state->__pyx_slice__3);
-  Py_CLEAR(clear_module_state->__pyx_slice__4);
   Py_CLEAR(clear_module_state->__pyx_tuple__2);
   Py_CLEAR(clear_module_state->__pyx_tuple__5);
-  Py_CLEAR(clear_module_state->__pyx_tuple__6);
-  Py_CLEAR(clear_module_state->__pyx_tuple__8);
-  Py_CLEAR(clear_module_state->__pyx_tuple__10);
-  Py_CLEAR(clear_module_state->__pyx_tuple__16);
-  Py_CLEAR(clear_module_state->__pyx_tuple__18);
-  Py_CLEAR(clear_module_state->__pyx_tuple__20);
-  Py_CLEAR(clear_module_state->__pyx_tuple__22);
-  Py_CLEAR(clear_module_state->__pyx_tuple__24);
-  Py_CLEAR(clear_module_state->__pyx_tuple__26);
-  Py_CLEAR(clear_module_state->__pyx_tuple__28);
-  Py_CLEAR(clear_module_state->__pyx_tuple__30);
-  Py_CLEAR(clear_module_state->__pyx_tuple__32);
-  Py_CLEAR(clear_module_state->__pyx_tuple__35);
+  Py_CLEAR(clear_module_state->__pyx_tuple__7);
+  Py_CLEAR(clear_module_state->__pyx_tuple__13);
+  Py_CLEAR(clear_module_state->__pyx_tuple__15);
+  Py_CLEAR(clear_module_state->__pyx_tuple__17);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__6);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__8);
   Py_CLEAR(clear_module_state->__pyx_codeobj__9);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__10);
   Py_CLEAR(clear_module_state->__pyx_codeobj__11);
   Py_CLEAR(clear_module_state->__pyx_codeobj__12);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__13);
   Py_CLEAR(clear_module_state->__pyx_codeobj__14);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__15);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__17);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__21);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__23);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__25);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__27);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__29);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__31);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__33);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__34);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__36);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__16);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__18);
   return 0;
 }
 #endif
@@ -3507,58 +3218,26 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_CalculateArmAngles_getGamma);
   Py_VISIT(traverse_module_state->__pyx_n_s_CalculateArmAngles_setArmData);
   Py_VISIT(traverse_module_state->__pyx_n_s_ImportError);
-  Py_VISIT(traverse_module_state->__pyx_n_s_T);
   Py_VISIT(traverse_module_state->__pyx_n_s_TypeError);
-  Py_VISIT(traverse_module_state->__pyx_n_s__37);
-  Py_VISIT(traverse_module_state->__pyx_n_s__7);
-  Py_VISIT(traverse_module_state->__pyx_n_s_a2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_accelerations);
+  Py_VISIT(traverse_module_state->__pyx_n_s__19);
+  Py_VISIT(traverse_module_state->__pyx_n_s__4);
   Py_VISIT(traverse_module_state->__pyx_n_s_alpha);
-  Py_VISIT(traverse_module_state->__pyx_n_s_angle);
-  Py_VISIT(traverse_module_state->__pyx_n_s_angle_old);
   Py_VISIT(traverse_module_state->__pyx_n_s_angles);
-  Py_VISIT(traverse_module_state->__pyx_n_s_angular_velocity);
   Py_VISIT(traverse_module_state->__pyx_n_s_append);
   Py_VISIT(traverse_module_state->__pyx_n_s_array);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ax);
-  Py_VISIT(traverse_module_state->__pyx_n_s_axis);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ay);
-  Py_VISIT(traverse_module_state->__pyx_n_s_az);
   Py_VISIT(traverse_module_state->__pyx_n_s_beta);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c1);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c23);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c3);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c4);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c5);
-  Py_VISIT(traverse_module_state->__pyx_n_s_c6);
   Py_VISIT(traverse_module_state->__pyx_n_s_calculate_arm_angles);
-  Py_VISIT(traverse_module_state->__pyx_n_s_calculate_tcp_velocity);
-  Py_VISIT(traverse_module_state->__pyx_n_s_calculate_velocity);
   Py_VISIT(traverse_module_state->__pyx_n_s_calculator);
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
-  Py_VISIT(traverse_module_state->__pyx_n_s_clip);
-  Py_VISIT(traverse_module_state->__pyx_n_s_concatenate);
   Py_VISIT(traverse_module_state->__pyx_n_s_convert_angles_to_xarm);
   Py_VISIT(traverse_module_state->__pyx_n_s_cross);
-  Py_VISIT(traverse_module_state->__pyx_n_s_current_angles);
-  Py_VISIT(traverse_module_state->__pyx_n_s_current_pos);
-  Py_VISIT(traverse_module_state->__pyx_n_s_current_pose);
-  Py_VISIT(traverse_module_state->__pyx_n_s_current_rot);
-  Py_VISIT(traverse_module_state->__pyx_n_s_current_velocities);
-  Py_VISIT(traverse_module_state->__pyx_n_s_d1);
-  Py_VISIT(traverse_module_state->__pyx_n_s_d4);
-  Py_VISIT(traverse_module_state->__pyx_n_s_d6);
   Py_VISIT(traverse_module_state->__pyx_n_s_delta);
-  Py_VISIT(traverse_module_state->__pyx_n_s_delta_angle);
   Py_VISIT(traverse_module_state->__pyx_kp_u_disable);
   Py_VISIT(traverse_module_state->__pyx_n_s_dot);
-  Py_VISIT(traverse_module_state->__pyx_n_s_dt);
   Py_VISIT(traverse_module_state->__pyx_n_s_elbow);
   Py_VISIT(traverse_module_state->__pyx_kp_u_enable);
-  Py_VISIT(traverse_module_state->__pyx_n_s_forward_kinematics);
   Py_VISIT(traverse_module_state->__pyx_n_s_gamma);
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_getAlpha);
@@ -3573,20 +3252,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_inv);
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_kp_u_isenabled);
-  Py_VISIT(traverse_module_state->__pyx_n_s_joint_angles);
-  Py_VISIT(traverse_module_state->__pyx_n_s_limit_acceleration);
-  Py_VISIT(traverse_module_state->__pyx_n_s_limit_angle);
-  Py_VISIT(traverse_module_state->__pyx_n_s_limit_angular_movement);
-  Py_VISIT(traverse_module_state->__pyx_n_s_limit_velocity);
-  Py_VISIT(traverse_module_state->__pyx_n_s_limited_accelerations);
   Py_VISIT(traverse_module_state->__pyx_n_s_linalg);
-  Py_VISIT(traverse_module_state->__pyx_n_s_linear_velocity);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
-  Py_VISIT(traverse_module_state->__pyx_n_s_max_acceleration);
-  Py_VISIT(traverse_module_state->__pyx_n_s_max_angular_change);
-  Py_VISIT(traverse_module_state->__pyx_n_s_max_val);
-  Py_VISIT(traverse_module_state->__pyx_n_s_max_velocity);
-  Py_VISIT(traverse_module_state->__pyx_n_s_min_val);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_kp_s_no_default___reduce___due_to_non);
   Py_VISIT(traverse_module_state->__pyx_n_s_norm);
@@ -3594,34 +3261,12 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_numpy);
   Py_VISIT(traverse_module_state->__pyx_kp_u_numpy__core_multiarray_failed_to);
   Py_VISIT(traverse_module_state->__pyx_kp_u_numpy__core_umath_failed_to_impo);
-  Py_VISIT(traverse_module_state->__pyx_n_s_nx);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ny);
-  Py_VISIT(traverse_module_state->__pyx_n_s_nz);
-  Py_VISIT(traverse_module_state->__pyx_n_s_ox);
-  Py_VISIT(traverse_module_state->__pyx_n_s_oy);
-  Py_VISIT(traverse_module_state->__pyx_n_s_oz);
-  Py_VISIT(traverse_module_state->__pyx_n_s_prev_angles);
-  Py_VISIT(traverse_module_state->__pyx_n_s_prev_pos);
-  Py_VISIT(traverse_module_state->__pyx_n_s_prev_pose);
-  Py_VISIT(traverse_module_state->__pyx_n_s_prev_rot);
-  Py_VISIT(traverse_module_state->__pyx_n_s_prev_velocities);
-  Py_VISIT(traverse_module_state->__pyx_n_s_px);
-  Py_VISIT(traverse_module_state->__pyx_n_s_py);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_state);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_vtable);
-  Py_VISIT(traverse_module_state->__pyx_n_s_pz);
   Py_VISIT(traverse_module_state->__pyx_n_s_range);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_ex);
-  Py_VISIT(traverse_module_state->__pyx_n_s_rot_diff);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s1);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s23);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s3);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s4);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s5);
-  Py_VISIT(traverse_module_state->__pyx_n_s_s6);
   Py_VISIT(traverse_module_state->__pyx_n_s_self);
   Py_VISIT(traverse_module_state->__pyx_n_s_setArmData);
   Py_VISIT(traverse_module_state->__pyx_n_s_setstate);
@@ -3630,15 +3275,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_spec);
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta1);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta3);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta4);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta5);
-  Py_VISIT(traverse_module_state->__pyx_n_s_theta6);
-  Py_VISIT(traverse_module_state->__pyx_n_s_time_step);
-  Py_VISIT(traverse_module_state->__pyx_n_s_trace);
-  Py_VISIT(traverse_module_state->__pyx_n_s_velocities);
   Py_VISIT(traverse_module_state->__pyx_n_s_xarm_angles);
   Py_VISIT(traverse_module_state->__pyx_n_s_xarm_kinematics);
   Py_VISIT(traverse_module_state->__pyx_kp_s_xarm_kinematics_pyx);
@@ -3652,39 +3288,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_int_6);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
   Py_VISIT(traverse_module_state->__pyx_slice__3);
-  Py_VISIT(traverse_module_state->__pyx_slice__4);
   Py_VISIT(traverse_module_state->__pyx_tuple__2);
   Py_VISIT(traverse_module_state->__pyx_tuple__5);
-  Py_VISIT(traverse_module_state->__pyx_tuple__6);
-  Py_VISIT(traverse_module_state->__pyx_tuple__8);
-  Py_VISIT(traverse_module_state->__pyx_tuple__10);
-  Py_VISIT(traverse_module_state->__pyx_tuple__16);
-  Py_VISIT(traverse_module_state->__pyx_tuple__18);
-  Py_VISIT(traverse_module_state->__pyx_tuple__20);
-  Py_VISIT(traverse_module_state->__pyx_tuple__22);
-  Py_VISIT(traverse_module_state->__pyx_tuple__24);
-  Py_VISIT(traverse_module_state->__pyx_tuple__26);
-  Py_VISIT(traverse_module_state->__pyx_tuple__28);
-  Py_VISIT(traverse_module_state->__pyx_tuple__30);
-  Py_VISIT(traverse_module_state->__pyx_tuple__32);
-  Py_VISIT(traverse_module_state->__pyx_tuple__35);
+  Py_VISIT(traverse_module_state->__pyx_tuple__7);
+  Py_VISIT(traverse_module_state->__pyx_tuple__13);
+  Py_VISIT(traverse_module_state->__pyx_tuple__15);
+  Py_VISIT(traverse_module_state->__pyx_tuple__17);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__6);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__8);
   Py_VISIT(traverse_module_state->__pyx_codeobj__9);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__10);
   Py_VISIT(traverse_module_state->__pyx_codeobj__11);
   Py_VISIT(traverse_module_state->__pyx_codeobj__12);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__13);
   Py_VISIT(traverse_module_state->__pyx_codeobj__14);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__15);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__17);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__21);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__23);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__25);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__27);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__29);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__31);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__33);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__34);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__36);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__16);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__18);
   return 0;
 }
 #endif
@@ -3764,58 +3382,26 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_CalculateArmAngles_getGamma __pyx_mstate_global->__pyx_n_s_CalculateArmAngles_getGamma
 #define __pyx_n_s_CalculateArmAngles_setArmData __pyx_mstate_global->__pyx_n_s_CalculateArmAngles_setArmData
 #define __pyx_n_s_ImportError __pyx_mstate_global->__pyx_n_s_ImportError
-#define __pyx_n_s_T __pyx_mstate_global->__pyx_n_s_T
 #define __pyx_n_s_TypeError __pyx_mstate_global->__pyx_n_s_TypeError
-#define __pyx_n_s__37 __pyx_mstate_global->__pyx_n_s__37
-#define __pyx_n_s__7 __pyx_mstate_global->__pyx_n_s__7
-#define __pyx_n_s_a2 __pyx_mstate_global->__pyx_n_s_a2
-#define __pyx_n_s_accelerations __pyx_mstate_global->__pyx_n_s_accelerations
+#define __pyx_n_s__19 __pyx_mstate_global->__pyx_n_s__19
+#define __pyx_n_s__4 __pyx_mstate_global->__pyx_n_s__4
 #define __pyx_n_s_alpha __pyx_mstate_global->__pyx_n_s_alpha
-#define __pyx_n_s_angle __pyx_mstate_global->__pyx_n_s_angle
-#define __pyx_n_s_angle_old __pyx_mstate_global->__pyx_n_s_angle_old
 #define __pyx_n_s_angles __pyx_mstate_global->__pyx_n_s_angles
-#define __pyx_n_s_angular_velocity __pyx_mstate_global->__pyx_n_s_angular_velocity
 #define __pyx_n_s_append __pyx_mstate_global->__pyx_n_s_append
 #define __pyx_n_s_array __pyx_mstate_global->__pyx_n_s_array
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
-#define __pyx_n_s_ax __pyx_mstate_global->__pyx_n_s_ax
-#define __pyx_n_s_axis __pyx_mstate_global->__pyx_n_s_axis
-#define __pyx_n_s_ay __pyx_mstate_global->__pyx_n_s_ay
-#define __pyx_n_s_az __pyx_mstate_global->__pyx_n_s_az
 #define __pyx_n_s_beta __pyx_mstate_global->__pyx_n_s_beta
-#define __pyx_n_s_c1 __pyx_mstate_global->__pyx_n_s_c1
-#define __pyx_n_s_c2 __pyx_mstate_global->__pyx_n_s_c2
-#define __pyx_n_s_c23 __pyx_mstate_global->__pyx_n_s_c23
-#define __pyx_n_s_c3 __pyx_mstate_global->__pyx_n_s_c3
-#define __pyx_n_s_c4 __pyx_mstate_global->__pyx_n_s_c4
-#define __pyx_n_s_c5 __pyx_mstate_global->__pyx_n_s_c5
-#define __pyx_n_s_c6 __pyx_mstate_global->__pyx_n_s_c6
 #define __pyx_n_s_calculate_arm_angles __pyx_mstate_global->__pyx_n_s_calculate_arm_angles
-#define __pyx_n_s_calculate_tcp_velocity __pyx_mstate_global->__pyx_n_s_calculate_tcp_velocity
-#define __pyx_n_s_calculate_velocity __pyx_mstate_global->__pyx_n_s_calculate_velocity
 #define __pyx_n_s_calculator __pyx_mstate_global->__pyx_n_s_calculator
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
-#define __pyx_n_s_clip __pyx_mstate_global->__pyx_n_s_clip
-#define __pyx_n_s_concatenate __pyx_mstate_global->__pyx_n_s_concatenate
 #define __pyx_n_s_convert_angles_to_xarm __pyx_mstate_global->__pyx_n_s_convert_angles_to_xarm
 #define __pyx_n_s_cross __pyx_mstate_global->__pyx_n_s_cross
-#define __pyx_n_s_current_angles __pyx_mstate_global->__pyx_n_s_current_angles
-#define __pyx_n_s_current_pos __pyx_mstate_global->__pyx_n_s_current_pos
-#define __pyx_n_s_current_pose __pyx_mstate_global->__pyx_n_s_current_pose
-#define __pyx_n_s_current_rot __pyx_mstate_global->__pyx_n_s_current_rot
-#define __pyx_n_s_current_velocities __pyx_mstate_global->__pyx_n_s_current_velocities
-#define __pyx_n_s_d1 __pyx_mstate_global->__pyx_n_s_d1
-#define __pyx_n_s_d4 __pyx_mstate_global->__pyx_n_s_d4
-#define __pyx_n_s_d6 __pyx_mstate_global->__pyx_n_s_d6
 #define __pyx_n_s_delta __pyx_mstate_global->__pyx_n_s_delta
-#define __pyx_n_s_delta_angle __pyx_mstate_global->__pyx_n_s_delta_angle
 #define __pyx_kp_u_disable __pyx_mstate_global->__pyx_kp_u_disable
 #define __pyx_n_s_dot __pyx_mstate_global->__pyx_n_s_dot
-#define __pyx_n_s_dt __pyx_mstate_global->__pyx_n_s_dt
 #define __pyx_n_s_elbow __pyx_mstate_global->__pyx_n_s_elbow
 #define __pyx_kp_u_enable __pyx_mstate_global->__pyx_kp_u_enable
-#define __pyx_n_s_forward_kinematics __pyx_mstate_global->__pyx_n_s_forward_kinematics
 #define __pyx_n_s_gamma __pyx_mstate_global->__pyx_n_s_gamma
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_getAlpha __pyx_mstate_global->__pyx_n_s_getAlpha
@@ -3830,20 +3416,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_inv __pyx_mstate_global->__pyx_n_s_inv
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_kp_u_isenabled __pyx_mstate_global->__pyx_kp_u_isenabled
-#define __pyx_n_s_joint_angles __pyx_mstate_global->__pyx_n_s_joint_angles
-#define __pyx_n_s_limit_acceleration __pyx_mstate_global->__pyx_n_s_limit_acceleration
-#define __pyx_n_s_limit_angle __pyx_mstate_global->__pyx_n_s_limit_angle
-#define __pyx_n_s_limit_angular_movement __pyx_mstate_global->__pyx_n_s_limit_angular_movement
-#define __pyx_n_s_limit_velocity __pyx_mstate_global->__pyx_n_s_limit_velocity
-#define __pyx_n_s_limited_accelerations __pyx_mstate_global->__pyx_n_s_limited_accelerations
 #define __pyx_n_s_linalg __pyx_mstate_global->__pyx_n_s_linalg
-#define __pyx_n_s_linear_velocity __pyx_mstate_global->__pyx_n_s_linear_velocity
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
-#define __pyx_n_s_max_acceleration __pyx_mstate_global->__pyx_n_s_max_acceleration
-#define __pyx_n_s_max_angular_change __pyx_mstate_global->__pyx_n_s_max_angular_change
-#define __pyx_n_s_max_val __pyx_mstate_global->__pyx_n_s_max_val
-#define __pyx_n_s_max_velocity __pyx_mstate_global->__pyx_n_s_max_velocity
-#define __pyx_n_s_min_val __pyx_mstate_global->__pyx_n_s_min_val
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_kp_s_no_default___reduce___due_to_non __pyx_mstate_global->__pyx_kp_s_no_default___reduce___due_to_non
 #define __pyx_n_s_norm __pyx_mstate_global->__pyx_n_s_norm
@@ -3851,34 +3425,12 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_numpy __pyx_mstate_global->__pyx_n_s_numpy
 #define __pyx_kp_u_numpy__core_multiarray_failed_to __pyx_mstate_global->__pyx_kp_u_numpy__core_multiarray_failed_to
 #define __pyx_kp_u_numpy__core_umath_failed_to_impo __pyx_mstate_global->__pyx_kp_u_numpy__core_umath_failed_to_impo
-#define __pyx_n_s_nx __pyx_mstate_global->__pyx_n_s_nx
-#define __pyx_n_s_ny __pyx_mstate_global->__pyx_n_s_ny
-#define __pyx_n_s_nz __pyx_mstate_global->__pyx_n_s_nz
-#define __pyx_n_s_ox __pyx_mstate_global->__pyx_n_s_ox
-#define __pyx_n_s_oy __pyx_mstate_global->__pyx_n_s_oy
-#define __pyx_n_s_oz __pyx_mstate_global->__pyx_n_s_oz
-#define __pyx_n_s_prev_angles __pyx_mstate_global->__pyx_n_s_prev_angles
-#define __pyx_n_s_prev_pos __pyx_mstate_global->__pyx_n_s_prev_pos
-#define __pyx_n_s_prev_pose __pyx_mstate_global->__pyx_n_s_prev_pose
-#define __pyx_n_s_prev_rot __pyx_mstate_global->__pyx_n_s_prev_rot
-#define __pyx_n_s_prev_velocities __pyx_mstate_global->__pyx_n_s_prev_velocities
-#define __pyx_n_s_px __pyx_mstate_global->__pyx_n_s_px
-#define __pyx_n_s_py __pyx_mstate_global->__pyx_n_s_py
 #define __pyx_n_s_pyx_state __pyx_mstate_global->__pyx_n_s_pyx_state
 #define __pyx_n_s_pyx_vtable __pyx_mstate_global->__pyx_n_s_pyx_vtable
-#define __pyx_n_s_pz __pyx_mstate_global->__pyx_n_s_pz
 #define __pyx_n_s_range __pyx_mstate_global->__pyx_n_s_range
 #define __pyx_n_s_reduce __pyx_mstate_global->__pyx_n_s_reduce
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
 #define __pyx_n_s_reduce_ex __pyx_mstate_global->__pyx_n_s_reduce_ex
-#define __pyx_n_s_rot_diff __pyx_mstate_global->__pyx_n_s_rot_diff
-#define __pyx_n_s_s1 __pyx_mstate_global->__pyx_n_s_s1
-#define __pyx_n_s_s2 __pyx_mstate_global->__pyx_n_s_s2
-#define __pyx_n_s_s23 __pyx_mstate_global->__pyx_n_s_s23
-#define __pyx_n_s_s3 __pyx_mstate_global->__pyx_n_s_s3
-#define __pyx_n_s_s4 __pyx_mstate_global->__pyx_n_s_s4
-#define __pyx_n_s_s5 __pyx_mstate_global->__pyx_n_s_s5
-#define __pyx_n_s_s6 __pyx_mstate_global->__pyx_n_s_s6
 #define __pyx_n_s_self __pyx_mstate_global->__pyx_n_s_self
 #define __pyx_n_s_setArmData __pyx_mstate_global->__pyx_n_s_setArmData
 #define __pyx_n_s_setstate __pyx_mstate_global->__pyx_n_s_setstate
@@ -3887,15 +3439,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_spec __pyx_mstate_global->__pyx_n_s_spec
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
-#define __pyx_n_s_theta1 __pyx_mstate_global->__pyx_n_s_theta1
-#define __pyx_n_s_theta2 __pyx_mstate_global->__pyx_n_s_theta2
-#define __pyx_n_s_theta3 __pyx_mstate_global->__pyx_n_s_theta3
-#define __pyx_n_s_theta4 __pyx_mstate_global->__pyx_n_s_theta4
-#define __pyx_n_s_theta5 __pyx_mstate_global->__pyx_n_s_theta5
-#define __pyx_n_s_theta6 __pyx_mstate_global->__pyx_n_s_theta6
-#define __pyx_n_s_time_step __pyx_mstate_global->__pyx_n_s_time_step
-#define __pyx_n_s_trace __pyx_mstate_global->__pyx_n_s_trace
-#define __pyx_n_s_velocities __pyx_mstate_global->__pyx_n_s_velocities
 #define __pyx_n_s_xarm_angles __pyx_mstate_global->__pyx_n_s_xarm_angles
 #define __pyx_n_s_xarm_kinematics __pyx_mstate_global->__pyx_n_s_xarm_kinematics
 #define __pyx_kp_s_xarm_kinematics_pyx __pyx_mstate_global->__pyx_kp_s_xarm_kinematics_pyx
@@ -3909,39 +3452,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_int_6 __pyx_mstate_global->__pyx_int_6
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
 #define __pyx_slice__3 __pyx_mstate_global->__pyx_slice__3
-#define __pyx_slice__4 __pyx_mstate_global->__pyx_slice__4
 #define __pyx_tuple__2 __pyx_mstate_global->__pyx_tuple__2
 #define __pyx_tuple__5 __pyx_mstate_global->__pyx_tuple__5
-#define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
-#define __pyx_tuple__8 __pyx_mstate_global->__pyx_tuple__8
-#define __pyx_tuple__10 __pyx_mstate_global->__pyx_tuple__10
-#define __pyx_tuple__16 __pyx_mstate_global->__pyx_tuple__16
-#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
-#define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
-#define __pyx_tuple__22 __pyx_mstate_global->__pyx_tuple__22
-#define __pyx_tuple__24 __pyx_mstate_global->__pyx_tuple__24
-#define __pyx_tuple__26 __pyx_mstate_global->__pyx_tuple__26
-#define __pyx_tuple__28 __pyx_mstate_global->__pyx_tuple__28
-#define __pyx_tuple__30 __pyx_mstate_global->__pyx_tuple__30
-#define __pyx_tuple__32 __pyx_mstate_global->__pyx_tuple__32
-#define __pyx_tuple__35 __pyx_mstate_global->__pyx_tuple__35
+#define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
+#define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
+#define __pyx_tuple__15 __pyx_mstate_global->__pyx_tuple__15
+#define __pyx_tuple__17 __pyx_mstate_global->__pyx_tuple__17
+#define __pyx_codeobj__6 __pyx_mstate_global->__pyx_codeobj__6
+#define __pyx_codeobj__8 __pyx_mstate_global->__pyx_codeobj__8
 #define __pyx_codeobj__9 __pyx_mstate_global->__pyx_codeobj__9
+#define __pyx_codeobj__10 __pyx_mstate_global->__pyx_codeobj__10
 #define __pyx_codeobj__11 __pyx_mstate_global->__pyx_codeobj__11
 #define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
-#define __pyx_codeobj__13 __pyx_mstate_global->__pyx_codeobj__13
 #define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
-#define __pyx_codeobj__15 __pyx_mstate_global->__pyx_codeobj__15
-#define __pyx_codeobj__17 __pyx_mstate_global->__pyx_codeobj__17
-#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
-#define __pyx_codeobj__21 __pyx_mstate_global->__pyx_codeobj__21
-#define __pyx_codeobj__23 __pyx_mstate_global->__pyx_codeobj__23
-#define __pyx_codeobj__25 __pyx_mstate_global->__pyx_codeobj__25
-#define __pyx_codeobj__27 __pyx_mstate_global->__pyx_codeobj__27
-#define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
-#define __pyx_codeobj__31 __pyx_mstate_global->__pyx_codeobj__31
-#define __pyx_codeobj__33 __pyx_mstate_global->__pyx_codeobj__33
-#define __pyx_codeobj__34 __pyx_mstate_global->__pyx_codeobj__34
-#define __pyx_codeobj__36 __pyx_mstate_global->__pyx_codeobj__36
+#define __pyx_codeobj__16 __pyx_mstate_global->__pyx_codeobj__16
+#define __pyx_codeobj__18 __pyx_mstate_global->__pyx_codeobj__18
 /* #### Code section: module_code ### */
 
 /* "C:/Users/Marwan/AppData/Local/Programs/Python/Python311/Lib/site-packages/numpy/__init__.cython-30.pxd":286
@@ -10270,7 +9795,7 @@ static PyObject *__pyx_pf_15xarm_kinematics_2convert_angles_to_xarm(CYTHON_UNUSE
  * 
  *     return xarm_angles             # <<<<<<<<<<<<<<
  * 
- * @cython.boundscheck(False)
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_xarm_angles);
@@ -10305,3077 +9830,6 @@ static PyObject *__pyx_pf_15xarm_kinematics_2convert_angles_to_xarm(CYTHON_UNUSE
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_xarm_angles.rcbuffer->pybuffer);
   __pyx_L2:;
   __Pyx_XDECREF((PyObject *)__pyx_v_xarm_angles);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":123
- *     return xarm_angles
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_5limit_angular_movement(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_5limit_angular_movement = {"limit_angular_movement", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_5limit_angular_movement, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_5limit_angular_movement(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  double __pyx_v_angle;
-  double __pyx_v_angle_old;
-  double __pyx_v_max_angular_change;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("limit_angular_movement (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_angle,&__pyx_n_s_angle_old,&__pyx_n_s_max_angular_change,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_angle)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 123, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_angle_old)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 123, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_angular_movement", 1, 3, 3, 1); __PYX_ERR(1, 123, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_max_angular_change)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 123, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_angular_movement", 1, 3, 3, 2); __PYX_ERR(1, 123, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "limit_angular_movement") < 0)) __PYX_ERR(1, 123, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 3)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-    }
-    __pyx_v_angle = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_angle == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 125, __pyx_L3_error)
-    __pyx_v_angle_old = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_angle_old == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 125, __pyx_L3_error)
-    __pyx_v_max_angular_change = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_max_angular_change == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 125, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("limit_angular_movement", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 123, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.limit_angular_movement", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_15xarm_kinematics_4limit_angular_movement(__pyx_self, __pyx_v_angle, __pyx_v_angle_old, __pyx_v_max_angular_change);
-
-  /* function exit code */
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_4limit_angular_movement(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_angle, double __pyx_v_angle_old, double __pyx_v_max_angular_change) {
-  double __pyx_v_delta_angle;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  double __pyx_t_2;
-  double __pyx_t_3;
-  int __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("limit_angular_movement", 1);
-
-  /* "xarm_kinematics.pyx":126
- * @cython.wraparound(False)
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- *     cdef double delta_angle = angle - angle_old             # <<<<<<<<<<<<<<
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:
- *         if 0.0 < delta_angle <= 180.0:
- */
-  __pyx_v_delta_angle = (__pyx_v_angle - __pyx_v_angle_old);
-
-  /* "xarm_kinematics.pyx":127
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- *     cdef double delta_angle = angle - angle_old
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:             # <<<<<<<<<<<<<<
- *         if 0.0 < delta_angle <= 180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- */
-  __pyx_t_1 = (360.0 - fabs(__pyx_v_delta_angle));
-  __pyx_t_2 = fabs(__pyx_v_delta_angle);
-  __pyx_t_4 = (__pyx_t_1 < __pyx_t_2);
-  if (__pyx_t_4) {
-    __pyx_t_3 = __pyx_t_1;
-  } else {
-    __pyx_t_3 = __pyx_t_2;
-  }
-  __pyx_t_4 = (__pyx_t_3 > __pyx_v_max_angular_change);
-  if (__pyx_t_4) {
-
-    /* "xarm_kinematics.pyx":128
- *     cdef double delta_angle = angle - angle_old
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:
- *         if 0.0 < delta_angle <= 180.0:             # <<<<<<<<<<<<<<
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -180.0 < delta_angle <= 0.0:
- */
-    __pyx_t_4 = (0.0 < __pyx_v_delta_angle);
-    if (__pyx_t_4) {
-      __pyx_t_4 = (__pyx_v_delta_angle <= 180.0);
-    }
-    if (__pyx_t_4) {
-
-      /* "xarm_kinematics.pyx":129
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:
- *         if 0.0 < delta_angle <= 180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0             # <<<<<<<<<<<<<<
- *         elif -180.0 < delta_angle <= 0.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = PyFloat_FromDouble((__Pyx_mod_double(((__pyx_v_angle_old + __pyx_v_max_angular_change) + 180.0), 360.0) - 180.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 129, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_r = __pyx_t_5;
-      __pyx_t_5 = 0;
-      goto __pyx_L0;
-
-      /* "xarm_kinematics.pyx":128
- *     cdef double delta_angle = angle - angle_old
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:
- *         if 0.0 < delta_angle <= 180.0:             # <<<<<<<<<<<<<<
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -180.0 < delta_angle <= 0.0:
- */
-    }
-
-    /* "xarm_kinematics.pyx":130
- *         if 0.0 < delta_angle <= 180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -180.0 < delta_angle <= 0.0:             # <<<<<<<<<<<<<<
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif 180.0 < delta_angle <= 360.0:
- */
-    __pyx_t_4 = (-180.0 < __pyx_v_delta_angle);
-    if (__pyx_t_4) {
-      __pyx_t_4 = (__pyx_v_delta_angle <= 0.0);
-    }
-    if (__pyx_t_4) {
-
-      /* "xarm_kinematics.pyx":131
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -180.0 < delta_angle <= 0.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0             # <<<<<<<<<<<<<<
- *         elif 180.0 < delta_angle <= 360.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = PyFloat_FromDouble((__Pyx_mod_double(((__pyx_v_angle_old - __pyx_v_max_angular_change) + 180.0), 360.0) - 180.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 131, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_r = __pyx_t_5;
-      __pyx_t_5 = 0;
-      goto __pyx_L0;
-
-      /* "xarm_kinematics.pyx":130
- *         if 0.0 < delta_angle <= 180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -180.0 < delta_angle <= 0.0:             # <<<<<<<<<<<<<<
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif 180.0 < delta_angle <= 360.0:
- */
-    }
-
-    /* "xarm_kinematics.pyx":132
- *         elif -180.0 < delta_angle <= 0.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif 180.0 < delta_angle <= 360.0:             # <<<<<<<<<<<<<<
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -360.0 < delta_angle <= -180.0:
- */
-    __pyx_t_4 = (180.0 < __pyx_v_delta_angle);
-    if (__pyx_t_4) {
-      __pyx_t_4 = (__pyx_v_delta_angle <= 360.0);
-    }
-    if (__pyx_t_4) {
-
-      /* "xarm_kinematics.pyx":133
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif 180.0 < delta_angle <= 360.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0             # <<<<<<<<<<<<<<
- *         elif -360.0 < delta_angle <= -180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = PyFloat_FromDouble((__Pyx_mod_double(((__pyx_v_angle_old - __pyx_v_max_angular_change) + 180.0), 360.0) - 180.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 133, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_r = __pyx_t_5;
-      __pyx_t_5 = 0;
-      goto __pyx_L0;
-
-      /* "xarm_kinematics.pyx":132
- *         elif -180.0 < delta_angle <= 0.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif 180.0 < delta_angle <= 360.0:             # <<<<<<<<<<<<<<
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -360.0 < delta_angle <= -180.0:
- */
-    }
-
-    /* "xarm_kinematics.pyx":134
- *         elif 180.0 < delta_angle <= 360.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -360.0 < delta_angle <= -180.0:             # <<<<<<<<<<<<<<
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *     return angle
- */
-    __pyx_t_4 = (-360.0 < __pyx_v_delta_angle);
-    if (__pyx_t_4) {
-      __pyx_t_4 = (__pyx_v_delta_angle <= -180.0);
-    }
-    if (__pyx_t_4) {
-
-      /* "xarm_kinematics.pyx":135
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -360.0 < delta_angle <= -180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0             # <<<<<<<<<<<<<<
- *     return angle
- * 
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = PyFloat_FromDouble((__Pyx_mod_double(((__pyx_v_angle_old + __pyx_v_max_angular_change) + 180.0), 360.0) - 180.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 135, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_r = __pyx_t_5;
-      __pyx_t_5 = 0;
-      goto __pyx_L0;
-
-      /* "xarm_kinematics.pyx":134
- *         elif 180.0 < delta_angle <= 360.0:
- *             return (angle_old - max_angular_change + 180.0) % 360.0 - 180.0
- *         elif -360.0 < delta_angle <= -180.0:             # <<<<<<<<<<<<<<
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *     return angle
- */
-    }
-
-    /* "xarm_kinematics.pyx":127
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- *     cdef double delta_angle = angle - angle_old
- *     if min(abs(delta_angle), 360.0 - abs(delta_angle)) > max_angular_change:             # <<<<<<<<<<<<<<
- *         if 0.0 < delta_angle <= 180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- */
-  }
-
-  /* "xarm_kinematics.pyx":136
- *         elif -360.0 < delta_angle <= -180.0:
- *             return (angle_old + max_angular_change + 180.0) % 360.0 - 180.0
- *     return angle             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_angle); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 136, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":123
- *     return xarm_angles
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("xarm_kinematics.limit_angular_movement", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":138
- *     return angle
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angle(double angle, double min_val, double max_val):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_7limit_angle(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_7limit_angle = {"limit_angle", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_7limit_angle, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_7limit_angle(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  double __pyx_v_angle;
-  double __pyx_v_min_val;
-  double __pyx_v_max_val;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("limit_angle (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_angle,&__pyx_n_s_min_val,&__pyx_n_s_max_val,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_angle)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 138, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_min_val)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 138, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_angle", 1, 3, 3, 1); __PYX_ERR(1, 138, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_max_val)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 138, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_angle", 1, 3, 3, 2); __PYX_ERR(1, 138, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "limit_angle") < 0)) __PYX_ERR(1, 138, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 3)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-    }
-    __pyx_v_angle = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_angle == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L3_error)
-    __pyx_v_min_val = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_min_val == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L3_error)
-    __pyx_v_max_val = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_max_val == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 140, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("limit_angle", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 138, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.limit_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_15xarm_kinematics_6limit_angle(__pyx_self, __pyx_v_angle, __pyx_v_min_val, __pyx_v_max_val);
-
-  /* function exit code */
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_6limit_angle(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_angle, double __pyx_v_min_val, double __pyx_v_max_val) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  double __pyx_t_2;
-  double __pyx_t_3;
-  double __pyx_t_4;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("limit_angle", 1);
-
-  /* "xarm_kinematics.pyx":141
- * @cython.wraparound(False)
- * def limit_angle(double angle, double min_val, double max_val):
- *     return max(min(angle, max_val), min_val)             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_v_min_val;
-  __pyx_t_2 = __pyx_v_max_val;
-  __pyx_t_3 = __pyx_v_angle;
-  __pyx_t_5 = (__pyx_t_2 < __pyx_t_3);
-  if (__pyx_t_5) {
-    __pyx_t_4 = __pyx_t_2;
-  } else {
-    __pyx_t_4 = __pyx_t_3;
-  }
-  __pyx_t_2 = __pyx_t_4;
-  __pyx_t_5 = (__pyx_t_1 > __pyx_t_2);
-  if (__pyx_t_5) {
-    __pyx_t_4 = __pyx_t_1;
-  } else {
-    __pyx_t_4 = __pyx_t_2;
-  }
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_r = __pyx_t_6;
-  __pyx_t_6 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":138
- *     return angle
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angle(double angle, double min_val, double max_val):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("xarm_kinematics.limit_angle", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":144
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_9limit_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_9limit_velocity = {"limit_velocity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_9limit_velocity, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_9limit_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_velocities = 0;
-  double __pyx_v_max_velocity;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[2] = {0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("limit_velocity (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_velocities,&__pyx_n_s_max_velocity,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_velocities)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 144, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_max_velocity)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 144, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_velocity", 1, 2, 2, 1); __PYX_ERR(1, 144, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "limit_velocity") < 0)) __PYX_ERR(1, 144, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 2)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-    }
-    __pyx_v_velocities = ((PyArrayObject *)values[0]);
-    __pyx_v_max_velocity = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_max_velocity == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 146, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("limit_velocity", 1, 2, 2, __pyx_nargs); __PYX_ERR(1, 144, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.limit_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_velocities), __pyx_ptype_5numpy_ndarray, 1, "velocities", 0))) __PYX_ERR(1, 146, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_8limit_velocity(__pyx_self, __pyx_v_velocities, __pyx_v_max_velocity);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_8limit_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_velocities, double __pyx_v_max_velocity) {
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_velocities;
-  __Pyx_Buffer __pyx_pybuffer_velocities;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_t_6;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("limit_velocity", 1);
-  __pyx_pybuffer_velocities.pybuffer.buf = NULL;
-  __pyx_pybuffer_velocities.refcount = 0;
-  __pyx_pybuffernd_velocities.data = NULL;
-  __pyx_pybuffernd_velocities.rcbuffer = &__pyx_pybuffer_velocities;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer, (PyObject*)__pyx_v_velocities, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 144, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_velocities.diminfo[0].strides = __pyx_pybuffernd_velocities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_velocities.diminfo[0].shape = __pyx_pybuffernd_velocities.rcbuffer->pybuffer.shape[0];
-
-  /* "xarm_kinematics.pyx":147
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- *     return np.clip(velocities, -max_velocity, max_velocity)             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_clip); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_max_velocity)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_max_velocity); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = NULL;
-  __pyx_t_6 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-      __pyx_t_6 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[4] = {__pyx_t_5, ((PyObject *)__pyx_v_velocities), __pyx_t_2, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 3+__pyx_t_6);
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 147, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":144
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.limit_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":149
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_11calculate_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_11calculate_velocity = {"calculate_velocity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_11calculate_velocity, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_11calculate_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_current_angles = 0;
-  PyArrayObject *__pyx_v_prev_angles = 0;
-  double __pyx_v_time_step;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("calculate_velocity (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_current_angles,&__pyx_n_s_prev_angles,&__pyx_n_s_time_step,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_current_angles)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_prev_angles)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("calculate_velocity", 1, 3, 3, 1); __PYX_ERR(1, 149, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_time_step)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("calculate_velocity", 1, 3, 3, 2); __PYX_ERR(1, 149, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "calculate_velocity") < 0)) __PYX_ERR(1, 149, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 3)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-    }
-    __pyx_v_current_angles = ((PyArrayObject *)values[0]);
-    __pyx_v_prev_angles = ((PyArrayObject *)values[1]);
-    __pyx_v_time_step = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_time_step == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 151, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("calculate_velocity", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 149, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.calculate_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_current_angles), __pyx_ptype_5numpy_ndarray, 1, "current_angles", 0))) __PYX_ERR(1, 151, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_prev_angles), __pyx_ptype_5numpy_ndarray, 1, "prev_angles", 0))) __PYX_ERR(1, 151, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_10calculate_velocity(__pyx_self, __pyx_v_current_angles, __pyx_v_prev_angles, __pyx_v_time_step);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_10calculate_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_current_angles, PyArrayObject *__pyx_v_prev_angles, double __pyx_v_time_step) {
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_current_angles;
-  __Pyx_Buffer __pyx_pybuffer_current_angles;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_prev_angles;
-  __Pyx_Buffer __pyx_pybuffer_prev_angles;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("calculate_velocity", 1);
-  __pyx_pybuffer_current_angles.pybuffer.buf = NULL;
-  __pyx_pybuffer_current_angles.refcount = 0;
-  __pyx_pybuffernd_current_angles.data = NULL;
-  __pyx_pybuffernd_current_angles.rcbuffer = &__pyx_pybuffer_current_angles;
-  __pyx_pybuffer_prev_angles.pybuffer.buf = NULL;
-  __pyx_pybuffer_prev_angles.refcount = 0;
-  __pyx_pybuffernd_prev_angles.data = NULL;
-  __pyx_pybuffernd_prev_angles.rcbuffer = &__pyx_pybuffer_prev_angles;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_current_angles.rcbuffer->pybuffer, (PyObject*)__pyx_v_current_angles, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 149, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_current_angles.diminfo[0].strides = __pyx_pybuffernd_current_angles.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_current_angles.diminfo[0].shape = __pyx_pybuffernd_current_angles.rcbuffer->pybuffer.shape[0];
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_prev_angles.rcbuffer->pybuffer, (PyObject*)__pyx_v_prev_angles, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 149, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_prev_angles.diminfo[0].strides = __pyx_pybuffernd_prev_angles.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_prev_angles.diminfo[0].shape = __pyx_pybuffernd_prev_angles.rcbuffer->pybuffer.shape[0];
-
-  /* "xarm_kinematics.pyx":152
- * @cython.wraparound(False)
- * def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
- *     return (current_angles - prev_angles) / time_step             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_current_angles), ((PyObject *)__pyx_v_prev_angles)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 152, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_time_step); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 152, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 152, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":149
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_angles.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_angles.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.calculate_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_angles.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_angles.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":156
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_13forward_kinematics(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_13forward_kinematics = {"forward_kinematics", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_13forward_kinematics, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_13forward_kinematics(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_joint_angles = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("forward_kinematics (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_joint_angles,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_joint_angles)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 156, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "forward_kinematics") < 0)) __PYX_ERR(1, 156, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-    }
-    __pyx_v_joint_angles = ((PyArrayObject *)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("forward_kinematics", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 156, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.forward_kinematics", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_joint_angles), __pyx_ptype_5numpy_ndarray, 1, "joint_angles", 0))) __PYX_ERR(1, 158, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_12forward_kinematics(__pyx_self, __pyx_v_joint_angles);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_12forward_kinematics(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_joint_angles) {
-  double __pyx_v_theta1;
-  double __pyx_v_theta2;
-  double __pyx_v_theta3;
-  double __pyx_v_theta4;
-  double __pyx_v_theta5;
-  double __pyx_v_theta6;
-  double __pyx_v_d1;
-  double __pyx_v_a2;
-  double __pyx_v_d4;
-  double __pyx_v_d6;
-  double __pyx_v_c1;
-  double __pyx_v_s1;
-  double __pyx_v_c2;
-  double __pyx_v_s2;
-  CYTHON_UNUSED double __pyx_v_c3;
-  CYTHON_UNUSED double __pyx_v_s3;
-  double __pyx_v_c4;
-  double __pyx_v_s4;
-  double __pyx_v_c5;
-  double __pyx_v_s5;
-  double __pyx_v_c6;
-  double __pyx_v_s6;
-  double __pyx_v_s23;
-  double __pyx_v_c23;
-  double __pyx_v_nx;
-  double __pyx_v_ny;
-  double __pyx_v_nz;
-  double __pyx_v_ox;
-  double __pyx_v_oy;
-  double __pyx_v_oz;
-  double __pyx_v_ax;
-  double __pyx_v_ay;
-  double __pyx_v_az;
-  double __pyx_v_px;
-  double __pyx_v_py;
-  double __pyx_v_pz;
-  PyArrayObject *__pyx_v_T = 0;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_T;
-  __Pyx_Buffer __pyx_pybuffer_T;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_joint_angles;
-  __Pyx_Buffer __pyx_pybuffer_joint_angles;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  Py_ssize_t __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  int __pyx_t_11;
-  PyArrayObject *__pyx_t_12 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("forward_kinematics", 1);
-  __pyx_pybuffer_T.pybuffer.buf = NULL;
-  __pyx_pybuffer_T.refcount = 0;
-  __pyx_pybuffernd_T.data = NULL;
-  __pyx_pybuffernd_T.rcbuffer = &__pyx_pybuffer_T;
-  __pyx_pybuffer_joint_angles.pybuffer.buf = NULL;
-  __pyx_pybuffer_joint_angles.refcount = 0;
-  __pyx_pybuffernd_joint_angles.data = NULL;
-  __pyx_pybuffernd_joint_angles.rcbuffer = &__pyx_pybuffer_joint_angles;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_joint_angles.rcbuffer->pybuffer, (PyObject*)__pyx_v_joint_angles, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 156, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_joint_angles.diminfo[0].strides = __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_joint_angles.diminfo[0].shape = __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.shape[0];
-
-  /* "xarm_kinematics.pyx":159
- * @cython.wraparound(False)
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- *     cdef double theta1 = joint_angles[0] * M_PI / 180.0             # <<<<<<<<<<<<<<
- *     cdef double theta2 = joint_angles[1] * M_PI / 180.0
- *     cdef double theta3 = joint_angles[2] * M_PI / 180.0
- */
-  __pyx_t_1 = 0;
-  __pyx_v_theta1 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":160
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- *     cdef double theta1 = joint_angles[0] * M_PI / 180.0
- *     cdef double theta2 = joint_angles[1] * M_PI / 180.0             # <<<<<<<<<<<<<<
- *     cdef double theta3 = joint_angles[2] * M_PI / 180.0
- *     cdef double theta4 = joint_angles[3] * M_PI / 180.0
- */
-  __pyx_t_1 = 1;
-  __pyx_v_theta2 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":161
- *     cdef double theta1 = joint_angles[0] * M_PI / 180.0
- *     cdef double theta2 = joint_angles[1] * M_PI / 180.0
- *     cdef double theta3 = joint_angles[2] * M_PI / 180.0             # <<<<<<<<<<<<<<
- *     cdef double theta4 = joint_angles[3] * M_PI / 180.0
- *     cdef double theta5 = joint_angles[4] * M_PI / 180.0
- */
-  __pyx_t_1 = 2;
-  __pyx_v_theta3 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":162
- *     cdef double theta2 = joint_angles[1] * M_PI / 180.0
- *     cdef double theta3 = joint_angles[2] * M_PI / 180.0
- *     cdef double theta4 = joint_angles[3] * M_PI / 180.0             # <<<<<<<<<<<<<<
- *     cdef double theta5 = joint_angles[4] * M_PI / 180.0
- *     cdef double theta6 = joint_angles[5] * M_PI / 180.0
- */
-  __pyx_t_1 = 3;
-  __pyx_v_theta4 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":163
- *     cdef double theta3 = joint_angles[2] * M_PI / 180.0
- *     cdef double theta4 = joint_angles[3] * M_PI / 180.0
- *     cdef double theta5 = joint_angles[4] * M_PI / 180.0             # <<<<<<<<<<<<<<
- *     cdef double theta6 = joint_angles[5] * M_PI / 180.0
- * 
- */
-  __pyx_t_1 = 4;
-  __pyx_v_theta5 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":164
- *     cdef double theta4 = joint_angles[3] * M_PI / 180.0
- *     cdef double theta5 = joint_angles[4] * M_PI / 180.0
- *     cdef double theta6 = joint_angles[5] * M_PI / 180.0             # <<<<<<<<<<<<<<
- * 
- *     # DH parameters for xArm 6 (in mm and radians)
- */
-  __pyx_t_1 = 5;
-  __pyx_v_theta6 = (((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_joint_angles.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_joint_angles.diminfo[0].strides)) * M_PI) / 180.0);
-
-  /* "xarm_kinematics.pyx":167
- * 
- *     # DH parameters for xArm 6 (in mm and radians)
- *     cdef double d1 = 267.0             # <<<<<<<<<<<<<<
- *     cdef double a2 = 289.48866
- *     cdef double d4 = 342.5
- */
-  __pyx_v_d1 = 267.0;
-
-  /* "xarm_kinematics.pyx":168
- *     # DH parameters for xArm 6 (in mm and radians)
- *     cdef double d1 = 267.0
- *     cdef double a2 = 289.48866             # <<<<<<<<<<<<<<
- *     cdef double d4 = 342.5
- *     cdef double d6 = 97.0
- */
-  __pyx_v_a2 = 289.48866;
-
-  /* "xarm_kinematics.pyx":169
- *     cdef double d1 = 267.0
- *     cdef double a2 = 289.48866
- *     cdef double d4 = 342.5             # <<<<<<<<<<<<<<
- *     cdef double d6 = 97.0
- * 
- */
-  __pyx_v_d4 = 342.5;
-
-  /* "xarm_kinematics.pyx":170
- *     cdef double a2 = 289.48866
- *     cdef double d4 = 342.5
- *     cdef double d6 = 97.0             # <<<<<<<<<<<<<<
- * 
- *     cdef double c1 = cos(theta1)
- */
-  __pyx_v_d6 = 97.0;
-
-  /* "xarm_kinematics.pyx":172
- *     cdef double d6 = 97.0
- * 
- *     cdef double c1 = cos(theta1)             # <<<<<<<<<<<<<<
- *     cdef double s1 = sin(theta1)
- *     cdef double c2 = cos(theta2)
- */
-  __pyx_v_c1 = cos(__pyx_v_theta1);
-
-  /* "xarm_kinematics.pyx":173
- * 
- *     cdef double c1 = cos(theta1)
- *     cdef double s1 = sin(theta1)             # <<<<<<<<<<<<<<
- *     cdef double c2 = cos(theta2)
- *     cdef double s2 = sin(theta2)
- */
-  __pyx_v_s1 = sin(__pyx_v_theta1);
-
-  /* "xarm_kinematics.pyx":174
- *     cdef double c1 = cos(theta1)
- *     cdef double s1 = sin(theta1)
- *     cdef double c2 = cos(theta2)             # <<<<<<<<<<<<<<
- *     cdef double s2 = sin(theta2)
- *     cdef double c3 = cos(theta3)
- */
-  __pyx_v_c2 = cos(__pyx_v_theta2);
-
-  /* "xarm_kinematics.pyx":175
- *     cdef double s1 = sin(theta1)
- *     cdef double c2 = cos(theta2)
- *     cdef double s2 = sin(theta2)             # <<<<<<<<<<<<<<
- *     cdef double c3 = cos(theta3)
- *     cdef double s3 = sin(theta3)
- */
-  __pyx_v_s2 = sin(__pyx_v_theta2);
-
-  /* "xarm_kinematics.pyx":176
- *     cdef double c2 = cos(theta2)
- *     cdef double s2 = sin(theta2)
- *     cdef double c3 = cos(theta3)             # <<<<<<<<<<<<<<
- *     cdef double s3 = sin(theta3)
- *     cdef double c4 = cos(theta4)
- */
-  __pyx_v_c3 = cos(__pyx_v_theta3);
-
-  /* "xarm_kinematics.pyx":177
- *     cdef double s2 = sin(theta2)
- *     cdef double c3 = cos(theta3)
- *     cdef double s3 = sin(theta3)             # <<<<<<<<<<<<<<
- *     cdef double c4 = cos(theta4)
- *     cdef double s4 = sin(theta4)
- */
-  __pyx_v_s3 = sin(__pyx_v_theta3);
-
-  /* "xarm_kinematics.pyx":178
- *     cdef double c3 = cos(theta3)
- *     cdef double s3 = sin(theta3)
- *     cdef double c4 = cos(theta4)             # <<<<<<<<<<<<<<
- *     cdef double s4 = sin(theta4)
- *     cdef double c5 = cos(theta5)
- */
-  __pyx_v_c4 = cos(__pyx_v_theta4);
-
-  /* "xarm_kinematics.pyx":179
- *     cdef double s3 = sin(theta3)
- *     cdef double c4 = cos(theta4)
- *     cdef double s4 = sin(theta4)             # <<<<<<<<<<<<<<
- *     cdef double c5 = cos(theta5)
- *     cdef double s5 = sin(theta5)
- */
-  __pyx_v_s4 = sin(__pyx_v_theta4);
-
-  /* "xarm_kinematics.pyx":180
- *     cdef double c4 = cos(theta4)
- *     cdef double s4 = sin(theta4)
- *     cdef double c5 = cos(theta5)             # <<<<<<<<<<<<<<
- *     cdef double s5 = sin(theta5)
- *     cdef double c6 = cos(theta6)
- */
-  __pyx_v_c5 = cos(__pyx_v_theta5);
-
-  /* "xarm_kinematics.pyx":181
- *     cdef double s4 = sin(theta4)
- *     cdef double c5 = cos(theta5)
- *     cdef double s5 = sin(theta5)             # <<<<<<<<<<<<<<
- *     cdef double c6 = cos(theta6)
- *     cdef double s6 = sin(theta6)
- */
-  __pyx_v_s5 = sin(__pyx_v_theta5);
-
-  /* "xarm_kinematics.pyx":182
- *     cdef double c5 = cos(theta5)
- *     cdef double s5 = sin(theta5)
- *     cdef double c6 = cos(theta6)             # <<<<<<<<<<<<<<
- *     cdef double s6 = sin(theta6)
- * 
- */
-  __pyx_v_c6 = cos(__pyx_v_theta6);
-
-  /* "xarm_kinematics.pyx":183
- *     cdef double s5 = sin(theta5)
- *     cdef double c6 = cos(theta6)
- *     cdef double s6 = sin(theta6)             # <<<<<<<<<<<<<<
- * 
- *     cdef double s23 = sin(theta2 + theta3)
- */
-  __pyx_v_s6 = sin(__pyx_v_theta6);
-
-  /* "xarm_kinematics.pyx":185
- *     cdef double s6 = sin(theta6)
- * 
- *     cdef double s23 = sin(theta2 + theta3)             # <<<<<<<<<<<<<<
- *     cdef double c23 = cos(theta2 + theta3)
- * 
- */
-  __pyx_v_s23 = sin((__pyx_v_theta2 + __pyx_v_theta3));
-
-  /* "xarm_kinematics.pyx":186
- * 
- *     cdef double s23 = sin(theta2 + theta3)
- *     cdef double c23 = cos(theta2 + theta3)             # <<<<<<<<<<<<<<
- * 
- *     cdef double nx = c1*(c5*s23*s4 + c23*c4*c5) - s1*(c6*s5 + c5*s6) + c1*(c23*s4 - c4*s23)*s6
- */
-  __pyx_v_c23 = cos((__pyx_v_theta2 + __pyx_v_theta3));
-
-  /* "xarm_kinematics.pyx":188
- *     cdef double c23 = cos(theta2 + theta3)
- * 
- *     cdef double nx = c1*(c5*s23*s4 + c23*c4*c5) - s1*(c6*s5 + c5*s6) + c1*(c23*s4 - c4*s23)*s6             # <<<<<<<<<<<<<<
- *     cdef double ny = s1*(c5*s23*s4 + c23*c4*c5) + c1*(c6*s5 + c5*s6) + s1*(c23*s4 - c4*s23)*s6
- *     cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6
- */
-  __pyx_v_nx = (((__pyx_v_c1 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) - (__pyx_v_s1 * ((__pyx_v_c6 * __pyx_v_s5) + (__pyx_v_c5 * __pyx_v_s6)))) + ((__pyx_v_c1 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))) * __pyx_v_s6));
-
-  /* "xarm_kinematics.pyx":189
- * 
- *     cdef double nx = c1*(c5*s23*s4 + c23*c4*c5) - s1*(c6*s5 + c5*s6) + c1*(c23*s4 - c4*s23)*s6
- *     cdef double ny = s1*(c5*s23*s4 + c23*c4*c5) + c1*(c6*s5 + c5*s6) + s1*(c23*s4 - c4*s23)*s6             # <<<<<<<<<<<<<<
- *     cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6
- *     cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)
- */
-  __pyx_v_ny = (((__pyx_v_s1 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) + (__pyx_v_c1 * ((__pyx_v_c6 * __pyx_v_s5) + (__pyx_v_c5 * __pyx_v_s6)))) + ((__pyx_v_s1 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))) * __pyx_v_s6));
-
-  /* "xarm_kinematics.pyx":190
- *     cdef double nx = c1*(c5*s23*s4 + c23*c4*c5) - s1*(c6*s5 + c5*s6) + c1*(c23*s4 - c4*s23)*s6
- *     cdef double ny = s1*(c5*s23*s4 + c23*c4*c5) + c1*(c6*s5 + c5*s6) + s1*(c23*s4 - c4*s23)*s6
- *     cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6             # <<<<<<<<<<<<<<
- *     cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)
- *     cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)
- */
-  __pyx_v_nz = ((((((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) - ((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_s6)) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5)) + ((__pyx_v_c23 * __pyx_v_s4) * __pyx_v_s6)) + ((__pyx_v_c4 * __pyx_v_s23) * __pyx_v_s6));
-
-  /* "xarm_kinematics.pyx":191
- *     cdef double ny = s1*(c5*s23*s4 + c23*c4*c5) + c1*(c6*s5 + c5*s6) + s1*(c23*s4 - c4*s23)*s6
- *     cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6
- *     cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)             # <<<<<<<<<<<<<<
- *     cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)
- *     cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)
- */
-  __pyx_v_ox = (((-__pyx_v_c1) * ((__pyx_v_c6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) - (__pyx_v_s6 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))))) - (__pyx_v_s1 * ((__pyx_v_c5 * __pyx_v_c6) - (__pyx_v_s5 * __pyx_v_s6))));
-
-  /* "xarm_kinematics.pyx":192
- *     cdef double nz = c5*s23*s4 - s23*s5*s6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6
- *     cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)
- *     cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)             # <<<<<<<<<<<<<<
- *     cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)
- */
-  __pyx_v_oy = (((-__pyx_v_s1) * ((__pyx_v_c6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) - (__pyx_v_s6 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))))) + (__pyx_v_c1 * ((__pyx_v_c5 * __pyx_v_c6) - (__pyx_v_s5 * __pyx_v_s6))));
-
-  /* "xarm_kinematics.pyx":193
- *     cdef double ox = -c1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) - s1*(c5*c6 - s5*s6)
- *     cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)
- *     cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)             # <<<<<<<<<<<<<<
- *     cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)
- *     cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)
- */
-  __pyx_v_oz = (((-__pyx_v_c6) * (((((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_s6) - ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5)) - ((__pyx_v_c23 * __pyx_v_s4) * __pyx_v_s6)) - ((__pyx_v_c4 * __pyx_v_s23) * __pyx_v_s6))) + (__pyx_v_s6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) - ((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_c6))));
-
-  /* "xarm_kinematics.pyx":194
- *     cdef double oy = -s1*(c6*(c5*s23*s4 + c23*c4*c5) - s6*(c23*s4 - c4*s23)) + c1*(c5*c6 - s5*s6)
- *     cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)             # <<<<<<<<<<<<<<
- *     cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)
- *     cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)
- */
-  __pyx_v_ax = ((__pyx_v_c1 * ((__pyx_v_s6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) + (__pyx_v_c6 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))))) - (__pyx_v_s1 * ((__pyx_v_c5 * __pyx_v_s6) + (__pyx_v_c6 * __pyx_v_s5))));
-
-  /* "xarm_kinematics.pyx":195
- *     cdef double oz = -c6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + s6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)
- *     cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)             # <<<<<<<<<<<<<<
- *     cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- */
-  __pyx_v_ay = ((__pyx_v_s1 * ((__pyx_v_s6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))) + (__pyx_v_c6 * ((__pyx_v_c23 * __pyx_v_s4) - (__pyx_v_c4 * __pyx_v_s23))))) + (__pyx_v_c1 * ((__pyx_v_c5 * __pyx_v_s6) + (__pyx_v_c6 * __pyx_v_s5))));
-
-  /* "xarm_kinematics.pyx":196
- *     cdef double ax = c1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) - s1*(c5*s6 + c6*s5)
- *     cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)
- *     cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)             # <<<<<<<<<<<<<<
- *     cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- *     cdef double py = s1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- */
-  __pyx_v_az = ((__pyx_v_s6 * (((((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_s6) - ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5)) - ((__pyx_v_c23 * __pyx_v_s4) * __pyx_v_s6)) - ((__pyx_v_c4 * __pyx_v_s23) * __pyx_v_s6))) + (__pyx_v_c6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) - ((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_c6))));
-
-  /* "xarm_kinematics.pyx":197
- *     cdef double ay = s1*(s6*(c5*s23*s4 + c23*c4*c5) + c6*(c23*s4 - c4*s23)) + c1*(c5*s6 + c6*s5)
- *     cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))             # <<<<<<<<<<<<<<
- *     cdef double py = s1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- *     cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)
- */
-  __pyx_v_px = (__pyx_v_c1 * (((__pyx_v_a2 * __pyx_v_c2) + (__pyx_v_d4 * __pyx_v_c23)) - (__pyx_v_d6 * ((((((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) - ((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_c6)) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5)) + ((__pyx_v_c23 * __pyx_v_s4) * __pyx_v_s6)) + ((__pyx_v_c4 * __pyx_v_s23) * __pyx_v_s6)))));
-
-  /* "xarm_kinematics.pyx":198
- *     cdef double az = s6*(s23*s5*s6 - c23*c4*c5 - c23*s4*s6 - c4*s23*s6) + c6*(c5*s23*s4 - s23*s5*c6)
- *     cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- *     cdef double py = s1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))             # <<<<<<<<<<<<<<
- *     cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)
- * 
- */
-  __pyx_v_py = (__pyx_v_s1 * (((__pyx_v_a2 * __pyx_v_c2) + (__pyx_v_d4 * __pyx_v_c23)) - (__pyx_v_d6 * ((((((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) - ((__pyx_v_s23 * __pyx_v_s5) * __pyx_v_c6)) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5)) + ((__pyx_v_c23 * __pyx_v_s4) * __pyx_v_s6)) + ((__pyx_v_c4 * __pyx_v_s23) * __pyx_v_s6)))));
-
-  /* "xarm_kinematics.pyx":199
- *     cdef double px = c1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- *     cdef double py = s1*(a2*c2 + d4*c23 - d6*(c5*s23*s4 - s23*s5*c6 + c23*c4*c5 + c23*s4*s6 + c4*s23*s6))
- *     cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)             # <<<<<<<<<<<<<<
- * 
- *     cdef np.ndarray[double, ndim=2] T = np.array([
- */
-  __pyx_v_pz = (((__pyx_v_d1 - (__pyx_v_a2 * __pyx_v_s2)) - (__pyx_v_d4 * __pyx_v_s23)) - (__pyx_v_d6 * (((__pyx_v_c5 * __pyx_v_s23) * __pyx_v_s4) + ((__pyx_v_c23 * __pyx_v_c4) * __pyx_v_c5))));
-
-  /* "xarm_kinematics.pyx":201
- *     cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)
- * 
- *     cdef np.ndarray[double, ndim=2] T = np.array([             # <<<<<<<<<<<<<<
- *         [nx, ox, ax, px],
- *         [ny, oy, ay, py],
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 201, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 201, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "xarm_kinematics.pyx":202
- * 
- *     cdef np.ndarray[double, ndim=2] T = np.array([
- *         [nx, ox, ax, px],             # <<<<<<<<<<<<<<
- *         [ny, oy, ay, py],
- *         [nz, oz, az, pz],
- */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_nx); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_ox); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_ax); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_px); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyList_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 0, __pyx_t_3)) __PYX_ERR(1, 202, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 1, __pyx_t_5)) __PYX_ERR(1, 202, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 2, __pyx_t_6)) __PYX_ERR(1, 202, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 3, __pyx_t_7)) __PYX_ERR(1, 202, __pyx_L1_error);
-  __pyx_t_3 = 0;
-  __pyx_t_5 = 0;
-  __pyx_t_6 = 0;
-  __pyx_t_7 = 0;
-
-  /* "xarm_kinematics.pyx":203
- *     cdef np.ndarray[double, ndim=2] T = np.array([
- *         [nx, ox, ax, px],
- *         [ny, oy, ay, py],             # <<<<<<<<<<<<<<
- *         [nz, oz, az, pz],
- *         [0, 0, 0, 1]
- */
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_ny); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_oy); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_ay); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_py); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = PyList_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 203, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_7)) __PYX_ERR(1, 203, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 1, __pyx_t_6)) __PYX_ERR(1, 203, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 2, __pyx_t_5)) __PYX_ERR(1, 203, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 3, __pyx_t_3)) __PYX_ERR(1, 203, __pyx_L1_error);
-  __pyx_t_7 = 0;
-  __pyx_t_6 = 0;
-  __pyx_t_5 = 0;
-  __pyx_t_3 = 0;
-
-  /* "xarm_kinematics.pyx":204
- *         [nx, ox, ax, px],
- *         [ny, oy, ay, py],
- *         [nz, oz, az, pz],             # <<<<<<<<<<<<<<
- *         [0, 0, 0, 1]
- *     ])
- */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_nz); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_oz); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_az); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_pz); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_10 = PyList_New(4); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_10);
-  __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_3)) __PYX_ERR(1, 204, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_t_5)) __PYX_ERR(1, 204, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_6)) __PYX_ERR(1, 204, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_t_7)) __PYX_ERR(1, 204, __pyx_L1_error);
-  __pyx_t_3 = 0;
-  __pyx_t_5 = 0;
-  __pyx_t_6 = 0;
-  __pyx_t_7 = 0;
-
-  /* "xarm_kinematics.pyx":205
- *         [ny, oy, ay, py],
- *         [nz, oz, az, pz],
- *         [0, 0, 0, 1]             # <<<<<<<<<<<<<<
- *     ])
- * 
- */
-  __pyx_t_7 = PyList_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 205, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_0)) __PYX_ERR(1, 205, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_0)) __PYX_ERR(1, 205, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_0)) __PYX_ERR(1, 205, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 3, __pyx_int_1)) __PYX_ERR(1, 205, __pyx_L1_error);
-
-  /* "xarm_kinematics.pyx":201
- *     cdef double pz = d1 - a2*s2 - d4*s23 - d6*(c5*s23*s4 + c23*c4*c5)
- * 
- *     cdef np.ndarray[double, ndim=2] T = np.array([             # <<<<<<<<<<<<<<
- *         [nx, ox, ax, px],
- *         [ny, oy, ay, py],
- */
-  __pyx_t_6 = PyList_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 201, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_t_8)) __PYX_ERR(1, 201, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 1, __pyx_t_9)) __PYX_ERR(1, 201, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 2, __pyx_t_10)) __PYX_ERR(1, 201, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 3, __pyx_t_7)) __PYX_ERR(1, 201, __pyx_L1_error);
-  __pyx_t_8 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_10 = 0;
-  __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  __pyx_t_11 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_11 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 201, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 201, __pyx_L1_error)
-  __pyx_t_12 = ((PyArrayObject *)__pyx_t_2);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_T.rcbuffer->pybuffer, (PyObject*)__pyx_t_12, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
-      __pyx_v_T = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_T.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 201, __pyx_L1_error)
-    } else {__pyx_pybuffernd_T.diminfo[0].strides = __pyx_pybuffernd_T.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_T.diminfo[0].shape = __pyx_pybuffernd_T.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_T.diminfo[1].strides = __pyx_pybuffernd_T.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_T.diminfo[1].shape = __pyx_pybuffernd_T.rcbuffer->pybuffer.shape[1];
-    }
-  }
-  __pyx_t_12 = 0;
-  __pyx_v_T = ((PyArrayObject *)__pyx_t_2);
-  __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":208
- *     ])
- * 
- *     return T             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF((PyObject *)__pyx_v_T);
-  __pyx_r = ((PyObject *)__pyx_v_T);
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":156
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_10);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_T.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_joint_angles.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.forward_kinematics", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_T.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_joint_angles.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XDECREF((PyObject *)__pyx_v_T);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":210
- *     return T
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_15calculate_tcp_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_15calculate_tcp_velocity = {"calculate_tcp_velocity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_15calculate_tcp_velocity, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_15calculate_tcp_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_prev_pose = 0;
-  PyArrayObject *__pyx_v_current_pose = 0;
-  double __pyx_v_dt;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("calculate_tcp_velocity (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_prev_pose,&__pyx_n_s_current_pose,&__pyx_n_s_dt,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_prev_pose)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 210, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_current_pose)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 210, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("calculate_tcp_velocity", 1, 3, 3, 1); __PYX_ERR(1, 210, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_dt)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 210, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("calculate_tcp_velocity", 1, 3, 3, 2); __PYX_ERR(1, 210, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "calculate_tcp_velocity") < 0)) __PYX_ERR(1, 210, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 3)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-    }
-    __pyx_v_prev_pose = ((PyArrayObject *)values[0]);
-    __pyx_v_current_pose = ((PyArrayObject *)values[1]);
-    __pyx_v_dt = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_dt == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 212, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("calculate_tcp_velocity", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 210, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.calculate_tcp_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_prev_pose), __pyx_ptype_5numpy_ndarray, 1, "prev_pose", 0))) __PYX_ERR(1, 212, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_current_pose), __pyx_ptype_5numpy_ndarray, 1, "current_pose", 0))) __PYX_ERR(1, 212, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_14calculate_tcp_velocity(__pyx_self, __pyx_v_prev_pose, __pyx_v_current_pose, __pyx_v_dt);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_14calculate_tcp_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_prev_pose, PyArrayObject *__pyx_v_current_pose, double __pyx_v_dt) {
-  PyArrayObject *__pyx_v_prev_pos = 0;
-  PyArrayObject *__pyx_v_current_pos = 0;
-  PyArrayObject *__pyx_v_linear_velocity = 0;
-  PyArrayObject *__pyx_v_prev_rot = 0;
-  PyArrayObject *__pyx_v_current_rot = 0;
-  PyArrayObject *__pyx_v_rot_diff = 0;
-  double __pyx_v_angle;
-  PyArrayObject *__pyx_v_axis = 0;
-  PyArrayObject *__pyx_v_angular_velocity = 0;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_angular_velocity;
-  __Pyx_Buffer __pyx_pybuffer_angular_velocity;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_axis;
-  __Pyx_Buffer __pyx_pybuffer_axis;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_current_pos;
-  __Pyx_Buffer __pyx_pybuffer_current_pos;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_current_pose;
-  __Pyx_Buffer __pyx_pybuffer_current_pose;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_current_rot;
-  __Pyx_Buffer __pyx_pybuffer_current_rot;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_linear_velocity;
-  __Pyx_Buffer __pyx_pybuffer_linear_velocity;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_prev_pos;
-  __Pyx_Buffer __pyx_pybuffer_prev_pos;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_prev_pose;
-  __Pyx_Buffer __pyx_pybuffer_prev_pose;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_prev_rot;
-  __Pyx_Buffer __pyx_pybuffer_prev_rot;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_rot_diff;
-  __Pyx_Buffer __pyx_pybuffer_rot_diff;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyArrayObject *__pyx_t_2 = NULL;
-  PyArrayObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyArrayObject *__pyx_t_6 = NULL;
-  PyArrayObject *__pyx_t_7 = NULL;
-  PyArrayObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  int __pyx_t_10;
-  PyArrayObject *__pyx_t_11 = NULL;
-  double __pyx_t_12;
-  Py_ssize_t __pyx_t_13;
-  Py_ssize_t __pyx_t_14;
-  Py_ssize_t __pyx_t_15;
-  Py_ssize_t __pyx_t_16;
-  PyObject *__pyx_t_17 = NULL;
-  PyObject *__pyx_t_18 = NULL;
-  PyArrayObject *__pyx_t_19 = NULL;
-  PyObject *__pyx_t_20 = NULL;
-  PyObject *__pyx_t_21 = NULL;
-  PyObject *__pyx_t_22 = NULL;
-  PyArrayObject *__pyx_t_23 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("calculate_tcp_velocity", 1);
-  __pyx_pybuffer_prev_pos.pybuffer.buf = NULL;
-  __pyx_pybuffer_prev_pos.refcount = 0;
-  __pyx_pybuffernd_prev_pos.data = NULL;
-  __pyx_pybuffernd_prev_pos.rcbuffer = &__pyx_pybuffer_prev_pos;
-  __pyx_pybuffer_current_pos.pybuffer.buf = NULL;
-  __pyx_pybuffer_current_pos.refcount = 0;
-  __pyx_pybuffernd_current_pos.data = NULL;
-  __pyx_pybuffernd_current_pos.rcbuffer = &__pyx_pybuffer_current_pos;
-  __pyx_pybuffer_linear_velocity.pybuffer.buf = NULL;
-  __pyx_pybuffer_linear_velocity.refcount = 0;
-  __pyx_pybuffernd_linear_velocity.data = NULL;
-  __pyx_pybuffernd_linear_velocity.rcbuffer = &__pyx_pybuffer_linear_velocity;
-  __pyx_pybuffer_prev_rot.pybuffer.buf = NULL;
-  __pyx_pybuffer_prev_rot.refcount = 0;
-  __pyx_pybuffernd_prev_rot.data = NULL;
-  __pyx_pybuffernd_prev_rot.rcbuffer = &__pyx_pybuffer_prev_rot;
-  __pyx_pybuffer_current_rot.pybuffer.buf = NULL;
-  __pyx_pybuffer_current_rot.refcount = 0;
-  __pyx_pybuffernd_current_rot.data = NULL;
-  __pyx_pybuffernd_current_rot.rcbuffer = &__pyx_pybuffer_current_rot;
-  __pyx_pybuffer_rot_diff.pybuffer.buf = NULL;
-  __pyx_pybuffer_rot_diff.refcount = 0;
-  __pyx_pybuffernd_rot_diff.data = NULL;
-  __pyx_pybuffernd_rot_diff.rcbuffer = &__pyx_pybuffer_rot_diff;
-  __pyx_pybuffer_axis.pybuffer.buf = NULL;
-  __pyx_pybuffer_axis.refcount = 0;
-  __pyx_pybuffernd_axis.data = NULL;
-  __pyx_pybuffernd_axis.rcbuffer = &__pyx_pybuffer_axis;
-  __pyx_pybuffer_angular_velocity.pybuffer.buf = NULL;
-  __pyx_pybuffer_angular_velocity.refcount = 0;
-  __pyx_pybuffernd_angular_velocity.data = NULL;
-  __pyx_pybuffernd_angular_velocity.rcbuffer = &__pyx_pybuffer_angular_velocity;
-  __pyx_pybuffer_prev_pose.pybuffer.buf = NULL;
-  __pyx_pybuffer_prev_pose.refcount = 0;
-  __pyx_pybuffernd_prev_pose.data = NULL;
-  __pyx_pybuffernd_prev_pose.rcbuffer = &__pyx_pybuffer_prev_pose;
-  __pyx_pybuffer_current_pose.pybuffer.buf = NULL;
-  __pyx_pybuffer_current_pose.refcount = 0;
-  __pyx_pybuffernd_current_pose.data = NULL;
-  __pyx_pybuffernd_current_pose.rcbuffer = &__pyx_pybuffer_current_pose;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_prev_pose.rcbuffer->pybuffer, (PyObject*)__pyx_v_prev_pose, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(1, 210, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_prev_pose.diminfo[0].strides = __pyx_pybuffernd_prev_pose.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_prev_pose.diminfo[0].shape = __pyx_pybuffernd_prev_pose.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_prev_pose.diminfo[1].strides = __pyx_pybuffernd_prev_pose.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_prev_pose.diminfo[1].shape = __pyx_pybuffernd_prev_pose.rcbuffer->pybuffer.shape[1];
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_current_pose.rcbuffer->pybuffer, (PyObject*)__pyx_v_current_pose, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(1, 210, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_current_pose.diminfo[0].strides = __pyx_pybuffernd_current_pose.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_current_pose.diminfo[0].shape = __pyx_pybuffernd_current_pose.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_current_pose.diminfo[1].strides = __pyx_pybuffernd_current_pose.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_current_pose.diminfo[1].shape = __pyx_pybuffernd_current_pose.rcbuffer->pybuffer.shape[1];
-
-  /* "xarm_kinematics.pyx":213
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- *     cdef np.ndarray[double, ndim=1] prev_pos = prev_pose[:3, 3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] current_pos = current_pose[:3, 3]
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
- */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_prev_pose), __pyx_tuple__5); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 213, __pyx_L1_error)
-  __pyx_t_2 = ((PyArrayObject *)__pyx_t_1);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_prev_pos.rcbuffer->pybuffer, (PyObject*)__pyx_t_2, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_prev_pos = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_prev_pos.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 213, __pyx_L1_error)
-    } else {__pyx_pybuffernd_prev_pos.diminfo[0].strides = __pyx_pybuffernd_prev_pos.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_prev_pos.diminfo[0].shape = __pyx_pybuffernd_prev_pos.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_2 = 0;
-  __pyx_v_prev_pos = ((PyArrayObject *)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "xarm_kinematics.pyx":214
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- *     cdef np.ndarray[double, ndim=1] prev_pos = prev_pose[:3, 3]
- *     cdef np.ndarray[double, ndim=1] current_pos = current_pose[:3, 3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
- * 
- */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_current_pose), __pyx_tuple__5); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 214, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 214, __pyx_L1_error)
-  __pyx_t_3 = ((PyArrayObject *)__pyx_t_1);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_current_pos.rcbuffer->pybuffer, (PyObject*)__pyx_t_3, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_current_pos = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_current_pos.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 214, __pyx_L1_error)
-    } else {__pyx_pybuffernd_current_pos.diminfo[0].strides = __pyx_pybuffernd_current_pos.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_current_pos.diminfo[0].shape = __pyx_pybuffernd_current_pos.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_3 = 0;
-  __pyx_v_current_pos = ((PyArrayObject *)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "xarm_kinematics.pyx":215
- *     cdef np.ndarray[double, ndim=1] prev_pos = prev_pose[:3, 3]
- *     cdef np.ndarray[double, ndim=1] current_pos = current_pose[:3, 3]
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt             # <<<<<<<<<<<<<<
- * 
- *     cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]
- */
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_current_pos), ((PyObject *)__pyx_v_prev_pos)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 215, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 215, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 215, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 215, __pyx_L1_error)
-  __pyx_t_6 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_linear_velocity = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 215, __pyx_L1_error)
-    } else {__pyx_pybuffernd_linear_velocity.diminfo[0].strides = __pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_linear_velocity.diminfo[0].shape = __pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_6 = 0;
-  __pyx_v_linear_velocity = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":217
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
- * 
- *     cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=2] current_rot = current_pose[:3, :3]
- *     cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)
- */
-  __pyx_t_5 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_prev_pose), __pyx_tuple__6); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 217, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 217, __pyx_L1_error)
-  __pyx_t_7 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_prev_rot.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
-      __pyx_v_prev_rot = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_prev_rot.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 217, __pyx_L1_error)
-    } else {__pyx_pybuffernd_prev_rot.diminfo[0].strides = __pyx_pybuffernd_prev_rot.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_prev_rot.diminfo[0].shape = __pyx_pybuffernd_prev_rot.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_prev_rot.diminfo[1].strides = __pyx_pybuffernd_prev_rot.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_prev_rot.diminfo[1].shape = __pyx_pybuffernd_prev_rot.rcbuffer->pybuffer.shape[1];
-    }
-  }
-  __pyx_t_7 = 0;
-  __pyx_v_prev_rot = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":218
- * 
- *     cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]
- *     cdef np.ndarray[double, ndim=2] current_rot = current_pose[:3, :3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)
- * 
- */
-  __pyx_t_5 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_current_pose), __pyx_tuple__6); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 218, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 218, __pyx_L1_error)
-  __pyx_t_8 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_current_rot.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
-      __pyx_v_current_rot = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_current_rot.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 218, __pyx_L1_error)
-    } else {__pyx_pybuffernd_current_rot.diminfo[0].strides = __pyx_pybuffernd_current_rot.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_current_rot.diminfo[0].shape = __pyx_pybuffernd_current_rot.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_current_rot.diminfo[1].strides = __pyx_pybuffernd_current_rot.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_current_rot.diminfo[1].shape = __pyx_pybuffernd_current_rot.rcbuffer->pybuffer.shape[1];
-    }
-  }
-  __pyx_t_8 = 0;
-  __pyx_v_current_rot = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":219
- *     cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]
- *     cdef np.ndarray[double, ndim=2] current_rot = current_pose[:3, :3]
- *     cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)             # <<<<<<<<<<<<<<
- * 
- *     cdef double angle = acos((np.trace(rot_diff) - 1) / 2)
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_prev_rot), __pyx_n_s_T); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_9 = NULL;
-  __pyx_t_10 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_9)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_9);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_10 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3] = {__pyx_t_9, ((PyObject *)__pyx_v_current_rot), __pyx_t_4};
-    __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_10, 2+__pyx_t_10);
-    __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 219, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 219, __pyx_L1_error)
-  __pyx_t_11 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rot_diff.rcbuffer->pybuffer, (PyObject*)__pyx_t_11, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
-      __pyx_v_rot_diff = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 219, __pyx_L1_error)
-    } else {__pyx_pybuffernd_rot_diff.diminfo[0].strides = __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rot_diff.diminfo[0].shape = __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rot_diff.diminfo[1].strides = __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rot_diff.diminfo[1].shape = __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.shape[1];
-    }
-  }
-  __pyx_t_11 = 0;
-  __pyx_v_rot_diff = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":221
- *     cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)
- * 
- *     cdef double angle = acos((np.trace(rot_diff) - 1) / 2)             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 221, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_trace); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 221, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  __pyx_t_10 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_10 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, ((PyObject *)__pyx_v_rot_diff)};
-    __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 221, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-  __pyx_t_4 = __Pyx_PyInt_SubtractObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 221, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_TrueDivideObjC(__pyx_t_4, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 221, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 221, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_angle = acos(__pyx_t_12);
-
-  /* "xarm_kinematics.pyx":222
- * 
- *     cdef double angle = acos((np.trace(rot_diff) - 1) / 2)
- *     cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],             # <<<<<<<<<<<<<<
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_array); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_13 = 2;
-  __pyx_t_14 = 1;
-  __pyx_t_15 = 1;
-  __pyx_t_16 = 2;
-  __pyx_t_4 = PyFloat_FromDouble(((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_rot_diff.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_rot_diff.diminfo[1].strides)))); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-
-  /* "xarm_kinematics.pyx":223
- *     cdef double angle = acos((np.trace(rot_diff) - 1) / 2)
- *     cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],             # <<<<<<<<<<<<<<
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])
- *     axis /= (2 * sin(angle) + 1e-10)  # Add small value to avoid division by zero
- */
-  __pyx_t_16 = 0;
-  __pyx_t_15 = 2;
-  __pyx_t_14 = 2;
-  __pyx_t_13 = 0;
-  __pyx_t_9 = PyFloat_FromDouble(((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_16, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_rot_diff.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_rot_diff.diminfo[1].strides)))); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 223, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-
-  /* "xarm_kinematics.pyx":224
- *     cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])             # <<<<<<<<<<<<<<
- *     axis /= (2 * sin(angle) + 1e-10)  # Add small value to avoid division by zero
- *     cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis
- */
-  __pyx_t_13 = 1;
-  __pyx_t_14 = 0;
-  __pyx_t_15 = 0;
-  __pyx_t_16 = 1;
-  __pyx_t_17 = PyFloat_FromDouble(((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_rot_diff.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_rot_diff.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_rot_diff.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_rot_diff.diminfo[1].strides)))); if (unlikely(!__pyx_t_17)) __PYX_ERR(1, 224, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_17);
-
-  /* "xarm_kinematics.pyx":222
- * 
- *     cdef double angle = acos((np.trace(rot_diff) - 1) / 2)
- *     cdef np.ndarray[double, ndim=1] axis = np.array([rot_diff[2, 1] - rot_diff[1, 2],             # <<<<<<<<<<<<<<
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])
- */
-  __pyx_t_18 = PyList_New(3); if (unlikely(!__pyx_t_18)) __PYX_ERR(1, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_18);
-  __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_18, 0, __pyx_t_4)) __PYX_ERR(1, 222, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_18, 1, __pyx_t_9)) __PYX_ERR(1, 222, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_17);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_18, 2, __pyx_t_17)) __PYX_ERR(1, 222, __pyx_L1_error);
-  __pyx_t_4 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_17 = 0;
-  __pyx_t_17 = NULL;
-  __pyx_t_10 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_17 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_17)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_17);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_10 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_17, __pyx_t_18};
-    __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
-    __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
-    __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 222, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 222, __pyx_L1_error)
-  __pyx_t_19 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_axis.rcbuffer->pybuffer, (PyObject*)__pyx_t_19, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_axis = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_axis.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 222, __pyx_L1_error)
-    } else {__pyx_pybuffernd_axis.diminfo[0].strides = __pyx_pybuffernd_axis.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_axis.diminfo[0].shape = __pyx_pybuffernd_axis.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_19 = 0;
-  __pyx_v_axis = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":225
- *                                                      rot_diff[0, 2] - rot_diff[2, 0],
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])
- *     axis /= (2 * sin(angle) + 1e-10)  # Add small value to avoid division by zero             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis
- * 
- */
-  __pyx_t_5 = PyFloat_FromDouble(((2.0 * sin(__pyx_v_angle)) + 1e-10)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 225, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_axis), __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 225, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 225, __pyx_L1_error)
-  __pyx_t_19 = ((PyArrayObject *)__pyx_t_1);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_axis.rcbuffer->pybuffer);
-    __pyx_t_10 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_axis.rcbuffer->pybuffer, (PyObject*)__pyx_t_19, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack);
-    if (unlikely(__pyx_t_10 < 0)) {
-      PyErr_Fetch(&__pyx_t_20, &__pyx_t_21, &__pyx_t_22);
-      if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_axis.rcbuffer->pybuffer, (PyObject*)__pyx_v_axis, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-        Py_XDECREF(__pyx_t_20); Py_XDECREF(__pyx_t_21); Py_XDECREF(__pyx_t_22);
-        __Pyx_RaiseBufferFallbackError();
-      } else {
-        PyErr_Restore(__pyx_t_20, __pyx_t_21, __pyx_t_22);
-      }
-      __pyx_t_20 = __pyx_t_21 = __pyx_t_22 = 0;
-    }
-    __pyx_pybuffernd_axis.diminfo[0].strides = __pyx_pybuffernd_axis.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_axis.diminfo[0].shape = __pyx_pybuffernd_axis.rcbuffer->pybuffer.shape[0];
-    if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 225, __pyx_L1_error)
-  }
-  __pyx_t_19 = 0;
-  __Pyx_DECREF_SET(__pyx_v_axis, ((PyArrayObject *)__pyx_t_1));
-  __pyx_t_1 = 0;
-
-  /* "xarm_kinematics.pyx":226
- *                                                      rot_diff[1, 0] - rot_diff[0, 1]])
- *     axis /= (2 * sin(angle) + 1e-10)  # Add small value to avoid division by zero
- *     cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis             # <<<<<<<<<<<<<<
- * 
- *     return np.concatenate([linear_velocity, angular_velocity])
- */
-  if (unlikely(__pyx_v_dt == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(1, 226, __pyx_L1_error)
-  }
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_v_angle / __pyx_v_dt)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_axis)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 226, __pyx_L1_error)
-  __pyx_t_23 = ((PyArrayObject *)__pyx_t_5);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer, (PyObject*)__pyx_t_23, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_angular_velocity = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 226, __pyx_L1_error)
-    } else {__pyx_pybuffernd_angular_velocity.diminfo[0].strides = __pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_angular_velocity.diminfo[0].shape = __pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_23 = 0;
-  __pyx_v_angular_velocity = ((PyArrayObject *)__pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "xarm_kinematics.pyx":228
- *     cdef np.ndarray[double, ndim=1] angular_velocity = (angle / dt) * axis
- * 
- *     return np.concatenate([linear_velocity, angular_velocity])             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_concatenate); if (unlikely(!__pyx_t_18)) __PYX_ERR(1, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_18);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF((PyObject *)__pyx_v_linear_velocity);
-  __Pyx_GIVEREF((PyObject *)__pyx_v_linear_velocity);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_linear_velocity))) __PYX_ERR(1, 228, __pyx_L1_error);
-  __Pyx_INCREF((PyObject *)__pyx_v_angular_velocity);
-  __Pyx_GIVEREF((PyObject *)__pyx_v_angular_velocity);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 1, ((PyObject *)__pyx_v_angular_velocity))) __PYX_ERR(1, 228, __pyx_L1_error);
-  __pyx_t_17 = NULL;
-  __pyx_t_10 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_18))) {
-    __pyx_t_17 = PyMethod_GET_SELF(__pyx_t_18);
-    if (likely(__pyx_t_17)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_18);
-      __Pyx_INCREF(__pyx_t_17);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_18, function);
-      __pyx_t_10 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_17, __pyx_t_1};
-    __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_18, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
-    __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 228, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-  }
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":210
- *     return T
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_17);
-  __Pyx_XDECREF(__pyx_t_18);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_axis.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_pos.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_pose.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_rot.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_pos.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_pose.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_rot.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_rot_diff.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.calculate_tcp_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_angular_velocity.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_axis.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_pos.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_pose.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_rot.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_linear_velocity.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_pos.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_pose.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_rot.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_rot_diff.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XDECREF((PyObject *)__pyx_v_prev_pos);
-  __Pyx_XDECREF((PyObject *)__pyx_v_current_pos);
-  __Pyx_XDECREF((PyObject *)__pyx_v_linear_velocity);
-  __Pyx_XDECREF((PyObject *)__pyx_v_prev_rot);
-  __Pyx_XDECREF((PyObject *)__pyx_v_current_rot);
-  __Pyx_XDECREF((PyObject *)__pyx_v_rot_diff);
-  __Pyx_XDECREF((PyObject *)__pyx_v_axis);
-  __Pyx_XDECREF((PyObject *)__pyx_v_angular_velocity);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":230
- *     return np.concatenate([linear_velocity, angular_velocity])
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_17limit_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_17limit_velocity = {"limit_velocity", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_17limit_velocity, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_17limit_velocity(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_velocities = 0;
-  double __pyx_v_max_velocity;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[2] = {0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("limit_velocity (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_velocities,&__pyx_n_s_max_velocity,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_velocities)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 230, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_max_velocity)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 230, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_velocity", 1, 2, 2, 1); __PYX_ERR(1, 230, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "limit_velocity") < 0)) __PYX_ERR(1, 230, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 2)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-    }
-    __pyx_v_velocities = ((PyArrayObject *)values[0]);
-    __pyx_v_max_velocity = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_max_velocity == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 232, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("limit_velocity", 1, 2, 2, __pyx_nargs); __PYX_ERR(1, 230, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.limit_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_velocities), __pyx_ptype_5numpy_ndarray, 1, "velocities", 0))) __PYX_ERR(1, 232, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_16limit_velocity(__pyx_self, __pyx_v_velocities, __pyx_v_max_velocity);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_16limit_velocity(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_velocities, double __pyx_v_max_velocity) {
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_velocities;
-  __Pyx_Buffer __pyx_pybuffer_velocities;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_t_6;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("limit_velocity", 1);
-  __pyx_pybuffer_velocities.pybuffer.buf = NULL;
-  __pyx_pybuffer_velocities.refcount = 0;
-  __pyx_pybuffernd_velocities.data = NULL;
-  __pyx_pybuffernd_velocities.rcbuffer = &__pyx_pybuffer_velocities;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer, (PyObject*)__pyx_v_velocities, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 230, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_velocities.diminfo[0].strides = __pyx_pybuffernd_velocities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_velocities.diminfo[0].shape = __pyx_pybuffernd_velocities.rcbuffer->pybuffer.shape[0];
-
-  /* "xarm_kinematics.pyx":233
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- *     return np.clip(velocities, -max_velocity, max_velocity)             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_clip); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_max_velocity)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_max_velocity); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 233, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = NULL;
-  __pyx_t_6 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-      __pyx_t_6 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[4] = {__pyx_t_5, ((PyObject *)__pyx_v_velocities), __pyx_t_2, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 3+__pyx_t_6);
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 233, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":230
- *     return np.concatenate([linear_velocity, angular_velocity])
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.limit_velocity", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_velocities.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "xarm_kinematics.pyx":235
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_15xarm_kinematics_19limit_acceleration(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_15xarm_kinematics_19limit_acceleration = {"limit_acceleration", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15xarm_kinematics_19limit_acceleration, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15xarm_kinematics_19limit_acceleration(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyArrayObject *__pyx_v_current_velocities = 0;
-  PyArrayObject *__pyx_v_prev_velocities = 0;
-  double __pyx_v_max_acceleration;
-  double __pyx_v_dt;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[4] = {0,0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("limit_acceleration (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_MACROS
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_current_velocities,&__pyx_n_s_prev_velocities,&__pyx_n_s_max_acceleration,&__pyx_n_s_dt,0};
-    if (__pyx_kwds) {
-      Py_ssize_t kw_args;
-      switch (__pyx_nargs) {
-        case  4: values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
-        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
-      switch (__pyx_nargs) {
-        case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_current_velocities)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 235, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_prev_velocities)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 235, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_acceleration", 1, 4, 4, 1); __PYX_ERR(1, 235, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_max_acceleration)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 235, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_acceleration", 1, 4, 4, 2); __PYX_ERR(1, 235, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_dt)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
-          kw_args--;
-        }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 235, __pyx_L3_error)
-        else {
-          __Pyx_RaiseArgtupleInvalid("limit_acceleration", 1, 4, 4, 3); __PYX_ERR(1, 235, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "limit_acceleration") < 0)) __PYX_ERR(1, 235, __pyx_L3_error)
-      }
-    } else if (unlikely(__pyx_nargs != 4)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-      values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
-    }
-    __pyx_v_current_velocities = ((PyArrayObject *)values[0]);
-    __pyx_v_prev_velocities = ((PyArrayObject *)values[1]);
-    __pyx_v_max_acceleration = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_max_acceleration == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 237, __pyx_L3_error)
-    __pyx_v_dt = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_dt == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 237, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("limit_acceleration", 1, 4, 4, __pyx_nargs); __PYX_ERR(1, 235, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_AddTraceback("xarm_kinematics.limit_acceleration", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_current_velocities), __pyx_ptype_5numpy_ndarray, 1, "current_velocities", 0))) __PYX_ERR(1, 237, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_prev_velocities), __pyx_ptype_5numpy_ndarray, 1, "prev_velocities", 0))) __PYX_ERR(1, 237, __pyx_L1_error)
-  __pyx_r = __pyx_pf_15xarm_kinematics_18limit_acceleration(__pyx_self, __pyx_v_current_velocities, __pyx_v_prev_velocities, __pyx_v_max_acceleration, __pyx_v_dt);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  {
-    Py_ssize_t __pyx_temp;
-    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
-    }
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_15xarm_kinematics_18limit_acceleration(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_current_velocities, PyArrayObject *__pyx_v_prev_velocities, double __pyx_v_max_acceleration, double __pyx_v_dt) {
-  PyArrayObject *__pyx_v_accelerations = 0;
-  PyArrayObject *__pyx_v_limited_accelerations = 0;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_accelerations;
-  __Pyx_Buffer __pyx_pybuffer_accelerations;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_current_velocities;
-  __Pyx_Buffer __pyx_pybuffer_current_velocities;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_limited_accelerations;
-  __Pyx_Buffer __pyx_pybuffer_limited_accelerations;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_prev_velocities;
-  __Pyx_Buffer __pyx_pybuffer_prev_velocities;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyArrayObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_t_7;
-  PyArrayObject *__pyx_t_8 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("limit_acceleration", 1);
-  __pyx_pybuffer_accelerations.pybuffer.buf = NULL;
-  __pyx_pybuffer_accelerations.refcount = 0;
-  __pyx_pybuffernd_accelerations.data = NULL;
-  __pyx_pybuffernd_accelerations.rcbuffer = &__pyx_pybuffer_accelerations;
-  __pyx_pybuffer_limited_accelerations.pybuffer.buf = NULL;
-  __pyx_pybuffer_limited_accelerations.refcount = 0;
-  __pyx_pybuffernd_limited_accelerations.data = NULL;
-  __pyx_pybuffernd_limited_accelerations.rcbuffer = &__pyx_pybuffer_limited_accelerations;
-  __pyx_pybuffer_current_velocities.pybuffer.buf = NULL;
-  __pyx_pybuffer_current_velocities.refcount = 0;
-  __pyx_pybuffernd_current_velocities.data = NULL;
-  __pyx_pybuffernd_current_velocities.rcbuffer = &__pyx_pybuffer_current_velocities;
-  __pyx_pybuffer_prev_velocities.pybuffer.buf = NULL;
-  __pyx_pybuffer_prev_velocities.refcount = 0;
-  __pyx_pybuffernd_prev_velocities.data = NULL;
-  __pyx_pybuffernd_prev_velocities.rcbuffer = &__pyx_pybuffer_prev_velocities;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_current_velocities.rcbuffer->pybuffer, (PyObject*)__pyx_v_current_velocities, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 235, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_current_velocities.diminfo[0].strides = __pyx_pybuffernd_current_velocities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_current_velocities.diminfo[0].shape = __pyx_pybuffernd_current_velocities.rcbuffer->pybuffer.shape[0];
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_prev_velocities.rcbuffer->pybuffer, (PyObject*)__pyx_v_prev_velocities, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 235, __pyx_L1_error)
-  }
-  __pyx_pybuffernd_prev_velocities.diminfo[0].strides = __pyx_pybuffernd_prev_velocities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_prev_velocities.diminfo[0].shape = __pyx_pybuffernd_prev_velocities.rcbuffer->pybuffer.shape[0];
-
-  /* "xarm_kinematics.pyx":238
- * @cython.wraparound(False)
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- *     cdef np.ndarray[double, ndim=1] accelerations = (current_velocities - prev_velocities) / dt             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
- *     return prev_velocities + limited_accelerations * dt
- */
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_current_velocities), ((PyObject *)__pyx_v_prev_velocities)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 238, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 238, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 238, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 238, __pyx_L1_error)
-  __pyx_t_4 = ((PyArrayObject *)__pyx_t_3);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_accelerations.rcbuffer->pybuffer, (PyObject*)__pyx_t_4, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_accelerations = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_accelerations.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 238, __pyx_L1_error)
-    } else {__pyx_pybuffernd_accelerations.diminfo[0].strides = __pyx_pybuffernd_accelerations.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_accelerations.diminfo[0].shape = __pyx_pybuffernd_accelerations.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_4 = 0;
-  __pyx_v_accelerations = ((PyArrayObject *)__pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "xarm_kinematics.pyx":239
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- *     cdef np.ndarray[double, ndim=1] accelerations = (current_velocities - prev_velocities) / dt
- *     cdef np.ndarray[double, ndim=1] limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)             # <<<<<<<<<<<<<<
- *     return prev_velocities + limited_accelerations * dt
- * 
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_clip); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_max_acceleration)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_max_acceleration); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = NULL;
-  __pyx_t_7 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_6);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_7 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[4] = {__pyx_t_6, ((PyObject *)__pyx_v_accelerations), __pyx_t_2, __pyx_t_5};
-    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_7, 3+__pyx_t_7);
-    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 239, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 239, __pyx_L1_error)
-  __pyx_t_8 = ((PyArrayObject *)__pyx_t_3);
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
-      __pyx_v_limited_accelerations = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(1, 239, __pyx_L1_error)
-    } else {__pyx_pybuffernd_limited_accelerations.diminfo[0].strides = __pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_limited_accelerations.diminfo[0].shape = __pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer.shape[0];
-    }
-  }
-  __pyx_t_8 = 0;
-  __pyx_v_limited_accelerations = ((PyArrayObject *)__pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "xarm_kinematics.pyx":240
- *     cdef np.ndarray[double, ndim=1] accelerations = (current_velocities - prev_velocities) / dt
- *     cdef np.ndarray[double, ndim=1] limited_accelerations = np.clip(accelerations, -max_acceleration, max_acceleration)
- *     return prev_velocities + limited_accelerations * dt             # <<<<<<<<<<<<<<
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_limited_accelerations), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Add(((PyObject *)__pyx_v_prev_velocities), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 240, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
-  goto __pyx_L0;
-
-  /* "xarm_kinematics.pyx":235
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_accelerations.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_velocities.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer);
-    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_velocities.rcbuffer->pybuffer);
-  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("xarm_kinematics.limit_acceleration", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  goto __pyx_L2;
-  __pyx_L0:;
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_accelerations.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_current_velocities.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_limited_accelerations.rcbuffer->pybuffer);
-  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_prev_velocities.rcbuffer->pybuffer);
-  __pyx_L2:;
-  __Pyx_XDECREF((PyObject *)__pyx_v_accelerations);
-  __Pyx_XDECREF((PyObject *)__pyx_v_limited_accelerations);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -13682,58 +10136,26 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_CalculateArmAngles_getGamma, __pyx_k_CalculateArmAngles_getGamma, sizeof(__pyx_k_CalculateArmAngles_getGamma), 0, 0, 1, 1},
     {&__pyx_n_s_CalculateArmAngles_setArmData, __pyx_k_CalculateArmAngles_setArmData, sizeof(__pyx_k_CalculateArmAngles_setArmData), 0, 0, 1, 1},
     {&__pyx_n_s_ImportError, __pyx_k_ImportError, sizeof(__pyx_k_ImportError), 0, 0, 1, 1},
-    {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
     {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
-    {&__pyx_n_s__37, __pyx_k__37, sizeof(__pyx_k__37), 0, 0, 1, 1},
-    {&__pyx_n_s__7, __pyx_k__7, sizeof(__pyx_k__7), 0, 0, 1, 1},
-    {&__pyx_n_s_a2, __pyx_k_a2, sizeof(__pyx_k_a2), 0, 0, 1, 1},
-    {&__pyx_n_s_accelerations, __pyx_k_accelerations, sizeof(__pyx_k_accelerations), 0, 0, 1, 1},
+    {&__pyx_n_s__19, __pyx_k__19, sizeof(__pyx_k__19), 0, 0, 1, 1},
+    {&__pyx_n_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 1},
     {&__pyx_n_s_alpha, __pyx_k_alpha, sizeof(__pyx_k_alpha), 0, 0, 1, 1},
-    {&__pyx_n_s_angle, __pyx_k_angle, sizeof(__pyx_k_angle), 0, 0, 1, 1},
-    {&__pyx_n_s_angle_old, __pyx_k_angle_old, sizeof(__pyx_k_angle_old), 0, 0, 1, 1},
     {&__pyx_n_s_angles, __pyx_k_angles, sizeof(__pyx_k_angles), 0, 0, 1, 1},
-    {&__pyx_n_s_angular_velocity, __pyx_k_angular_velocity, sizeof(__pyx_k_angular_velocity), 0, 0, 1, 1},
     {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
     {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
-    {&__pyx_n_s_ax, __pyx_k_ax, sizeof(__pyx_k_ax), 0, 0, 1, 1},
-    {&__pyx_n_s_axis, __pyx_k_axis, sizeof(__pyx_k_axis), 0, 0, 1, 1},
-    {&__pyx_n_s_ay, __pyx_k_ay, sizeof(__pyx_k_ay), 0, 0, 1, 1},
-    {&__pyx_n_s_az, __pyx_k_az, sizeof(__pyx_k_az), 0, 0, 1, 1},
     {&__pyx_n_s_beta, __pyx_k_beta, sizeof(__pyx_k_beta), 0, 0, 1, 1},
-    {&__pyx_n_s_c1, __pyx_k_c1, sizeof(__pyx_k_c1), 0, 0, 1, 1},
-    {&__pyx_n_s_c2, __pyx_k_c2, sizeof(__pyx_k_c2), 0, 0, 1, 1},
-    {&__pyx_n_s_c23, __pyx_k_c23, sizeof(__pyx_k_c23), 0, 0, 1, 1},
-    {&__pyx_n_s_c3, __pyx_k_c3, sizeof(__pyx_k_c3), 0, 0, 1, 1},
-    {&__pyx_n_s_c4, __pyx_k_c4, sizeof(__pyx_k_c4), 0, 0, 1, 1},
-    {&__pyx_n_s_c5, __pyx_k_c5, sizeof(__pyx_k_c5), 0, 0, 1, 1},
-    {&__pyx_n_s_c6, __pyx_k_c6, sizeof(__pyx_k_c6), 0, 0, 1, 1},
     {&__pyx_n_s_calculate_arm_angles, __pyx_k_calculate_arm_angles, sizeof(__pyx_k_calculate_arm_angles), 0, 0, 1, 1},
-    {&__pyx_n_s_calculate_tcp_velocity, __pyx_k_calculate_tcp_velocity, sizeof(__pyx_k_calculate_tcp_velocity), 0, 0, 1, 1},
-    {&__pyx_n_s_calculate_velocity, __pyx_k_calculate_velocity, sizeof(__pyx_k_calculate_velocity), 0, 0, 1, 1},
     {&__pyx_n_s_calculator, __pyx_k_calculator, sizeof(__pyx_k_calculator), 0, 0, 1, 1},
     {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-    {&__pyx_n_s_clip, __pyx_k_clip, sizeof(__pyx_k_clip), 0, 0, 1, 1},
-    {&__pyx_n_s_concatenate, __pyx_k_concatenate, sizeof(__pyx_k_concatenate), 0, 0, 1, 1},
     {&__pyx_n_s_convert_angles_to_xarm, __pyx_k_convert_angles_to_xarm, sizeof(__pyx_k_convert_angles_to_xarm), 0, 0, 1, 1},
     {&__pyx_n_s_cross, __pyx_k_cross, sizeof(__pyx_k_cross), 0, 0, 1, 1},
-    {&__pyx_n_s_current_angles, __pyx_k_current_angles, sizeof(__pyx_k_current_angles), 0, 0, 1, 1},
-    {&__pyx_n_s_current_pos, __pyx_k_current_pos, sizeof(__pyx_k_current_pos), 0, 0, 1, 1},
-    {&__pyx_n_s_current_pose, __pyx_k_current_pose, sizeof(__pyx_k_current_pose), 0, 0, 1, 1},
-    {&__pyx_n_s_current_rot, __pyx_k_current_rot, sizeof(__pyx_k_current_rot), 0, 0, 1, 1},
-    {&__pyx_n_s_current_velocities, __pyx_k_current_velocities, sizeof(__pyx_k_current_velocities), 0, 0, 1, 1},
-    {&__pyx_n_s_d1, __pyx_k_d1, sizeof(__pyx_k_d1), 0, 0, 1, 1},
-    {&__pyx_n_s_d4, __pyx_k_d4, sizeof(__pyx_k_d4), 0, 0, 1, 1},
-    {&__pyx_n_s_d6, __pyx_k_d6, sizeof(__pyx_k_d6), 0, 0, 1, 1},
     {&__pyx_n_s_delta, __pyx_k_delta, sizeof(__pyx_k_delta), 0, 0, 1, 1},
-    {&__pyx_n_s_delta_angle, __pyx_k_delta_angle, sizeof(__pyx_k_delta_angle), 0, 0, 1, 1},
     {&__pyx_kp_u_disable, __pyx_k_disable, sizeof(__pyx_k_disable), 0, 1, 0, 0},
     {&__pyx_n_s_dot, __pyx_k_dot, sizeof(__pyx_k_dot), 0, 0, 1, 1},
-    {&__pyx_n_s_dt, __pyx_k_dt, sizeof(__pyx_k_dt), 0, 0, 1, 1},
     {&__pyx_n_s_elbow, __pyx_k_elbow, sizeof(__pyx_k_elbow), 0, 0, 1, 1},
     {&__pyx_kp_u_enable, __pyx_k_enable, sizeof(__pyx_k_enable), 0, 1, 0, 0},
-    {&__pyx_n_s_forward_kinematics, __pyx_k_forward_kinematics, sizeof(__pyx_k_forward_kinematics), 0, 0, 1, 1},
     {&__pyx_n_s_gamma, __pyx_k_gamma, sizeof(__pyx_k_gamma), 0, 0, 1, 1},
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_getAlpha, __pyx_k_getAlpha, sizeof(__pyx_k_getAlpha), 0, 0, 1, 1},
@@ -13748,20 +10170,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_inv, __pyx_k_inv, sizeof(__pyx_k_inv), 0, 0, 1, 1},
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_kp_u_isenabled, __pyx_k_isenabled, sizeof(__pyx_k_isenabled), 0, 1, 0, 0},
-    {&__pyx_n_s_joint_angles, __pyx_k_joint_angles, sizeof(__pyx_k_joint_angles), 0, 0, 1, 1},
-    {&__pyx_n_s_limit_acceleration, __pyx_k_limit_acceleration, sizeof(__pyx_k_limit_acceleration), 0, 0, 1, 1},
-    {&__pyx_n_s_limit_angle, __pyx_k_limit_angle, sizeof(__pyx_k_limit_angle), 0, 0, 1, 1},
-    {&__pyx_n_s_limit_angular_movement, __pyx_k_limit_angular_movement, sizeof(__pyx_k_limit_angular_movement), 0, 0, 1, 1},
-    {&__pyx_n_s_limit_velocity, __pyx_k_limit_velocity, sizeof(__pyx_k_limit_velocity), 0, 0, 1, 1},
-    {&__pyx_n_s_limited_accelerations, __pyx_k_limited_accelerations, sizeof(__pyx_k_limited_accelerations), 0, 0, 1, 1},
     {&__pyx_n_s_linalg, __pyx_k_linalg, sizeof(__pyx_k_linalg), 0, 0, 1, 1},
-    {&__pyx_n_s_linear_velocity, __pyx_k_linear_velocity, sizeof(__pyx_k_linear_velocity), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
-    {&__pyx_n_s_max_acceleration, __pyx_k_max_acceleration, sizeof(__pyx_k_max_acceleration), 0, 0, 1, 1},
-    {&__pyx_n_s_max_angular_change, __pyx_k_max_angular_change, sizeof(__pyx_k_max_angular_change), 0, 0, 1, 1},
-    {&__pyx_n_s_max_val, __pyx_k_max_val, sizeof(__pyx_k_max_val), 0, 0, 1, 1},
-    {&__pyx_n_s_max_velocity, __pyx_k_max_velocity, sizeof(__pyx_k_max_velocity), 0, 0, 1, 1},
-    {&__pyx_n_s_min_val, __pyx_k_min_val, sizeof(__pyx_k_min_val), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
     {&__pyx_n_s_norm, __pyx_k_norm, sizeof(__pyx_k_norm), 0, 0, 1, 1},
@@ -13769,34 +10179,12 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
     {&__pyx_kp_u_numpy__core_multiarray_failed_to, __pyx_k_numpy__core_multiarray_failed_to, sizeof(__pyx_k_numpy__core_multiarray_failed_to), 0, 1, 0, 0},
     {&__pyx_kp_u_numpy__core_umath_failed_to_impo, __pyx_k_numpy__core_umath_failed_to_impo, sizeof(__pyx_k_numpy__core_umath_failed_to_impo), 0, 1, 0, 0},
-    {&__pyx_n_s_nx, __pyx_k_nx, sizeof(__pyx_k_nx), 0, 0, 1, 1},
-    {&__pyx_n_s_ny, __pyx_k_ny, sizeof(__pyx_k_ny), 0, 0, 1, 1},
-    {&__pyx_n_s_nz, __pyx_k_nz, sizeof(__pyx_k_nz), 0, 0, 1, 1},
-    {&__pyx_n_s_ox, __pyx_k_ox, sizeof(__pyx_k_ox), 0, 0, 1, 1},
-    {&__pyx_n_s_oy, __pyx_k_oy, sizeof(__pyx_k_oy), 0, 0, 1, 1},
-    {&__pyx_n_s_oz, __pyx_k_oz, sizeof(__pyx_k_oz), 0, 0, 1, 1},
-    {&__pyx_n_s_prev_angles, __pyx_k_prev_angles, sizeof(__pyx_k_prev_angles), 0, 0, 1, 1},
-    {&__pyx_n_s_prev_pos, __pyx_k_prev_pos, sizeof(__pyx_k_prev_pos), 0, 0, 1, 1},
-    {&__pyx_n_s_prev_pose, __pyx_k_prev_pose, sizeof(__pyx_k_prev_pose), 0, 0, 1, 1},
-    {&__pyx_n_s_prev_rot, __pyx_k_prev_rot, sizeof(__pyx_k_prev_rot), 0, 0, 1, 1},
-    {&__pyx_n_s_prev_velocities, __pyx_k_prev_velocities, sizeof(__pyx_k_prev_velocities), 0, 0, 1, 1},
-    {&__pyx_n_s_px, __pyx_k_px, sizeof(__pyx_k_px), 0, 0, 1, 1},
-    {&__pyx_n_s_py, __pyx_k_py, sizeof(__pyx_k_py), 0, 0, 1, 1},
     {&__pyx_n_s_pyx_state, __pyx_k_pyx_state, sizeof(__pyx_k_pyx_state), 0, 0, 1, 1},
     {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
-    {&__pyx_n_s_pz, __pyx_k_pz, sizeof(__pyx_k_pz), 0, 0, 1, 1},
     {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
     {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
-    {&__pyx_n_s_rot_diff, __pyx_k_rot_diff, sizeof(__pyx_k_rot_diff), 0, 0, 1, 1},
-    {&__pyx_n_s_s1, __pyx_k_s1, sizeof(__pyx_k_s1), 0, 0, 1, 1},
-    {&__pyx_n_s_s2, __pyx_k_s2, sizeof(__pyx_k_s2), 0, 0, 1, 1},
-    {&__pyx_n_s_s23, __pyx_k_s23, sizeof(__pyx_k_s23), 0, 0, 1, 1},
-    {&__pyx_n_s_s3, __pyx_k_s3, sizeof(__pyx_k_s3), 0, 0, 1, 1},
-    {&__pyx_n_s_s4, __pyx_k_s4, sizeof(__pyx_k_s4), 0, 0, 1, 1},
-    {&__pyx_n_s_s5, __pyx_k_s5, sizeof(__pyx_k_s5), 0, 0, 1, 1},
-    {&__pyx_n_s_s6, __pyx_k_s6, sizeof(__pyx_k_s6), 0, 0, 1, 1},
     {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
     {&__pyx_n_s_setArmData, __pyx_k_setArmData, sizeof(__pyx_k_setArmData), 0, 0, 1, 1},
     {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
@@ -13805,15 +10193,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_spec, __pyx_k_spec, sizeof(__pyx_k_spec), 0, 0, 1, 1},
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-    {&__pyx_n_s_theta1, __pyx_k_theta1, sizeof(__pyx_k_theta1), 0, 0, 1, 1},
-    {&__pyx_n_s_theta2, __pyx_k_theta2, sizeof(__pyx_k_theta2), 0, 0, 1, 1},
-    {&__pyx_n_s_theta3, __pyx_k_theta3, sizeof(__pyx_k_theta3), 0, 0, 1, 1},
-    {&__pyx_n_s_theta4, __pyx_k_theta4, sizeof(__pyx_k_theta4), 0, 0, 1, 1},
-    {&__pyx_n_s_theta5, __pyx_k_theta5, sizeof(__pyx_k_theta5), 0, 0, 1, 1},
-    {&__pyx_n_s_theta6, __pyx_k_theta6, sizeof(__pyx_k_theta6), 0, 0, 1, 1},
-    {&__pyx_n_s_time_step, __pyx_k_time_step, sizeof(__pyx_k_time_step), 0, 0, 1, 1},
-    {&__pyx_n_s_trace, __pyx_k_trace, sizeof(__pyx_k_trace), 0, 0, 1, 1},
-    {&__pyx_n_s_velocities, __pyx_k_velocities, sizeof(__pyx_k_velocities), 0, 0, 1, 1},
     {&__pyx_n_s_xarm_angles, __pyx_k_xarm_angles, sizeof(__pyx_k_xarm_angles), 0, 0, 1, 1},
     {&__pyx_n_s_xarm_kinematics, __pyx_k_xarm_kinematics, sizeof(__pyx_k_xarm_kinematics), 0, 0, 1, 1},
     {&__pyx_kp_s_xarm_kinematics_pyx, __pyx_k_xarm_kinematics_pyx, sizeof(__pyx_k_xarm_kinematics_pyx), 0, 0, 1, 0},
@@ -13870,31 +10249,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__3);
   __Pyx_GIVEREF(__pyx_slice__3);
 
-  /* "xarm_kinematics.pyx":213
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- *     cdef np.ndarray[double, ndim=1] prev_pos = prev_pose[:3, 3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=1] current_pos = current_pose[:3, 3]
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
- */
-  __pyx_slice__4 = PySlice_New(Py_None, __pyx_int_3, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(1, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_slice__4);
-  __Pyx_GIVEREF(__pyx_slice__4);
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_slice__4, __pyx_int_3); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(1, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-
-  /* "xarm_kinematics.pyx":217
- *     cdef np.ndarray[double, ndim=1] linear_velocity = (current_pos - prev_pos) / dt
- * 
- *     cdef np.ndarray[double, ndim=2] prev_rot = prev_pose[:3, :3]             # <<<<<<<<<<<<<<
- *     cdef np.ndarray[double, ndim=2] current_rot = current_pose[:3, :3]
- *     cdef np.ndarray[double, ndim=2] rot_diff = np.dot(current_rot, prev_rot.T)
- */
-  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_slice__4, __pyx_slice__4); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(1, 217, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
-
   /* "xarm_kinematics.pyx":19
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
@@ -13902,10 +10256,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.shoulderPoint = shoulder
  *         self.elbowPoint = elbow
  */
-  __pyx_tuple__8 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_shoulder, __pyx_n_s_elbow, __pyx_n_s_hand); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_setArmData, 19, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(1, 19, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_shoulder, __pyx_n_s_elbow, __pyx_n_s_hand); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(1, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_setArmData, 19, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(1, 19, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":28
  *     @cython.boundscheck(False)
@@ -13914,10 +10268,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         return atan2(self.upperarm[1], self.upperarm[0]) * (180 / M_PI)
  * 
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(1, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getAlpha, 28, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(1, 28, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getAlpha, 28, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(1, 28, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":33
  *     @cython.boundscheck(False)
@@ -13926,7 +10280,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         cdef np.ndarray[double, ndim=1] shouldCS_Z = np.array([self.upperarm[0], self.upperarm[1], 0.0])
  *         shouldCS_Z /= np.linalg.norm(shouldCS_Z)
  */
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getBeta, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(1, 33, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getBeta, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(1, 33, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":56
  *     @cython.boundscheck(False)
@@ -13935,7 +10289,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         return acos(-(np.dot(self.upperarm, self.forearm)) / (np.linalg.norm(self.upperarm) * np.linalg.norm(self.forearm))) * (180 / M_PI)
  * 
  */
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getGamma, 56, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getGamma, 56, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(1, 56, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":61
  *     @cython.boundscheck(False)
@@ -13944,14 +10298,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         cdef np.ndarray[double, ndim=1] elbCS_Z = self.upperarm / np.linalg.norm(self.upperarm)
  *         cdef np.ndarray[double, ndim=1] elbCS_Y = np.cross(self.upperarm, self.forearm)
  */
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getDelta, 61, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(1, 61, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_getDelta, 61, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(1, 61, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 1, __pyx_L1_error)
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -13959,10 +10313,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 3, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":85
  *         return atan2(Z_projected[1], Z_projected[0]) * (180 / M_PI)
@@ -13971,10 +10325,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * @cython.wraparound(False)
  * def calculate_arm_angles(np.ndarray[double, ndim=1] shoulder, np.ndarray[double, ndim=1] elbow, np.ndarray[double, ndim=1] hand):
  */
-  __pyx_tuple__18 = PyTuple_Pack(8, __pyx_n_s_shoulder, __pyx_n_s_elbow, __pyx_n_s_hand, __pyx_n_s_calculator, __pyx_n_s_alpha, __pyx_n_s_beta, __pyx_n_s_gamma, __pyx_n_s_delta); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 85, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_calculate_arm_angles, 85, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(1, 85, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(8, __pyx_n_s_shoulder, __pyx_n_s_elbow, __pyx_n_s_hand, __pyx_n_s_calculator, __pyx_n_s_alpha, __pyx_n_s_beta, __pyx_n_s_gamma, __pyx_n_s_delta); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 85, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_calculate_arm_angles, 85, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(1, 85, __pyx_L1_error)
 
   /* "xarm_kinematics.pyx":104
  *     return np.array([alpha, beta, gamma, delta])
@@ -13983,103 +10337,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * @cython.wraparound(False)
  * def convert_angles_to_xarm(np.ndarray[double, ndim=1] angles):
  */
-  __pyx_tuple__20 = PyTuple_Pack(3, __pyx_n_s_angles, __pyx_n_s_xarm_angles, __pyx_n_s_i); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 104, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_convert_angles_to_xarm, 104, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(1, 104, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":123
- *     return xarm_angles
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- */
-  __pyx_tuple__22 = PyTuple_Pack(4, __pyx_n_s_angle, __pyx_n_s_angle_old, __pyx_n_s_max_angular_change, __pyx_n_s_delta_angle); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(1, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_limit_angular_movement, 123, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(1, 123, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":138
- *     return angle
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angle(double angle, double min_val, double max_val):
- */
-  __pyx_tuple__24 = PyTuple_Pack(3, __pyx_n_s_angle, __pyx_n_s_min_val, __pyx_n_s_max_val); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(1, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_limit_angle, 138, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(1, 138, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":144
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-  __pyx_tuple__26 = PyTuple_Pack(2, __pyx_n_s_velocities, __pyx_n_s_max_velocity); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_limit_velocity, 144, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(1, 144, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":149
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
- */
-  __pyx_tuple__28 = PyTuple_Pack(3, __pyx_n_s_current_angles, __pyx_n_s_prev_angles, __pyx_n_s_time_step); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 149, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__28);
-  __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_calculate_velocity, 149, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(1, 149, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":156
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- */
-  __pyx_tuple__30 = PyTuple_Pack(38, __pyx_n_s_joint_angles, __pyx_n_s_theta1, __pyx_n_s_theta2, __pyx_n_s_theta3, __pyx_n_s_theta4, __pyx_n_s_theta5, __pyx_n_s_theta6, __pyx_n_s_d1, __pyx_n_s_a2, __pyx_n_s_d4, __pyx_n_s_d6, __pyx_n_s_c1, __pyx_n_s_s1, __pyx_n_s_c2, __pyx_n_s_s2, __pyx_n_s_c3, __pyx_n_s_s3, __pyx_n_s_c4, __pyx_n_s_s4, __pyx_n_s_c5, __pyx_n_s_s5, __pyx_n_s_c6, __pyx_n_s_s6, __pyx_n_s_s23, __pyx_n_s_c23, __pyx_n_s_nx, __pyx_n_s_ny, __pyx_n_s_nz, __pyx_n_s_ox, __pyx_n_s_oy, __pyx_n_s_oz, __pyx_n_s_ax, __pyx_n_s_ay, __pyx_n_s_az, __pyx_n_s_px, __pyx_n_s_py, __pyx_n_s_pz, __pyx_n_s_T); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 156, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 38, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_forward_kinematics, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(1, 156, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":210
- *     return T
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- */
-  __pyx_tuple__32 = PyTuple_Pack(12, __pyx_n_s_prev_pose, __pyx_n_s_current_pose, __pyx_n_s_dt, __pyx_n_s_prev_pos, __pyx_n_s_current_pos, __pyx_n_s_linear_velocity, __pyx_n_s_prev_rot, __pyx_n_s_current_rot, __pyx_n_s_rot_diff, __pyx_n_s_angle, __pyx_n_s_axis, __pyx_n_s_angular_velocity); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 210, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_calculate_tcp_velocity, 210, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(1, 210, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":230
- *     return np.concatenate([linear_velocity, angular_velocity])
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_limit_velocity, 230, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(1, 230, __pyx_L1_error)
-
-  /* "xarm_kinematics.pyx":235
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- */
-  __pyx_tuple__35 = PyTuple_Pack(6, __pyx_n_s_current_velocities, __pyx_n_s_prev_velocities, __pyx_n_s_max_acceleration, __pyx_n_s_dt, __pyx_n_s_accelerations, __pyx_n_s_limited_accelerations); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(1, 235, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_limit_acceleration, 235, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(1, 235, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_angles, __pyx_n_s_xarm_angles, __pyx_n_s_i); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_xarm_kinematics_pyx, __pyx_n_s_convert_angles_to_xarm, 104, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(1, 104, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -14567,7 +10828,7 @@ if (!__Pyx_RefNanny) {
  *         self.shoulderPoint = shoulder
  *         self.elbowPoint = elbow
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_3setArmData, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_setArmData, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_3setArmData, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_setArmData, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_15xarm_kinematics_CalculateArmAngles, __pyx_n_s_setArmData, __pyx_t_2) < 0) __PYX_ERR(1, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14580,7 +10841,7 @@ if (!__Pyx_RefNanny) {
  *         return atan2(self.upperarm[1], self.upperarm[0]) * (180 / M_PI)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_5getAlpha, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getAlpha, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 28, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_5getAlpha, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getAlpha, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_15xarm_kinematics_CalculateArmAngles, __pyx_n_s_getAlpha, __pyx_t_2) < 0) __PYX_ERR(1, 28, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14593,7 +10854,7 @@ if (!__Pyx_RefNanny) {
  *         cdef np.ndarray[double, ndim=1] shouldCS_Z = np.array([self.upperarm[0], self.upperarm[1], 0.0])
  *         shouldCS_Z /= np.linalg.norm(shouldCS_Z)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_7getBeta, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getBeta, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 33, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_7getBeta, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getBeta, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_15xarm_kinematics_CalculateArmAngles, __pyx_n_s_getBeta, __pyx_t_2) < 0) __PYX_ERR(1, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14606,7 +10867,7 @@ if (!__Pyx_RefNanny) {
  *         return acos(-(np.dot(self.upperarm, self.forearm)) / (np.linalg.norm(self.upperarm) * np.linalg.norm(self.forearm))) * (180 / M_PI)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_9getGamma, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getGamma, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_9getGamma, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getGamma, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_15xarm_kinematics_CalculateArmAngles, __pyx_n_s_getGamma, __pyx_t_2) < 0) __PYX_ERR(1, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14619,7 +10880,7 @@ if (!__Pyx_RefNanny) {
  *         cdef np.ndarray[double, ndim=1] elbCS_Z = self.upperarm / np.linalg.norm(self.upperarm)
  *         cdef np.ndarray[double, ndim=1] elbCS_Y = np.cross(self.upperarm, self.forearm)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_11getDelta, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getDelta, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 61, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_11getDelta, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles_getDelta, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_15xarm_kinematics_CalculateArmAngles, __pyx_n_s_getDelta, __pyx_t_2) < 0) __PYX_ERR(1, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14630,7 +10891,7 @@ if (!__Pyx_RefNanny) {
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_13__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles___reduce_cyth, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_13__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles___reduce_cyth, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14641,7 +10902,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_15__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles___setstate_cy, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_18CalculateArmAngles_15__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CalculateArmAngles___setstate_cy, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14653,7 +10914,7 @@ if (!__Pyx_RefNanny) {
  * @cython.wraparound(False)
  * def calculate_arm_angles(np.ndarray[double, ndim=1] shoulder, np.ndarray[double, ndim=1] elbow, np.ndarray[double, ndim=1] hand):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_1calculate_arm_angles, 0, __pyx_n_s_calculate_arm_angles, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 85, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_1calculate_arm_angles, 0, __pyx_n_s_calculate_arm_angles, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_calculate_arm_angles, __pyx_t_2) < 0) __PYX_ERR(1, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14665,105 +10926,9 @@ if (!__Pyx_RefNanny) {
  * @cython.wraparound(False)
  * def convert_angles_to_xarm(np.ndarray[double, ndim=1] angles):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_3convert_angles_to_xarm, 0, __pyx_n_s_convert_angles_to_xarm, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_3convert_angles_to_xarm, 0, __pyx_n_s_convert_angles_to_xarm, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_convert_angles_to_xarm, __pyx_t_2) < 0) __PYX_ERR(1, 104, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":123
- *     return xarm_angles
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angular_movement(double angle, double angle_old, double max_angular_change):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_5limit_angular_movement, 0, __pyx_n_s_limit_angular_movement, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_limit_angular_movement, __pyx_t_2) < 0) __PYX_ERR(1, 123, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":138
- *     return angle
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_angle(double angle, double min_val, double max_val):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_7limit_angle, 0, __pyx_n_s_limit_angle, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_limit_angle, __pyx_t_2) < 0) __PYX_ERR(1, 138, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":144
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_9limit_velocity, 0, __pyx_n_s_limit_velocity, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_limit_velocity, __pyx_t_2) < 0) __PYX_ERR(1, 144, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":149
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_velocity(np.ndarray[double, ndim=1] current_angles, np.ndarray[double, ndim=1] prev_angles, double time_step):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_11calculate_velocity, 0, __pyx_n_s_calculate_velocity, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 149, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_calculate_velocity, __pyx_t_2) < 0) __PYX_ERR(1, 149, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":156
- * 
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def forward_kinematics(np.ndarray[double, ndim=1] joint_angles):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_13forward_kinematics, 0, __pyx_n_s_forward_kinematics, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 156, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_forward_kinematics, __pyx_t_2) < 0) __PYX_ERR(1, 156, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":210
- *     return T
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def calculate_tcp_velocity(np.ndarray[double, ndim=2] prev_pose, np.ndarray[double, ndim=2] current_pose, double dt):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_15calculate_tcp_velocity, 0, __pyx_n_s_calculate_tcp_velocity, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 210, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_calculate_tcp_velocity, __pyx_t_2) < 0) __PYX_ERR(1, 210, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":230
- *     return np.concatenate([linear_velocity, angular_velocity])
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_velocity(np.ndarray[double, ndim=1] velocities, double max_velocity):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_17limit_velocity, 0, __pyx_n_s_limit_velocity, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 230, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_limit_velocity, __pyx_t_2) < 0) __PYX_ERR(1, 230, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "xarm_kinematics.pyx":235
- *     return np.clip(velocities, -max_velocity, max_velocity)
- * 
- * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)
- * def limit_acceleration(np.ndarray[double, ndim=1] current_velocities, np.ndarray[double, ndim=1] prev_velocities, double max_acceleration, double dt):
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_15xarm_kinematics_19limit_acceleration, 0, __pyx_n_s_limit_acceleration, NULL, __pyx_n_s_xarm_kinematics, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 235, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_limit_acceleration, __pyx_t_2) < 0) __PYX_ERR(1, 235, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "xarm_kinematics.pyx":1
@@ -17017,241 +13182,6 @@ static PyObject* __Pyx_PyFloat_AddObjC(PyObject *op1, PyObject *op2, double floa
     return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
-/* ModFloat[double] */
-  static CYTHON_INLINE double __Pyx_mod_double(double a, double b) {
-    double r = fmod(a, b);
-    r += ((r != 0) & ((r < 0) ^ (b < 0))) * b;
-    return r;
-}
-
-/* PyIntBinop */
-  #if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_TrueDivideObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check) {
-    CYTHON_MAYBE_UNUSED_VAR(intval);
-    CYTHON_MAYBE_UNUSED_VAR(inplace);
-    CYTHON_UNUSED_VAR(zerodivision_check);
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_CheckExact(op1))) {
-        const long b = intval;
-        long a = PyInt_AS_LONG(op1);
-        
-            if (8 * sizeof(long) <= 53 || likely(labs(a) <= ((PY_LONG_LONG)1 << 53))) {
-                return PyFloat_FromDouble((double)a / (double)b);
-            }
-            return PyInt_Type.tp_as_number->nb_true_divide(op1, op2);
-    }
-    #endif
-    #if CYTHON_USE_PYLONG_INTERNALS
-    if (likely(PyLong_CheckExact(op1))) {
-        const long b = intval;
-        long a, x;
-        if (unlikely(__Pyx_PyLong_IsZero(op1))) {
-        }
-        if (likely(__Pyx_PyLong_IsCompact(op1))) {
-            a = __Pyx_PyLong_CompactValue(op1);
-        } else {
-            const digit* digits = __Pyx_PyLong_Digits(op1);
-            const Py_ssize_t size = __Pyx_PyLong_SignedDigitCount(op1);
-            switch (size) {
-                case -2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT && 1 * PyLong_SHIFT < 53) {
-                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT && 1 * PyLong_SHIFT < 53) {
-                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                case -3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT && 2 * PyLong_SHIFT < 53) {
-                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT && 2 * PyLong_SHIFT < 53) {
-                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                case -4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT && 3 * PyLong_SHIFT < 53) {
-                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT && 3 * PyLong_SHIFT < 53) {
-                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    }
-                    CYTHON_FALLTHROUGH;
-                default: return PyLong_Type.tp_as_number->nb_true_divide(op1, op2);
-            }
-        }
-                if ((8 * sizeof(long) <= 53 || likely(labs(a) <= ((PY_LONG_LONG)1 << 53)))
-                        || __Pyx_PyLong_DigitCount(op1) <= 52 / PyLong_SHIFT) {
-                    return PyFloat_FromDouble((double)a / (double)b);
-                }
-                return PyLong_Type.tp_as_number->nb_true_divide(op1, op2);
-            return PyLong_FromLong(x);
-        
-    }
-    #endif
-    if (PyFloat_CheckExact(op1)) {
-        const long b = intval;
-#if CYTHON_COMPILING_IN_LIMITED_API
-        double a = __pyx_PyFloat_AsDouble(op1);
-#else
-        double a = PyFloat_AS_DOUBLE(op1);
-#endif
-            double result;
-            
-            PyFPE_START_PROTECT("divide", return NULL)
-            result = ((double)a) / (double)b;
-            PyFPE_END_PROTECT(result)
-            return PyFloat_FromDouble(result);
-    }
-    return (inplace ? PyNumber_InPlaceTrueDivide : PyNumber_TrueDivide)(op1, op2);
-}
-#endif
-
-/* PyIntBinop */
-  #if !CYTHON_COMPILING_IN_PYPY
-static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check) {
-    CYTHON_MAYBE_UNUSED_VAR(intval);
-    CYTHON_MAYBE_UNUSED_VAR(inplace);
-    CYTHON_UNUSED_VAR(zerodivision_check);
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_CheckExact(op1))) {
-        const long b = intval;
-        long x;
-        long a = PyInt_AS_LONG(op1);
-        
-            x = (long)((unsigned long)a - (unsigned long)b);
-            if (likely((x^a) >= 0 || (x^~b) >= 0))
-                return PyInt_FromLong(x);
-            return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-    }
-    #endif
-    #if CYTHON_USE_PYLONG_INTERNALS
-    if (likely(PyLong_CheckExact(op1))) {
-        const long b = intval;
-        long a, x;
-#ifdef HAVE_LONG_LONG
-        const PY_LONG_LONG llb = intval;
-        PY_LONG_LONG lla, llx;
-#endif
-        if (unlikely(__Pyx_PyLong_IsZero(op1))) {
-            return PyLong_FromLong(-intval);
-        }
-        if (likely(__Pyx_PyLong_IsCompact(op1))) {
-            a = __Pyx_PyLong_CompactValue(op1);
-        } else {
-            const digit* digits = __Pyx_PyLong_Digits(op1);
-            const Py_ssize_t size = __Pyx_PyLong_SignedDigitCount(op1);
-            switch (size) {
-                case -2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 2:
-                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
-                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                case -3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 3:
-                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
-                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                case -4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                case 4:
-                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
-                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
-                        break;
-                    #ifdef HAVE_LONG_LONG
-                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
-                        goto long_long;
-                    #endif
-                    }
-                    CYTHON_FALLTHROUGH;
-                default: return PyLong_Type.tp_as_number->nb_subtract(op1, op2);
-            }
-        }
-                x = a - b;
-            return PyLong_FromLong(x);
-#ifdef HAVE_LONG_LONG
-        long_long:
-                llx = lla - llb;
-            return PyLong_FromLongLong(llx);
-#endif
-        
-        
-    }
-    #endif
-    if (PyFloat_CheckExact(op1)) {
-        const long b = intval;
-#if CYTHON_COMPILING_IN_LIMITED_API
-        double a = __pyx_PyFloat_AsDouble(op1);
-#else
-        double a = PyFloat_AS_DOUBLE(op1);
-#endif
-            double result;
-            
-            PyFPE_START_PROTECT("subtract", return NULL)
-            result = ((double)a) - (double)b;
-            PyFPE_END_PROTECT(result)
-            return PyFloat_FromDouble(result);
-    }
-    return (inplace ? PyNumber_InPlaceSubtract : PyNumber_Subtract)(op1, op2);
-}
-#endif
-
 /* FixUpExtensionType */
   #if CYTHON_USE_TYPE_SPECS
 static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type) {
@@ -18079,7 +14009,7 @@ static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *
 #endif
 static PyObject *__Pyx__ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
 #if PY_MAJOR_VERSION < 3
-    PyObject *module, *from_list, *star = __pyx_n_s__7;
+    PyObject *module, *from_list, *star = __pyx_n_s__4;
     CYTHON_UNUSED_VAR(parts_tuple);
     from_list = PyList_New(1);
     if (unlikely(!from_list))
@@ -20479,7 +16409,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__37);
+        name = __Pyx_NewRef(__pyx_n_s__19);
     }
     return name;
 }
