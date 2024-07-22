@@ -111,8 +111,8 @@ def convert_angles_to_xarm(np.ndarray[double, ndim=1] angles):
     xarm_angles[1] = -angles[1]  # Shoulder (beta, inverted)
     xarm_angles[2] = -angles[2] + 180.0  # Elbow (gamma, negated and offset by 180 degrees)
     xarm_angles[3] = -angles[3] - 90.0  # Wrist 1 (delta, inverted and offset by 90 degrees)
-    xarm_angles[4] = angles[4] if len(angles) > 4 else 0  # Wrist 2 (epsilon or 0 if not provided)
-    xarm_angles[5] = angles[5] if len(angles) > 5 else 0  # Wrist 3 (zeta or 0 if not provided)
+    xarm_angles[4] = angles[4] if len(angles) > 4 else 0  # Wrist 2
+    xarm_angles[5] = angles[5] if len(angles) > 5 else 0  # Wrist 3
 
     # Normalize angles to [-180, 180] range
     for i in range(6):
