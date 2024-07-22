@@ -1,4 +1,4 @@
-# xArm Real-Time Arm Tracking with Minimum Jerk Trajectory Control
+# xArm 6 Real-Time Arm Tracking with Minimum Jerk Trajectory Control
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
