@@ -14,7 +14,6 @@
    - [Running the Project](#running-the-project)
 4. [Safety Considerations](#safety-considerations)
 5. [Troubleshooting](#troubleshooting)
-6. [Future Improvements](#future-improvements)
 
 ## Project Overview
 
