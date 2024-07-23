@@ -1,4 +1,4 @@
-# xArm 6 Real-Time Arm Tracking with Minimum Jerk Trajectory Control
+# xArm 6 Real-Time Arm Tracking with Minimum Jerk
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -29,9 +29,9 @@ The system uses a highly optimized arm tracking module (`arm_tracker_cy`) implem
 
 The tracked arm joint positions are fed into an inverse kinematics solver (`xarm_kinematics`), which calculates the corresponding joint angles required for the xArm to achieve the same pose. The system applies joint angle limits to ensure safe operation within the physical constraints of the xArm.
 
-### 3. Minimum Jerk Trajectory Control
+### 3. Trajectory Control
 
-The system implements minimum jerk trajectory control (`trajectory.pyx`) to ensure smooth and natural-looking movements of the robotic arm. This approach minimizes the jerk (rate of change of acceleration) along the path, resulting in more human-like motion. The trajectory module includes functions for limiting joint angles within safe ranges, which is crucial for preventing damage to the robotic arm and ensuring safe operation.
+The system implements trajectory control (`trajectory.pyx`) includes function for limiting joint angles within safe ranges, which is crucial for preventing damage to the robotic arm and ensuring safe operation.
 
 ### 4. Filtering and Smoothing
 
