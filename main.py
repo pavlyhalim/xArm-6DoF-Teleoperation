@@ -2,8 +2,7 @@ import numpy as np
 import pyrealsense2 as rs
 import cv2
 from arm_tracker_cy import ArmTracker
-from xarm_kinematics import calculate_arm_angles, convert_angles_to_xarm
-from trajectory import limit_joint_angles
+from xarm_kinematics import calculate_arm_angles, convert_angles_to_xarm , limit_joint_angles
 from xarm.wrapper import XArmAPI
 import time
 import logging
