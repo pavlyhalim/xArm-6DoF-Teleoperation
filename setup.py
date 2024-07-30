@@ -8,9 +8,7 @@ extensions = [
     Extension("arm_tracker_cy", ["arm_tracker_cy.pyx"],
               include_dirs=[numpy.get_include()]),
     Extension("xarm_kinematics", ["xarm_kinematics.pyx"],
-              include_dirs=[numpy.get_include()]),
-    Extension("trajectory", ["trajectory.pyx"],
-              include_dirs=[numpy.get_include()]),
+              include_dirs=[numpy.get_include()])
 ]
 
 setup(
