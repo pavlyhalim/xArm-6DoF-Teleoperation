@@ -1,13 +1,12 @@
-# xArm 6 Real-Time Arm Tracking with Minimum Jerk
+# xArm 6 Real-Time Arm Tracking with Minimum Jerk Trajectory Control
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Implementation Details](#implementation-details)
    - [Real-Time Arm Tracking](#1-real-time-arm-tracking)
    - [Inverse Kinematics](#2-inverse-kinematics)
-   - [Minimum Jerk Trajectory Control](#3-minimum-jerk-trajectory-control)
-   - [Filtering and Smoothing](#4-filtering-and-smoothing)
-   - [xArm Control](#5-xarm-control)
+   - [Filtering and Smoothing](#3-filtering-and-smoothing)
+   - [xArm Control](#4-xarm-control)
 3. [Building and Running the Project](#building-and-running-the-project)
    - [Prerequisites](#prerequisites)
    - [Building the Project](#building-the-project)
@@ -29,17 +28,13 @@ The system uses a highly optimized arm tracking module (`arm_tracker_cy`) implem
 
 The tracked arm joint positions are fed into an inverse kinematics solver (`xarm_kinematics`), which calculates the corresponding joint angles required for the xArm to achieve the same pose. The system applies joint angle limits to ensure safe operation within the physical constraints of the xArm.
 
-### 3. Trajectory Control
-
-The system implements trajectory control (`trajectory.pyx`) includes function for limiting joint angles within safe ranges, which is crucial for preventing damage to the robotic arm and ensuring safe operation.
-
-### 4. Filtering and Smoothing
+### 3. Filtering and Smoothing
 
 The system employs both Extended Kalman Filters and Low-Pass Filters (`filters`) to reduce noise and provide smooth, stable tracking results. This helps to mitigate jitter and sudden movements that could be problematic for the robotic arm.
 
-### 5. xArm Control
+### 4. xArm Control
 
-The main control loop (`main.py`) integrates all components, handling the real-time processing of camera data, arm tracking, inverse kinematics calculations, trajectory generation, and sending control commands to the xArm.
+The main control loop (`main.py`) integrates all components, handling the real-time processing of camera data, arm tracking, inverse kinematics calculations, and sending control commands to the xArm.
 
 ## Building and Running the Project
 
@@ -103,7 +98,7 @@ The main control loop (`main.py`) integrates all components, handling the real-t
 ## Troubleshooting
 
 - If you encounter issues with arm tracking, try adjusting lighting conditions or your distance from the camera.
-- If the xArm movements seem jerky or unstable, you may need to adjust the PID controller parameters or filtering settings.
+- If the xArm movements seem jerky or unstable, you may need to adjust the filtering settings.
 - Ensure all cable connections are secure and the xArm is properly powered.
 - Check the system logs for any error messages or warnings that might indicate the source of the problem.
 
